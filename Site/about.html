@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About - Stephanie McArthur</title>
+<style>
+  body { font:16px/1.5 system-ui; margin:2rem }
+  a { color:#0a58ca }
+  h2 { margin-top:2rem; font-size:1.25em }
+</style>
+
+<h1>About Me</h1>
+
+<h2>Personal</h2>
+<p>I’m Stephanie. I enjoy modeling, visualization, and data science. I love taking information, categorizing it, and finding interesting patterns. Outside of work, I enjoy Rubik's cubing and watercolor painting.</p>
+
+<h2>
+  <button onclick="toggleGallery()" style="font-size:1em;">Show Watercolor Gallery</button>
+</h2>
+<div id="gallery" style="display:none; margin-top:1rem;">
+  <img src="images/1.jpg" alt="Watercolor 1" style="max-width:300px;height:auto;">
+</div>
+<script>
+  function toggleGallery() {
+    var g = document.getElementById('gallery');
+    g.style.display = g.style.display === 'none' ? 'block' : 'none';
+  }
+</script>
+
+
+
+
+<h2>Professional</h2>
+<p>I specialize in data analytics and visualization, with experience in Python, SQL, and Tableau. My work focuses on transforming complex data into actionable insights for business decision-making.</p>
+
+<p><a href="index.html">← Back to Home</a></p>
