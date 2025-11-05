@@ -1,0 +1,102 @@
+body {
+  font: 16px/1.5 'Roboto Slab', serif;
+  margin: 0;
+  background-color: #fae1ea;
+  color: #d72660;
+  padding: 6rem 0 2rem 0;
+}
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  background: #f7dae2;
+  border-radius: 22px;
+  box-shadow: 0 2px 12px rgba(215,38,96,0.05);
+}
+/* Professional history section */
+.history-card {
+  background: #fbeaf2;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 8px rgba(215,38,96,0.06);
+  color: #a42657;
+  margin: 2rem 0 2.7rem 0;
+  padding: 1.7rem 1.5rem 1.2rem 1.5rem;
+}
+.history-card h2 {
+  margin: 0 0 .6em 0;
+  color: #d72660;
+  font-size: 1.22em;
+  font-weight: 700;
+  text-align: center;
+}
+.history-card ul {
+  padding-left: 1.2em;
+  margin: 0.7em 0 .1em 0;
+  list-style-type: disc;
+}
+.history-card li {
+  background: none;
+  color: #a42657;
+  border: none;
+  box-shadow: none;
+  padding: 0 0 .18em 0;
+  margin: 0 0 .4em 0;
+  font-size: 1em;
+}
+h1 {
+  margin: 0 0 1.5rem 0;
+  text-align: center;
+}
+p {
+  color: #d72660;
+}
+/* Projects-specific styling */
+.project-list {
+  padding-left: 0;
+  margin: 0;
+  list-style: none;
+}
+.project-card {
+  margin-bottom: 2rem;
+  padding: 1.5rem 1rem 1rem 1rem;
+  background: #fbeaf2;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  color: #d72660;
+  box-shadow: 0 2px 8px rgba(215,38,96,0.04);
+}
+.project-card p {
+  color: #a42657;
+  margin: 0.5rem 0 0.5rem 0;
+}
+a {
+  color: #fff;
+  background-color: #e35d6a;
+  border-radius: 999px;
+  padding: 0.55rem 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.15s;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+a:hover {
+  background-color: #d14656;
+  transform: translateY(-2px);
+}
+.back-link {
+  background: transparent;
+  color: #d72660;
+  border: none;
+  box-shadow: none;
+  text-align: left;
+  padding: 0;
+  margin-top: 2rem;
+  font-size: 1rem;
+}
+.back-link:hover {
+  text-decoration: underline;
+  background: none;
+  color: #a42657;
+}
