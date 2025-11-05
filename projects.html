@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tableau Projects - Stephanie McArthur</title>
+    <title>Professional Section</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&display=swap" rel="stylesheet">
     <style>
       body {
@@ -13,7 +13,6 @@
         color: #d72660;
         padding: 6rem 0 2rem 0;
       }
-      /*off white bg*/
       .wrap {
         max-width: 720px;
         margin: 0 auto;
@@ -42,6 +41,7 @@
       .history-card ul {
         padding-left: 1.2em;
         margin: 0.7em 0 .1em 0;
+        list-style-type: disc;
       }
       .history-card li {
         background: none;
@@ -49,9 +49,9 @@
         border: none;
         box-shadow: none;
         padding: 0 0 .18em 0;
-        margin: 0;
+        margin: 0 0 .4em 0;
+        font-size: 1em;
       }
-      
       h1 {
         margin: 0 0 1.5rem 0;
         text-align: center;
@@ -59,11 +59,13 @@
       p {
         color: #d72660;
       }
-      ul {
-        padding-left: 1.5rem;
-        list-style-type: circle;
+      /* Projects-specific styling */
+      .project-list {
+        padding-left: 0;
+        margin: 0;
+        list-style: none;
       }
-      li {
+      .project-card {
         margin-bottom: 2rem;
         padding: 1.5rem 1rem 1rem 1rem;
         background: #fbeaf2;
@@ -72,7 +74,7 @@
         color: #d72660;
         box-shadow: 0 2px 8px rgba(215,38,96,0.04);
       }
-      li p {
+      .project-card p {
         color: #a42657;
         margin: 0.5rem 0 0.5rem 0;
       }
@@ -121,11 +123,11 @@
 
       <h1>Projects</h1>
       <p>
-        Stephanie has a passion for translating complex information into compelling narratives—she lives and breathes data! 
+        Stephanie has a passion for translating complex information into compelling narratives—she lives and breathes data!
       </p>
       <p>Below, you’ll find some examples of her favorite Tableau projects:</p>
-      <ul>
-        <li>
+      <ul class="project-list">
+        <li class="project-card">
           <a href="https://public.tableau.com/app/profile/stephanie8553/viz/Consumer_Complaints_16934391724510/Presentation" target="_blank">
             Bank Complaints Investigation
           </a>
@@ -133,7 +135,7 @@
             Using fictional data, this project provides an example of how Stephanie could help a bank learn from the feedback of its customers. An opening executive summary lays out data on why customers are complaining, where they’re filing those complaints, and how fast the average response time is. The data aims to be usable and accessible for bank executives looking to improve the customer experience.
           </p>
         </li>
-        <li>
+        <li class="project-card">
           <a href="https://public.tableau.com/app/profile/stephanie8553/viz/Chandler_Xmas_2022/RatingsOverview" target="_blank">
             Goodreads Data Analysis
           </a>
@@ -141,7 +143,7 @@
             In this present to her husband, Stephanie mines his Goodreads data for patterns and trends. The project contains analyses like comparing his personal ratings to community averages, sorting the books he reads by time period, comparing his fiction vs. nonfiction consumption, and examining at the genre distribution of his reading habits.
           </p>
         </li>
-        <li>
+        <li class="project-card">
           <a href="https://public.tableau.com/app/profile/stephanie8553/viz/SocialSurvey_17584951234300/Sheet2" target="_blank">
             Social Survey
           </a>
