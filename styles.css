@@ -237,12 +237,15 @@ nav {
   margin-top: 1.4rem;
   text-align: center;
 }
-#gallery img {
-  max-width: 185px;
-  height: auto;
-  border-radius: 14px;
-  margin: 0.5em;
-  box-shadow: 0 1px 8px rgba(215,38,96,0.13);
-  border: 2px solid #fbeaf2;
+
+.gallery {
+  display: none;
 }
+
+.gallery img {
+  max-width: 200px;
+  height: auto;
+  margin: 8px;
+}
+
 
