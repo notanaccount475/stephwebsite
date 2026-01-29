@@ -41,6 +41,25 @@
       }
     </script>
 
+
+    <h2>
+      <button class="art-btn" onclick="toggleGallery()">Here are some photos of me I like!</button>
+    </h2>
+    <div id="gallery">
+      <img src="selfies/cbs graduation.jpg" alt="Watercolor 1">
+      <img src="selfies/first day cbs.png" alt="Watercolor 2">
+      <img src="selfies/final day cbs.png" alt="Watercolor 3">
+      <img src="selfies/vienna natural history museum.jpg" alt="Watercolor 4">
+      <img src="selfies/wedding cake cutting.jpg" alt="Watercolor 4">
+    </div>
+    <script>
+      function toggleGallery() {
+        var g = document.getElementById('gallery');
+        g.style.display = g.style.display === 'none' ? 'block' : 'none';
+      }
+    </script>
+
+
     <h2>Volunteering</h2>
     <ul>
       <li>
