@@ -53,25 +53,25 @@ margin-bottom: .85em;
 }
 
 .project-card {
-margin-bottom: 2rem;
-padding: 1.5rem 1rem 1rem 1rem;
-background: var(--bg-surface); /* not bg-card */
-border-radius: 16px;
-border: 1px solid var(--border-soft);
-color: var(--text-primary);
-box-shadow: var(--shadow-soft);
+  margin-bottom: 2rem;
+  padding: 1.5rem 1rem 1rem 1rem;
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-soft);
+  color: var(--text-secondary);
 }
 
 .project-card ul {
-color: var(--text-secondary);
-background: var(--bg-surface);
-border-radius: 13px;
-padding: 1em 1.3em 1em 2em;
-border: 1px solid var(--border-soft);
-box-shadow: var(--shadow-soft);
-margin: 0.7em 0 1em 0;
-text-align: left;
+  background: var(--bg-surface);
+  border-radius: 13px;
+  padding: 1em 1.3em 1em 2em;
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-soft);
+  margin: 0.7em 0 1em 0;
+  text-align: left;
 }
+
 
 .link {
 display: block;
