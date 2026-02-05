@@ -55,7 +55,7 @@ margin-bottom: .85em;
 .project-card {
 margin-bottom: 2rem;
 padding: 1.5rem 1rem 1rem 1rem;
-background: var(--bg-card);
+background: var(--bg-surface); /* not bg-card */
 border-radius: 16px;
 border: 1px solid var(--border-soft);
 color: var(--text-primary);
