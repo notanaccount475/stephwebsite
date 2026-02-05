@@ -121,12 +121,14 @@ transform: translateY(-2px);
   display: none; /* pictures are hidden by default */
 }
 
-/* make images smaller */
 .gallery img {
-  max-width: 180px; /* was 200px */
+  width: 100%;
+  max-width: 200px; /* set whatever size you want here */
   height: auto;
   margin: 8px;
+  display: inline-block;
 }
+
 
 .social-button {
 display: inline-flex;
