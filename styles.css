@@ -1,7 +1,3 @@
-Here is a standardized version that reduces background colors to a single “surface” family and removes the extra list-specific colors by centralizing them into variables.
-
-Add at the top of your file:
-
 :root {
 --bg-page: #fae1ea;
 --bg-card: #fbeaf2;
@@ -15,7 +11,6 @@ Add at the top of your file:
 --accent-hover: #d14656;
 }
 
-Then replace the following sections so they all draw from the same background instead of introducing new ones.
 
 body {
 font: 16px/1.5 'Roboto Slab', serif;
@@ -115,5 +110,3 @@ background-color: var(--accent);
 .social-button.email:hover {
 background-color: var(--accent-hover);
 }
-
-Net effect: one page background, one card/surface background, one border token, one shadow token, and one primary/secondary text pair instead of multiple ad-hoc pinks.
