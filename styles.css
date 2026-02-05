@@ -1,4 +1,4 @@
-:root {
+pm:root {
 --bg-page: #fae1ea;
 --bg-card: #fbeaf2;
 --bg-surface: #fbeaf2;
@@ -58,7 +58,7 @@ padding: 1.5rem 1rem 1rem 1rem;
 background: var(--bg-card);
 border-radius: 16px;
 border: 1px solid var(--border-soft);
-color: var(--text-primary);
+color: var(--text-secondary);
 box-shadow: var(--shadow-soft);
 }
 
