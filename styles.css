@@ -9,6 +9,8 @@
 --text-secondary: #a42657;
 --ui-primary: #e35d6a;
 --ui-primary-hover: #d14656;
+--linkedin: #0077b5;
+--linkedin-hover: #005582;
 }
 
 
@@ -104,6 +106,27 @@ background: var(--ui-primary-hover);
 transform: translateY(-2px);
 }
 
+.social-button {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 0.5rem;
+padding: 0.75rem 1rem;
+border-radius: 999px;
+text-decoration: none;
+font-weight: 600;
+color: #fff;
+transition: background-color 0.3s, transform 0.2s;
+}
+
+.social-button i {
+font-size: 1.1rem;
+}
+
+.social-button:hover {
+transform: translateY(-2px);
+}
+
 .social-button.email {
 background-color: var(--ui-primary);
 }
@@ -112,6 +135,10 @@ background-color: var(--ui-primary);
 background-color: var(--ui-primary-hover);
 }
 
-.social-button.email:hover {
-background-color: var(--accent-hover);
+.social-button.linkedin {
+background-color: var(--linkedin);
+}
+
+.social-button.linkedin:hover {
+background-color: var(--linkedin-hover);
 }
