@@ -126,14 +126,20 @@ transform: translateY(-2px);
   text-align: center;
 }
 
-.gallery img {
+/*.gallery img {
   width: 100%;
-  max-width: 200px; /* set whatever size you want here */
+  max-width: 200px; 
   height: auto;
   margin: 8px;
   display: inline-block;
-}
+}*/
 
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
 
 .social-button {
 display: inline-flex;
