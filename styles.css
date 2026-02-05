@@ -122,24 +122,24 @@ transform: translateY(-2px);
 }
 
 .gallery {
-  max-width: 250px;
+  max-width: 3000px;
   text-align: center;
 }
 
-/*.gallery img {
+.gallery img {
   width: 100%;
-  max-width: 200px; 
+  max-width: 300px; 
   height: auto;
   margin: 8px;
   display: inline-block;
-}*/
+}
 
-.gallery {
+/*.gallery {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 8px;
-}
+}*/
 
 .social-button {
 display: inline-flex;
