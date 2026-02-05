@@ -44,14 +44,12 @@ box-shadow: var(--shadow-soft);
 text-align: left;
 }
 
-.history-card {
-background: var(--bg-card);
-border-radius: 16px;
-border: 1px solid var(--border-soft);
-box-shadow: var(--shadow-soft);
-color: var(--text-secondary);
-margin: 2rem 0 2.7rem 0;
-padding: 1.7rem 1.5rem 1.2rem 1.5rem;
+.history-card ul {
+margin: 0.7em 0 0.7em 0;
+}
+
+.history-card li {
+margin-bottom: .85em;
 }
 
 .project-card {
