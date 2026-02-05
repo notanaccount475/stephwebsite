@@ -122,7 +122,7 @@ transform: translateY(-2px);
 }
 
 .gallery {
-  max-width: none;
+  max-width: 250px;
   text-align: center;
 }
 
