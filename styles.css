@@ -115,6 +115,19 @@ background: var(--ui-primary-hover);
 transform: translateY(-2px);
 }
 
+/* Gallery styles */
+#gallery,
+.gallery {
+  display: none; /* pictures are hidden by default */
+}
+
+/* make images smaller */
+.gallery img {
+  max-width: 120px; /* was 200px */
+  height: auto;
+  margin: 8px;
+}
+
 .social-button {
 display: inline-flex;
 align-items: center;
