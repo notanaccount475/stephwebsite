@@ -121,6 +121,11 @@ transform: translateY(-2px);
   display: none; /* pictures are hidden by default */
 }
 
+.gallery {
+  max-width: none;
+  text-align: center;
+}
+
 .gallery img {
   width: 100%;
   max-width: 200px; /* set whatever size you want here */
