@@ -62,6 +62,17 @@ color: var(--text-primary);
 box-shadow: var(--shadow-soft);
 }
 
+.project-card ul {
+color: var(--text-secondary);
+background: var(--bg-surface);
+border-radius: 13px;
+padding: 1em 1.3em 1em 2em;
+border: 1px solid var(--border-soft);
+box-shadow: var(--shadow-soft);
+margin: 0.7em 0 1em 0;
+text-align: left;
+}
+
 .link {
 display: block;
 padding: 0.9rem 1.1rem;
