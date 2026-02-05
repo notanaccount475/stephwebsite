@@ -7,8 +7,8 @@
 --shadow-card: 0 2px 12px rgba(215,38,96,0.07);
 --text-primary: #d72660;
 --text-secondary: #a42657;
---accent: #e35d6a;
---accent-hover: #d14656;
+--ui-primary: #e35d6a;
+--ui-primary-hover: #d14656;
 }
 
 
@@ -67,11 +67,11 @@ display: block;
 padding: 0.9rem 1.1rem;
 border: 1px solid var(--border-soft);
 border-radius: 12px;
-background: var(--bg-surface);
+background: #fce3f0; /* keep visual separation */
 color: var(--text-primary);
 font-weight: 600;
 text-decoration: none;
-transition: background .2s, color .2s, box-shadow .2s;
+transition: background .2s, color .2s, box-shadow .2s, transform .15s;
 margin: 0 auto;
 max-width: 480px;
 }
@@ -81,11 +81,12 @@ max-width: 480px;
 background: var(--bg-card);
 color: var(--text-secondary);
 box-shadow: 0 1px 6px rgba(215,38,96,0.09);
+transform: translateY(-1px);
 }
 
 .art-btn {
 display: inline-block;
-background-color: var(--accent);
+background-color: var(--ui-primary);
 color: #fff;
 font-weight: 600;
 border-radius: 999px;
@@ -99,12 +100,16 @@ transition: background .3s, transform .15s;
 }
 
 .art-btn:hover {
-background: var(--accent-hover);
+background: var(--ui-primary-hover);
 transform: translateY(-2px);
 }
 
 .social-button.email {
-background-color: var(--accent);
+background-color: var(--ui-primary);
+}
+
+.social-button.email:hover {
+background-color: var(--ui-primary-hover);
 }
 
 .social-button.email:hover {
