@@ -246,15 +246,24 @@ nav{
 
 .nav-row{
   display:flex;
-  flex-direction:column;
+  flex-direction:row;
+  flex-wrap:wrap;
   align-items:center;
-  gap:12px;
-  width:100%;
+  justify-content:center;
+  gap:10px;
+  width:auto;
 }
 
 .nav-row-contact{
   padding-top:18px;
   border-top:1px dashed var(--panel-border);
+}
+
+.nav-row .link,
+.nav-row .social-button{
+  width:auto;
+  padding:10px 18px;
+  font-size:.85rem;
 }
 
 .link,
