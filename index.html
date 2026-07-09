@@ -41,9 +41,9 @@
            (single-color) state and back — see the cube-cell-* keyframe
            animations in styles.css -->
       <div class="cube-grid" aria-hidden="true">
-        <span class="c1"></span><span class="c2"></span><span class="c3"></span>
-        <span class="c4"></span><span class="c5"></span><span class="c6"></span>
-        <span class="c7"></span><span class="c8"></span><span class="c9"></span>
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
       </div>
 
       <!-- Compact "quick nav" row near the top of the page, so anyone in a hurry
@@ -119,5 +119,45 @@
         </div>
       </nav>
     </div>
+
+    <script>
+      // Randomizes the little cube-face grid under the h1: repeatedly
+      // scrambles to random colors, then briefly "solves" to one random
+      // color, then scrambles again — a real random shuffle each time,
+      // not a fixed repeating pattern.
+      (function () {
+        var colors = ['#FFF6EC', '#FFE59A', '#FF9EB0', '#FFC08A', '#A9E6C4', '#A8D8F0'];
+        var cells = document.querySelectorAll('.cube-grid span');
+
+        function randomColor() {
+          return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        function scramble() {
+          cells.forEach(function (cell) {
+            cell.style.background = randomColor();
+          });
+        }
+
+        function solve() {
+          var solvedColor = randomColor();
+          cells.forEach(function (cell) {
+            cell.style.background = solvedColor;
+          });
+        }
+
+        function loop() {
+          scramble();
+          setTimeout(function () {
+            solve();
+            setTimeout(loop, 2200);
+          }, 2600);
+        }
+
+        if (cells.length) {
+          loop();
+        }
+      })();
+    </script>
   </body>
 </html>

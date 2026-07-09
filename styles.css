@@ -211,6 +211,7 @@ body{
 
 .cube-grid span{
   border-radius:3px;
+  transition:background-color .5s ease;  /* smooths the color swaps driven by the script in index.html */
 }
 
 /* Glossy highlight sheen across the whole grid (same trick used on the
@@ -225,34 +226,6 @@ body{
   background:radial-gradient(ellipse at top, rgba(255,255,255,.5), transparent 62%);
   pointer-events:none;
 }
-
-/* Each cell cycles through the SAME timing: it sits on its own
-   "scrambled" color most of the time, then briefly snaps to a shared
-   solved color (white) in sync with all the other cells, then snaps
-   back — so the whole grid periodically looks "solved" for a beat,
-   like watching a fast solve happen on a loop. */
-.c1{ animation:cube-cell-1 7s ease-in-out infinite; }
-.c2{ animation:cube-cell-2 7s ease-in-out infinite; }
-.c3{ animation:cube-cell-3 7s ease-in-out infinite; }
-.c4{ animation:cube-cell-4 7s ease-in-out infinite; }
-.c5{ animation:cube-cell-5 7s ease-in-out infinite; }
-.c6{ animation:cube-cell-6 7s ease-in-out infinite; }
-.c7{ animation:cube-cell-7 7s ease-in-out infinite; }
-.c8{ animation:cube-cell-8 7s ease-in-out infinite; }
-.c9{ animation:cube-cell-9 7s ease-in-out infinite; }
-
-/* Each keyframe holds its own scrambled color from 0-44%, snaps to the
-   shared solved white from 46-66%, then snaps back to the same scrambled
-   color it started on (so the loop repeats seamlessly with no jump) */
-@keyframes cube-cell-1{ 0%,44%{background:#FFE59A;} 46%,66%{background:#FFF6EC;} 70%,100%{background:#FFE59A;} }
-@keyframes cube-cell-2{ 0%,44%{background:#A8D8F0;} 46%,66%{background:#FFF6EC;} 70%,100%{background:#A8D8F0;} }
-@keyframes cube-cell-3{ 0%,44%{background:#FFF6EC;} 46%,66%{background:#FFF6EC;} 70%,100%{background:#FFF6EC;} }
-@keyframes cube-cell-4{ 0%,44%{background:#FF9EB0;} 46%,66%{background:#FFF6EC;} 70%,100%{background:#FF9EB0;} }
-@keyframes cube-cell-5{ 0%,44%{background:#FFC08A;} 46%,66%{background:#FFF6EC;} 70%,100%{background:#FFC08A;} }
-@keyframes cube-cell-6{ 0%,44%{background:#FFE59A;} 46%,66%{background:#FFF6EC;} 70%,100%{background:#FFE59A;} }
-@keyframes cube-cell-7{ 0%,44%{background:#A9E6C4;} 46%,66%{background:#FFF6EC;} 70%,100%{background:#A9E6C4;} }
-@keyframes cube-cell-8{ 0%,44%{background:#FFF6EC;} 46%,66%{background:#FFF6EC;} 70%,100%{background:#FFF6EC;} }
-@keyframes cube-cell-9{ 0%,44%{background:#FF9EB0;} 46%,66%{background:#FFF6EC;} 70%,100%{background:#FF9EB0;} }
 
 
 
