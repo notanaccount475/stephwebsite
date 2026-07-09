@@ -275,11 +275,23 @@ li strong{
   font-weight:700;
 }
 
-/* Short cube-metaphor tagline right under the cube grid on the landing
-   page — set in italic and a bit smaller/quieter than the surrounding
-   paragraphs, so it reads as a wry aside rather than another sentence of bio */
+/* Landing page's main hero paragraph: the cube-permutation-group metaphor
+   combined with personal details (see the comment further down in this
+   file, above .cube-tagline in index.html, for the full context) */
 .cube-tagline{
   margin:-6px auto 22px;
+}
+
+/* The opening hook sentence ("A Rubik's cube has about 43 quintillion...")
+   gets bumped up in size/weight and colored with the accent pink, so it
+   reads as a bold opening line that pulls the eye in, rather than blending
+   into the rest of the paragraph at normal body-text size */
+.lead-in{
+  font-family:"Baloo 2", sans-serif;
+  font-weight:700;
+  font-size:1.15rem;
+  color:var(--title);
+  line-height:1.35;
 }
 
 /* Same treatment for the shorter cube-metaphor callback lines woven into
