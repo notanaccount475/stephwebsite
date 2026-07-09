@@ -56,11 +56,11 @@
         </h2>
 
         <div id="gallery" class="gallery">
-          <img src="images/1.jpg" alt="Watercolor 1">
-          <img src="images/2.jpg" alt="Watercolor 2">
-          <img src="images/3.png" alt="Watercolor 3">
-          <img src="images/4.jpg" alt="Watercolor 4">
-          <img src="images/5.png" alt="Watercolor 5">
+          <img src="images/1.jpg" alt="Original artwork by Stephanie McArthur">
+          <img src="images/2.jpg" alt="Original artwork by Stephanie McArthur">
+          <img src="images/3.png" alt="Original artwork by Stephanie McArthur">
+          <img src="images/4.jpg" alt="Original artwork by Stephanie McArthur">
+          <img src="images/5.png" alt="Original artwork by Stephanie McArthur">
         </div>
 
         <h2>
@@ -140,7 +140,7 @@
       img.style.cursor = 'pointer';
       img.addEventListener('click', function() {
         const figcaption = img.closest('figure') ? img.closest('figure').querySelector('figcaption') : null;
-        openLightbox(img.src, figcaption ? figcaption.textContent : img.alt);
+        openLightbox(img.src, figcaption ? figcaption.textContent : '');
       });
     });
   </script>
