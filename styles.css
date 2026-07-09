@@ -470,15 +470,42 @@ img{
   border-radius:22px;
 }
 
-.history-card ul{
-  margin:0;
-  padding-left:20px;
-  max-width:none;
+/* Each "Education" / "Industry Experience" / "Technical" row inside the
+   skills card — a label above a wrapped row of individual tag chips,
+   instead of one long comma-separated sentence */
+.skill-group{
+  margin-bottom:18px;
 }
 
-.history-card li{
+.skill-group:last-child{
+  margin-bottom:0;
+}
+
+.skill-label{
+  display:block;
+  font-family:"Baloo 2", sans-serif;
+  font-weight:700;
+  font-size:.85rem;
+  color:var(--title);
+  text-transform:uppercase;
+  letter-spacing:.04em;
   margin-bottom:8px;
-  line-height:1.6;
+}
+
+.skill-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.skill-tag{
+  display:inline-block;
+  padding:6px 14px;
+  border-radius:999px;
+  background:var(--paper, rgba(255,255,255,.7));
+  border:1px solid var(--panel-border);
+  font-size:.85rem;
+  color:var(--text);
 }
 
 /* Container for the 3 project cards — a plain vertical list with no

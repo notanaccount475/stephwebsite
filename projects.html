@@ -3,85 +3,185 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Professional Section</title>
+    <title>Projects - Stephanie McArthur</title>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <div class="wrap">
 
-      <!-- Skills/education card. Styled as its own rounded box via ".history-card" in styles.css,
-           separate from the resume-link and project list below -->
-      <div class="history-card">
-        <h1>Professional History &amp; Skillset</h1>
-        <ul>
-          <li><strong>Education:</strong> MBA, Columbia Business School; B.S. Statistics &amp; Finance, NYU</li>
-          <li><strong>Industry Experience:</strong> Healthcare, Banking, Finance, Technology, Nonprofits</li>
-          <li><strong>Technical:</strong> Data Science, Python, SQL, Tableau (Certified), Power BI (Certified), Excel (training for the MEWC currently!) </li>
-        </ul>
+      <!-- Same identity elements as the landing page (eyebrow tag + cube grid)
+           so this page doesn't feel disconnected from the rest of the site.
+           The cube grid uses the identical randomizing script at the bottom
+           of this file as index.html does. -->
+      <span class="eyebrow">Data Consultant · Analytics · Data Science · Storytelling</span>
+
+      <div class="cube-grid" aria-hidden="true">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </div>
+
+      <!-- Quick link to the resume for anyone who lands directly on this page
+           (via a shared link or search result) without passing through the
+           homepage first, where the resume link normally lives -->
+      <div class="quick-nav">
+        <a class="quick-link" href="Stephanie_McArthur_Resume.pdf" target="_blank" rel="noopener">View Resume</a>
+      </div>
+
+      <!-- Skills/education card. This is the page's one true <h1> (was
+           previously a second, competing <h1> alongside "Projects" below —
+           demoted that one to <h2> so there's a clear single top-level
+           heading for the page). Styled as its own rounded box via
+           ".history-card" in styles.css. -->
+      <div class="content-block">
+        <div class="history-card">
+          <h1>Professional History &amp; Skillset</h1>
+
+          <!-- Each skill category is a labeled row of individual tag chips
+               instead of one long comma-separated line of text — same exact
+               words as before, just split into separate ".skill-tag" spans
+               so it's scannable at a glance instead of read as a run-on -->
+          <div class="skill-group">
+            <span class="skill-label">Education</span>
+            <div class="skill-tags">
+              <span class="skill-tag">MBA, Columbia Business School</span>
+              <span class="skill-tag">B.S. Statistics &amp; Finance, NYU</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <span class="skill-label">Industry Experience</span>
+            <div class="skill-tags">
+              <span class="skill-tag">Healthcare</span>
+              <span class="skill-tag">Banking</span>
+              <span class="skill-tag">Finance</span>
+              <span class="skill-tag">Technology</span>
+              <span class="skill-tag">Nonprofits</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <span class="skill-label">Technical</span>
+            <div class="skill-tags">
+              <span class="skill-tag">Data Science</span>
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">SQL</span>
+              <span class="skill-tag">Tableau (Certified)</span>
+              <span class="skill-tag">Power BI (Certified)</span>
+              <span class="skill-tag">Excel (training for the MEWC currently!)</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Note: the resume download link used to live here too, but it was moved to
            the landing page (index.html) so visitors don't have to click through
            to this page first just to find it. Keeping it in one place avoids
-           showing the same link twice across the site. -->
+           showing the same link twice across the site. A quick pointer to it
+           now sits near the top of this page instead, for anyone who lands
+           here directly. -->
 
-      <h1>Projects</h1>
-      <p>Below, you’ll find some examples of Stephanie's favorite projects:</p>
+      <!-- .content-block here gets the same dashed-divider treatment used on
+           the landing page (see ".content-block + .content-block" in
+           styles.css), since it directly follows the skills content-block above -->
+      <div class="content-block">
+        <h2>Projects</h2>
+        <p>Below, you’ll find some examples of Stephanie's favorite projects:</p>
 
-      <!-- Each project is a ".project-card": a rounded box with a screenshot
-           thumbnail on top (linking out to the live dashboard) and the
-           title/description text below it in ".project-card-body" -->
-      <ul class="project-list">
-        <li class="project-card">
-          <a href="https://public.tableau.com/app/profile/stephanie8553/viz/Consumer_Complaints_16934391724510/Presentation" target="_blank">
-            <div class="project-thumb">
-              <img src="images/projects/bank-complaints.png" alt="Bank Complaints Investigation dashboard preview">
-            </div>
-          </a>
-          <div class="project-card-body">
+        <!-- Each project is a ".project-card": a rounded box with a screenshot
+             thumbnail on top (linking out to the live dashboard) and the
+             title/description text below it in ".project-card-body" -->
+        <ul class="project-list">
+          <li class="project-card">
             <a href="https://public.tableau.com/app/profile/stephanie8553/viz/Consumer_Complaints_16934391724510/Presentation" target="_blank">
-              Bank Complaints Investigation
+              <div class="project-thumb">
+                <img src="images/projects/bank-complaints.png" alt="Bank Complaints Investigation dashboard preview">
+              </div>
             </a>
-            <p>
-              Using mock data, this project provides an example of how Stephanie could help a bank learn from the feedback of its customers. An opening executive summary lays out data on why customers are complaining, where they’re filing those complaints, and how fast the average response time is. The data aims to be usable and accessible for bank executives looking to improve the customer experience.
-            </p>
-          </div>
-        </li>
-        <li class="project-card">
-          <a href="https://public.tableau.com/app/profile/stephanie8553/viz/Chandler_Xmas_2022/RatingsOverview" target="_blank">
-            <div class="project-thumb">
-              <img src="images/projects/goodreads-analysis.png" alt="Goodreads Data Analysis dashboard preview">
+            <div class="project-card-body">
+              <a href="https://public.tableau.com/app/profile/stephanie8553/viz/Consumer_Complaints_16934391724510/Presentation" target="_blank">
+                Bank Complaints Investigation
+              </a>
+              <p>
+                Using mock data, this project provides an example of how Stephanie could help a bank learn from the feedback of its customers. An opening executive summary lays out data on why customers are complaining, where they’re filing those complaints, and how fast the average response time is. The data aims to be usable and accessible for bank executives looking to improve the customer experience.
+              </p>
             </div>
-          </a>
-          <div class="project-card-body">
+          </li>
+          <li class="project-card">
             <a href="https://public.tableau.com/app/profile/stephanie8553/viz/Chandler_Xmas_2022/RatingsOverview" target="_blank">
-              Goodreads Data Analysis
+              <div class="project-thumb">
+                <img src="images/projects/goodreads-analysis.png" alt="Goodreads Data Analysis dashboard preview">
+              </div>
             </a>
-            <p>
-              In this present to her husband, Stephanie mines his Goodreads data for patterns and trends. The project contains analyses like comparing his personal ratings to community averages, sorting the books he reads by time period, comparing his fiction vs. nonfiction consumption, and examining at the genre distribution of his reading habits.
-            </p>
-          </div>
-        </li>
-        <li class="project-card">
-          <a href="https://public.tableau.com/app/profile/stephanie8553/viz/SocialSurvey_17584951234300/Sheet2" target="_blank">
-            <div class="project-thumb">
-              <img src="images/projects/social-survey.png" alt="Social Survey dashboard preview">
+            <div class="project-card-body">
+              <a href="https://public.tableau.com/app/profile/stephanie8553/viz/Chandler_Xmas_2022/RatingsOverview" target="_blank">
+                Goodreads Data Analysis
+              </a>
+              <p>
+                In this present to her husband, Stephanie mines his Goodreads data for patterns and trends. The project contains analyses like comparing his personal ratings to community averages, sorting the books he reads by time period, comparing his fiction vs. nonfiction consumption, and examining at the genre distribution of his reading habits.
+              </p>
             </div>
-          </a>
-          <div class="project-card-body">
+          </li>
+          <li class="project-card">
             <a href="https://public.tableau.com/app/profile/stephanie8553/viz/SocialSurvey_17584951234300/Sheet2" target="_blank">
-              Social Survey
+              <div class="project-thumb">
+                <img src="images/projects/social-survey.png" alt="Social Survey dashboard preview">
+              </div>
             </a>
-            <p>
-              In a survey of her own friend group, Stephanie analyzes data about how people prefer to be contacted, why they don’t text back, and what makes them likely to commit to plans. It’s a study of social communication and the “whys” of human interaction.
-            </p>
-          </div>
-        </li>
-      </ul>
+            <div class="project-card-body">
+              <a href="https://public.tableau.com/app/profile/stephanie8553/viz/SocialSurvey_17584951234300/Sheet2" target="_blank">
+                Social Survey
+              </a>
+              <p>
+                In a survey of her own friend group, Stephanie analyzes data about how people prefer to be contacted, why they don’t text back, and what makes them likely to commit to plans. It’s a study of social communication and the “whys” of human interaction.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
       <p>
         <a href="index.html" class="back-link">← Back to Home</a>
       </p>
     </div>
+
+    <script>
+      // Same cube-grid randomizer as index.html — see the comments there
+      // for the full explanation of how the scramble/solve loop works.
+      (function () {
+        var colors = ['#FFF6EC', '#FFE59A', '#FF9EB0', '#FFC08A', '#A9E6C4', '#A8D8F0'];
+        var cells = document.querySelectorAll('.cube-grid span');
+
+        function randomColor() {
+          return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        function scramble() {
+          cells.forEach(function (cell) {
+            cell.style.background = randomColor();
+          });
+        }
+
+        function solve() {
+          var solvedColor = randomColor();
+          cells.forEach(function (cell) {
+            cell.style.background = solvedColor;
+          });
+        }
+
+        function loop() {
+          scramble();
+          setTimeout(function () {
+            solve();
+            setTimeout(loop, 2200);
+          }, 2600);
+        }
+
+        if (cells.length) {
+          loop();
+        }
+      })();
+    </script>
   </body>
 </html>
