@@ -274,51 +274,40 @@ nav .social-button{
   width: fit-content;   /* keeps buttons from stretching */
 }
 
-/* filename: pink-frutiger-aero-subtle-green.css */
+/* filename: pink-frutiger-aero-green-base.css */
 :root {
   --green-accent: #4fb56b;
   --green-accent-hover: #3a9a58;
-  --green-glow: rgba(79, 181, 107, 0.14);
 }
 
-/* Soft green aura in the background */
-body {
-  background:
-    radial-gradient(18rem 14rem at 18% 18%, var(--green-glow), rgba(255, 255, 255, 0) 62%),
-    radial-gradient(14rem 12rem at 78% 28%, rgba(79, 181, 107, 0.09), rgba(255, 255, 255, 0) 64%),
-    radial-gradient(26rem 22rem at 60% 82%, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 65%),
-    linear-gradient(180deg, var(--sky-1), var(--sky-2) 45%, var(--sky-3));
+/* Green in the default button fill */
+.art-btn,
+.social-button.email {
+  background-image:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0) 38%),
+    linear-gradient(180deg, var(--green-accent), #3f9e5c);
 }
 
-/* Gentle green edge accents */
+/* Slightly darker on hover */
+.art-btn:hover,
+.social-button.email:hover {
+  background-image:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0) 38%),
+    linear-gradient(180deg, var(--green-accent-hover), #2f8549);
+}
+
+/* Add green to borders/shadows so it shows outside buttons too */
 :where(.wrap, .project-card, ul) {
   box-shadow:
     var(--shadow-card),
-    0 0 0 1px rgba(79, 181, 107, 0.08) inset;
+    0 0 0 1px rgba(79, 181, 107, 0.12) inset;
 }
 
-/* Links get the green pop on hover only */
-.link:hover,
-.link:focus {
-  color: var(--green-accent);
-  box-shadow:
-    0 14px 28px rgba(130, 24, 70, 0.18),
-    0 0 0 1px rgba(79, 181, 107, 0.16) inset;
-}
-
-/* Keep buttons pink, add a green hover shimmer */
-.art-btn:hover,
-.social-button:hover {
-  filter: brightness(1.01) saturate(1.05);
-  box-shadow: 0 12px 24px rgba(130, 24, 70, 0.16), 0 0 0 1px rgba(79, 181, 107, 0.14) inset;
-}
-
-/* Small green detail for panels */
-.project-card {
+.project-card,
+ul {
   border-color: rgba(79, 181, 107, 0.14);
 }
 
-ul {
-  border-color: rgba(79, 181, 107, 0.12);
+.link {
+  color: var(--green-accent);
 }
-
