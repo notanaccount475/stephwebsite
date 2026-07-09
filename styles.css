@@ -1,30 +1,43 @@
-/* filename: styles.css */
+/* filename: styles.css
+   Shared stylesheet used by index.html, about.html, and projects.html.
+   Overall look: "kawaii + fruitiger aero" — soft sky gradient background,
+   glossy pill-shaped buttons with a glass highlight, rounded cream card,
+   bear-ear silhouettes peeking above the card (a nod to Rilakkuma),
+   Baloo 2 for headings and Quicksand for body text. */
 
+/* ---- Color/shadow variables, reused everywhere below via var(--name) ----
+   Changing a value here updates it site-wide, instead of hunting down
+   every place a color was used. */
 :root{
-  --sky-top:#EAF7FB;
-  --sky-mid:#CFEFFB;
-  --sky-bottom:#FBD9EA;
-  --panel:rgba(255,249,241,.92);
-  --panel-border:rgba(243,198,220,.7);
-  --title:#E0668F;
-  --text:#8C6239;
-  --text-soft:#A97C55;
+  --sky-top:#EAF7FB;      /* background gradient: top of the sky */
+  --sky-mid:#CFEFFB;      /* background gradient: middle of the sky */
+  --sky-bottom:#FBD9EA;   /* background gradient: bottom, fades into pink */
+  --panel:rgba(255,249,241,.92);      /* the cream card background (.wrap) */
+  --panel-border:rgba(243,198,220,.7); /* soft pink border used on cards/dividers */
+  --title:#E0668F;        /* main pink accent color, used for headings + primary buttons */
+  --text:#8C6239;         /* body text color (warm brown) */
+  --text-soft:#A97C55;    /* slightly lighter brown, used for photo captions */
   --white:#fff;
-  --shadow:0 18px 45px rgba(224,102,143,.18);
-  --shadow-soft:0 10px 22px rgba(224,102,143,.14);
-  --btn:#fff;
-  --btn-hover:#FFF0F6;
-  --ear:#C9986B;
-  --green1:#B7ECD3;
-  --green2:#57C98A;
-  --blue1:#BFE8FA;
-  --blue2:#3FA9D9;
+  --shadow:0 18px 45px rgba(224,102,143,.18);      /* big soft shadow under the main card */
+  --shadow-soft:0 10px 22px rgba(224,102,143,.14);  /* smaller shadow under buttons */
+  --btn:#fff;             /* button background (top of gradient) */
+  --btn-hover:#FFF0F6;    /* button background on hover */
+  --ear:#C9986B;          /* brown color for the bear-ear shapes above the card */
+  --green1:#B7ECD3;       /* email button gradient, light green */
+  --green2:#57C98A;       /* email button gradient, darker green */
+  --blue1:#BFE8FA;        /* LinkedIn button gradient, light blue */
+  --blue2:#3FA9D9;        /* LinkedIn button gradient, darker blue */
 }
 
+/* Makes width/height calculations include padding+border everywhere,
+   so padding doesn't unexpectedly enlarge elements past their set width */
 *{
   box-sizing:border-box;
 }
 
+/* Page background: a soft blue-to-pink vertical gradient plus two faint
+   white "glow" spots in the corners, meant to evoke the 2000s
+   "fruitiger aero" look (sky gradients + glassy highlights) */
 body{
   margin:0;
   min-height:100vh;
@@ -38,6 +51,9 @@ body{
   background-attachment:fixed;
 }
 
+/* The big rounded cream card that holds each page's content.
+   backdrop-filter gives a subtle frosted-glass blur to whatever
+   shows through it (mostly just the background gradient here). */
 .wrap{
   position:relative;
   max-width:760px;
@@ -51,6 +67,9 @@ body{
   backdrop-filter:blur(2px);
 }
 
+/* The two "bear ears" peeking above the card. Each is a circle with a
+   radial-gradient that fakes a lighter inner-ear patch, then rotated
+   slightly outward so they read as a pair of ears rather than two plain dots. */
 .wrap::before,
 .wrap::after{
   content:"";
@@ -73,6 +92,9 @@ body{
   transform:rotate(14deg);
 }
 
+/* Compact row of 3 links (Portfolio / About Me / Resume) near the top of
+   the landing page — lets a fast-scanning visitor jump straight to what
+   they want without scrolling through all the paragraph text below */
 .quick-nav{
   display:flex;
   justify-content:center;
@@ -98,6 +120,8 @@ body{
   transition:transform .16s ease, box-shadow .16s ease;
 }
 
+/* Glossy "glass" highlight across the top of each quick-link pill —
+   a soft white glow that fades out, mimicking a shiny button surface */
 .quick-link::before{
   content:"";
   position:absolute;
@@ -114,22 +138,32 @@ body{
   box-shadow:0 12px 22px rgba(224,102,143,.2);
 }
 
+/* The "Portfolio" quick-link gets this extra class to make it the visually
+   strongest of the three — solid pink fill instead of white, since that's
+   the link most useful to an employer visiting the page */
 .quick-link-primary{
   color:var(--white);
   background:linear-gradient(180deg, #ff9fc7, var(--title));
   box-shadow:0 10px 22px rgba(224,102,143,.26);
 }
 
+/* Wraps each "About ___" section on the landing page so the CSS rule
+   right below it can add a divider + extra spacing between them */
 .content-block{
   margin:0 auto 8px;
 }
 
+/* Adds a dashed line + gap ABOVE any content-block that directly follows
+   another one — so "About Stephanie" and "About This Site" read as two
+   separate blocks instead of one continuous wall of text */
 .content-block + .content-block{
   margin-top:18px;
   padding-top:30px;
   border-top:1px dashed var(--panel-border);
 }
 
+/* Small pill-shaped label above the photo on the landing page, e.g.
+   "Data Consultant · Analytics · Data Science · Storytelling" */
 .eyebrow{
   display:inline-block;
   margin:2px auto 14px;
@@ -144,17 +178,20 @@ body{
   letter-spacing:.02em;
 }
 
+/* Circular profile photo at the top of the landing page */
 .portrait{
   width:120px;
   height:120px;
   margin:4px auto 14px;
   border-radius:50%;
-  object-fit:cover;
+  object-fit:cover;   /* crops the photo to fill the circle without stretching it */
   border:4px solid var(--white);
   box-shadow:0 10px 24px rgba(224,102,143,.22);
   position:relative;
 }
 
+/* Row of 6 small squares styled like Rubik's cube colors, sitting under
+   the h1 on the landing page as a decorative "signature" element */
 .cube-strip{
   display:flex;
   justify-content:center;
@@ -169,9 +206,10 @@ body{
   height:26px;
   border-radius:9px;
   box-shadow:0 4px 10px rgba(140,98,57,.16);
-  transition:transform .22s ease;
+  transition:transform .22s ease;  /* smooths the hover wobble below */
 }
 
+/* Same glossy highlight trick as the buttons, applied to each cube tile */
 .cube-strip span::before{
   content:"";
   position:absolute;
@@ -183,6 +221,9 @@ body{
   pointer-events:none;
 }
 
+/* Hovering the whole strip makes each tile rotate/scale slightly, at a
+   different angle per tile, so they "wobble" playfully instead of moving
+   in perfect unison */
 .cube-strip:hover span:nth-child(1){ transform:rotate(-10deg) scale(1.15); }
 .cube-strip:hover span:nth-child(2){ transform:rotate(8deg) scale(1.15); }
 .cube-strip:hover span:nth-child(3){ transform:rotate(-6deg) scale(1.15); }
@@ -190,6 +231,9 @@ body{
 .cube-strip:hover span:nth-child(5){ transform:rotate(-8deg) scale(1.15); }
 .cube-strip:hover span:nth-child(6){ transform:rotate(6deg) scale(1.15); }
 
+/* Each tile's base color — pastel versions of real cube colors
+   (white, yellow, red, orange, green, blue) so they fit the site's
+   soft palette instead of looking like flat data-chart chips */
 .cube-strip span:nth-child(1){ background:#FFF6EC; }
 .cube-strip span:nth-child(2){ background:#FFE59A; }
 .cube-strip span:nth-child(3){ background:#FF9EB0; }
@@ -197,6 +241,7 @@ body{
 .cube-strip span:nth-child(5){ background:#A9E6C4; }
 .cube-strip span:nth-child(6){ background:#A8D8F0; }
 
+/* Headings use Baloo 2 (the rounded display font) in the pink accent color */
 h1,
 h2{
   margin:0 0 18px;
@@ -207,7 +252,7 @@ h2{
 }
 
 h1{
-  font-size:clamp(2rem,4vw,2.9rem);
+  font-size:clamp(2rem,4vw,2.9rem); /* scales between 2rem and 2.9rem depending on screen width */
   margin-top:10px;
 }
 
@@ -216,6 +261,7 @@ h2{
   font-size:clamp(1.4rem,3vw,1.9rem);
 }
 
+/* Small row of heart symbols under every h2, a recurring kawaii motif */
 h2::after{
   content:"♡ ♡ ♡";
   display:block;
@@ -232,10 +278,20 @@ p{
   font-size:1.02rem;
 }
 
+/* Bolded phrases inside paragraphs (via <strong>) get the pink accent
+   color too, so they visually "pop" instead of just looking like plain
+   black bold text */
+p strong{
+  color:var(--title);
+  font-weight:700;
+}
+
 ul{
   margin:0 auto 20px;
 }
 
+/* Bottom navigation area on the landing page. Stacks its child .nav-row
+   groups vertically, with space between them */
 nav{
   display:flex;
   flex-direction:column;
@@ -244,6 +300,8 @@ nav{
   margin-top:20px;
 }
 
+/* Each .nav-row lays its buttons out horizontally (side by side, wrapping
+   to a new line if needed) instead of one long vertical stack */
 .nav-row{
   display:flex;
   flex-direction:row;
@@ -254,11 +312,15 @@ nav{
   width:auto;
 }
 
+/* The second row (resume/email/LinkedIn) gets a dashed divider above it,
+   visually separating "page links" from "contact methods" */
 .nav-row-contact{
   padding-top:18px;
   border-top:1px dashed var(--panel-border);
 }
 
+/* Inside a .nav-row specifically, buttons shrink to fit their text
+   instead of using the much wider default size set below */
 .nav-row .link,
 .nav-row .social-button{
   width:auto;
@@ -266,6 +328,9 @@ nav{
   font-size:.85rem;
 }
 
+/* Base look shared by every pill-shaped button/link across the whole site:
+   the "About"/"Portfolio" links, email/LinkedIn/resume buttons, the art
+   gallery toggle buttons, and the "back to home" links */
 .link,
 .social-button,
 .art-btn,
@@ -276,7 +341,7 @@ nav{
   align-items:center;
   justify-content:center;
   gap:.55rem;
-  width:min(100%,520px);
+  width:min(100%,520px);  /* full width up to a 520px cap, overridden smaller inside .nav-row */
   padding:15px 22px;
   border:none;
   border-radius:999px;
@@ -290,6 +355,8 @@ nav{
   cursor:pointer;
 }
 
+/* Glossy highlight arc across the top of every button (same technique
+   as .quick-link::before and .cube-strip span::before above) */
 .link::before,
 .social-button::before,
 .art-btn::before,
@@ -313,6 +380,9 @@ nav{
   box-shadow:0 14px 28px rgba(224,102,143,.18);
 }
 
+/* Social buttons use white text since their backgrounds are solid colors
+   (set individually below) rather than the pale white/pink gradient
+   used by plain .link buttons */
 .social-button{
   color:var(--white);
 }
@@ -330,6 +400,9 @@ nav{
   color:#7a5b0a;
 }
 
+/* Stronger/bolder version of .link, used for the "Portfolio" link at the
+   bottom of the landing page — solid pink fill instead of the plain
+   white/pink gradient, so it visually outranks the "About" link next to it */
 .link-primary{
   color:var(--white);
   background:linear-gradient(180deg, #ff9fc7, var(--title));
@@ -341,6 +414,8 @@ nav{
   background:linear-gradient(180deg, #ffb0d2, #d1567f);
 }
 
+/* The "About" link is left mostly as default, just slightly less opaque
+   so it visually reads as the secondary/quieter option next to Portfolio */
 .link-secondary{
   opacity:.9;
 }
@@ -359,14 +434,17 @@ i{
   font-size:1rem;
 }
 
+/* Default styling for any plain <img> not covered by a more specific rule
+   below (e.g. gallery/portrait images override this with their own rules) */
 img{
   max-width:100%;
   display:block;
   border-radius:20px;
 }
 
-/* Projects page */
+/* ============================= Projects page ============================= */
 
+/* The "Professional History & Skillset" box at the top of projects.html */
 .history-card{
   text-align:left;
   padding:24px 28px;
@@ -387,6 +465,8 @@ img{
   line-height:1.6;
 }
 
+/* Container for the 3 project cards — a plain vertical list with no
+   bullets, each item spaced out with a gap */
 .project-list{
   list-style:none;
   padding:0;
@@ -396,6 +476,8 @@ img{
   gap:16px;
 }
 
+/* Each individual project box, with a colored left-edge accent stripe
+   (border-left) to make it read as a distinct card, not just a list item */
 .project-card{
   text-align:left;
   padding:20px 24px;
@@ -422,18 +504,24 @@ img{
   font-size:.95rem;
 }
 
+/* ============================= Lightbox popup ============================= */
+/* Used on about.html: clicking any gallery thumbnail opens this full-screen
+   dark overlay with a bigger version of that image. Hidden by default
+   (display:none) — about.html's JS switches it to display:flex on click. */
 .lightbox{
   display:none;
-  position:fixed;
-  inset:0;
-  z-index:100;
-  background:rgba(33,20,25,.82);
+  position:fixed;   /* NOTE: this only works correctly because the lightbox's
+                        HTML sits OUTSIDE any element using backdrop-filter/
+                        transform (like .wrap) — see the comment in about.html */
+  inset:0;           /* shorthand for top:0; right:0; bottom:0; left:0 — covers the whole screen */
+  z-index:100;       /* sits above everything else on the page */
+  background:rgba(33,20,25,.82);  /* dark semi-transparent overlay */
   align-items:center;
   justify-content:center;
   flex-direction:column;
   gap:14px;
   padding:30px;
-  cursor:zoom-out;
+  cursor:zoom-out;   /* shows a "zoom out" cursor, hinting that clicking closes it */
 }
 
 .lightbox img{
@@ -462,8 +550,12 @@ img{
   cursor:pointer;
 }
 
-/* About page */
+/* ============================= About page ============================= */
+/* Everything below with an ".about-page" prefix only applies on about.html,
+   since that's the only page whose <body> has class="about-page" */
 
+/* Two-column CSS grid: a fixed 240px-wide sidebar column, then the main
+   content takes up the rest of the space (1fr) */
 .about-layout{
   display:grid;
   grid-template-columns:240px 1fr;
@@ -471,12 +563,15 @@ img{
   align-items:start;
 }
 
+/* "sticky" means the sidebar stays in view while you scroll the main
+   column next to it, up until it hits the top of the page (top:24px) */
 .about-sidebar{
   position:sticky;
   top:24px;
   text-align:center;
 }
 
+/* The self-portrait photo in the About page sidebar */
 .about-photo{
   width:100%;
   max-width:220px;
@@ -486,6 +581,7 @@ img{
   margin:0 auto 18px;
 }
 
+/* The "Favorites" card sitting under the photo in the sidebar */
 .quickfacts{
   background:rgba(255,255,255,.45);
   border:1px solid var(--panel-border);
@@ -494,6 +590,12 @@ img{
   text-align:left;
 }
 
+/* These 3 rules are scoped as ".about-page .quickfacts ___" (rather than
+   just ".quickfacts ___") specifically so they win over the more general
+   ".about-page h2" / ".about-page ul" rules further down this file —
+   two rules of otherwise-equal specificity are decided by which one
+   appears LAST in the file, so the extra ".about-page" prefix here
+   guarantees these always take priority regardless of order */
 .about-page .quickfacts h2{
   font-size:1.2rem;
   margin-top:0;
@@ -509,12 +611,13 @@ img{
   padding-left:20px;
   font-size:.9rem;
   line-height:1.55;
-  background:none;
+  background:none;   /* cancels out the card-style background from ".about-page ul" below,
+                         so the Favorites list doesn't end up double-boxed */
   border-radius:0;
 }
 
 .about-page .wrap{
-  max-width:960px;
+  max-width:960px;   /* About page's card is wider than other pages, to fit the two-column layout */
   text-align:left;
   padding:40px 42px 44px;
 }
@@ -529,6 +632,9 @@ img{
   text-align:center;
 }
 
+/* Generic boxed-card look applied to every <ul> on the About page
+   (hobbies list, volunteering list) — the Favorites list inside .quickfacts
+   overrides this via the more specific rule above */
 .about-page ul{
   max-width:760px;
   padding:18px 28px 18px 44px;
@@ -542,6 +648,10 @@ img{
   margin-bottom:8px;
 }
 
+/* Both galleries (#gallery = art, #gallery2 = personal photos) share this
+   class. Hidden until toggled open by the buttons above them (see the
+   toggleGallery() JS function in about.html). Uses flexbox with wrapping
+   so thumbnails flow into rows and center themselves. */
 .about-page .gallery{
   display:none;
   max-width:860px;
@@ -549,10 +659,17 @@ img{
   text-align:center;
   flex-wrap:wrap;
   justify-content:center;
-  align-items:flex-start;
+  align-items:flex-start;  /* IMPORTANT: without this, flexbox's default
+                               "stretch" alignment forces every image in a
+                               row to match the tallest one's height, which
+                               visibly distorts/squashes any image with a
+                               different aspect ratio than its neighbors */
   gap:16px;
 }
 
+/* Every image inside a gallery gets the same fixed-size crop, so thumbnails
+   line up neatly in a grid no matter each photo's original dimensions.
+   object-fit:cover crops (rather than stretches) the image to fill that box. */
 .about-page .gallery img{
   width:min(220px,100%);
   height:200px;
@@ -560,6 +677,8 @@ img{
   border-radius:16px;
 }
 
+/* Used only in #gallery2, where each photo is wrapped in a <figure> so it
+   can have a caption underneath it */
 .about-page figure{
   display:inline-block;
   width:min(240px,100%);
@@ -590,17 +709,23 @@ img{
   margin-top:8px;
 }
 
-/* Mobile */
+/* ============================= Mobile ============================= */
+/* Everything below only applies on screens narrower than 700px
+   (phones, small tablets) */
 
 @media (max-width:700px){
   body{
     padding:20px 12px;
   }
 
+  /* Collapse the About page's two-column layout into a single column,
+     so the sidebar sits above the main content instead of beside it */
   .about-layout{
     grid-template-columns:1fr;
   }
 
+  /* "sticky" only makes sense when there's a second column to scroll past,
+     so switch back to normal positioning on mobile */
   .about-sidebar{
     position:static;
   }
@@ -625,6 +750,8 @@ img{
     padding:16px 18px 16px 30px;
   }
 
+  /* Buttons go full-width on mobile instead of a fixed max-width,
+     easier to tap accurately on a small screen */
   .link,
   .social-button,
   .art-btn,
@@ -638,6 +765,7 @@ img{
     margin:10px 0;
   }
 
+  /* Shrink the bear ears slightly to match the smaller card on mobile */
   .wrap::before,
   .wrap::after{
     width:34px;

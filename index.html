@@ -4,9 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Stephanie McArthur</title>
-    <!-- Google Fonts: Baloo 2 + Quicksand -->
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons -->
+
+    <!-- Google Fonts: Baloo 2 (rounded, playful, used for headings)
+         and Quicksand (rounded, soft, used for body text) -->
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome: icon set used for the envelope/LinkedIn/resume icons in the buttons below -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -14,34 +17,69 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
+    <!-- All colors, fonts, and layout rules live in this one shared stylesheet,
+         used by index.html, about.html, and projects.html -->
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
+    <!-- .wrap is the big rounded card that holds the whole page's content.
+         Its background, border, and shadow are set in styles.css -->
     <div class="wrap">
+
+      <!-- Small pill-shaped label above the photo, states the "professional identity"
+           up front for anyone skimming (e.g. recruiters) -->
       <span class="eyebrow">Data Consultant · Analytics · Data Science · Storytelling</span>
+
+      <!-- Profile photo (LinkedIn headshot). Styled as a circle via .portrait in styles.css -->
       <img class="portrait" src="images/linkedin-headshot.jpg" alt="Stephanie McArthur">
+
       <h1>Stephanie McArthur's Website</h1>
+
+      <!-- Row of 6 little colored squares referencing a Rubik's cube.
+           Purely decorative (aria-hidden), each <span> gets its color from
+           the .cube-strip span:nth-child() rules in styles.css.
+           Hovering the row makes them wobble a bit (also defined in CSS). -->
       <div class="cube-strip" aria-hidden="true">
         <span></span><span></span><span></span><span></span><span></span><span></span>
       </div>
+
+      <!-- Compact "quick nav" row near the top of the page, so anyone in a hurry
+           (like a recruiter skimming) can jump straight to Portfolio/About/Resume
+           without scrolling through all the paragraph text below.
+           "Portfolio" is styled as the bolder/primary button since that's the
+           link most useful to an employer visiting the site. -->
       <div class="quick-nav">
         <a class="quick-link quick-link-primary" href="projects.html">Portfolio</a>
         <a class="quick-link" href="about.html">About Me</a>
         <a class="quick-link" href="Stephanie_McArthur_Resume.pdf" target="_blank" rel="noopener">Resume</a>
       </div>
+
+      <!-- Intro line. <strong> tags bold a couple of phrases so they visually
+           pop against the surrounding paragraph text (styled via "p strong" in styles.css) -->
       <p>
-        Stephanie McArthur loves categorizing data, making art, and trying to beat her own Rubik’s cubing record. (Best time about a minute right now!)
+        Stephanie McArthur loves <strong>categorizing data</strong>, making art, and trying to beat her own <strong>Rubik’s cubing record</strong>. (Best time about a minute right now!)
       </p>
+
+      <!-- .content-block wraps each "About ___" section so CSS can add a divider
+           and extra spacing between them (see ".content-block + .content-block" in styles.css) -->
       <div class="content-block">
         <h2>About Stephanie</h2>
-        <p>With over a decade of experience in data analytics and visualization, Stephanie uses her left-brain skills to optimize business performance as a consultant. And she uses her right-brain skills to paint watercolors, play the ukulele, and read up on feminist theory.</p>
-        <p>In both work and life, Stephanie’s passion is taking information and finding interesting patterns in it—whether that means providing custom analytics for a Fortune 50 Financial Services Firm or just visualizing her husband’s Goodreads data for him. </p>
-        <p>Born and raised in Texas, Stephanie has a Bachelor of Science in Statistics and Finance from New York University, as well as an MBA from Columbia Business School. As a data consultant, she’s worked in healthcare, banking, and finance at various companies.</p>
+        <p>With over a <strong>decade of experience in data analytics and visualization</strong>, Stephanie uses her left-brain skills to optimize business performance as a consultant. And she uses her right-brain skills to paint watercolors, play the ukulele, and read up on feminist theory.</p>
+        <p>In both work and life, Stephanie’s passion is taking information and <strong>finding interesting patterns</strong> in it—whether that means providing custom analytics for a <strong>Fortune 50 Financial Services Firm</strong> or just visualizing her husband’s Goodreads data for him. </p>
+        <p>Born and raised in Texas, Stephanie has a Bachelor of Science in Statistics and Finance from New York University, as well as an <strong>MBA from Columbia Business School</strong>. As a data consultant, she’s worked in healthcare, banking, and finance at various companies.</p>
       </div>
+
       <div class="content-block">
         <h2>About This Site</h2>
         <p>On this site, you’ll find a mix of Stephanie’s professional accomplishments and a little bit more about her life as a New Yorker too.</p>
       </div>
+
+      <!-- Full nav at the bottom of the page, for anyone who scrolled through
+           all the text above (as opposed to the "quick-nav" shortcut near the top).
+           Split into two .nav-row groups so related buttons sit together:
+           1) the two page links (About / Portfolio)
+           2) resume + contact methods (email / LinkedIn), separated by a dashed divider -->
       <nav>
         <div class="nav-row">
           <a class="link link-secondary" href="about.html">To learn more about Stephanie as a person, click here</a>
@@ -53,10 +91,10 @@
             href="Stephanie_McArthur_Resume.pdf"
             target="_blank"
             rel="noopener"
-            title="View Stephanie's Resume"
+            title="View Stephanie's Resume!"
           >
             <i class="fa-solid fa-file"></i>
-            View Stephanie's Resume
+            View Stephanie's Resume!
           </a>
           <a
             class="social-button email"
