@@ -281,7 +281,7 @@ li strong{
 .cube-tagline{
   font-size:.95rem;
   color:var(--text-soft);
-  margin:0 auto 18px;
+  margin:-6px auto 22px;
 }
 
 /* Same treatment for the shorter cube-metaphor callback lines woven into
