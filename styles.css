@@ -402,6 +402,55 @@ img{
 
 /* About page */
 
+.about-layout{
+  display:grid;
+  grid-template-columns:240px 1fr;
+  gap:32px;
+  align-items:start;
+}
+
+.about-sidebar{
+  position:sticky;
+  top:24px;
+  text-align:center;
+}
+
+.about-photo{
+  width:100%;
+  max-width:220px;
+  border-radius:24px;
+  border:4px solid var(--white);
+  box-shadow:0 12px 26px rgba(224,102,143,.2);
+  margin:0 auto 18px;
+}
+
+.quickfacts{
+  background:rgba(255,255,255,.45);
+  border:1px solid var(--panel-border);
+  border-radius:22px;
+  padding:18px 20px 6px;
+  text-align:left;
+}
+
+.about-page .quickfacts h2{
+  font-size:1.2rem;
+  margin-top:0;
+  text-align:center;
+}
+
+.about-page .quickfacts h2::after{
+  font-size:.7rem;
+}
+
+.about-page .quickfacts ul{
+  max-width:none;
+  padding-left:20px;
+  font-size:.9rem;
+  line-height:1.55;
+  background:none;
+  border-radius:0;
+}
+
 .about-page .wrap{
   max-width:960px;
   text-align:left;
@@ -478,6 +527,18 @@ img{
 @media (max-width:700px){
   body{
     padding:20px 12px;
+  }
+
+  .about-layout{
+    grid-template-columns:1fr;
+  }
+
+  .about-sidebar{
+    position:static;
+  }
+
+  .about-photo{
+    max-width:160px;
   }
 
   .wrap,

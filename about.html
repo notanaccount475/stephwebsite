@@ -13,94 +13,103 @@
   <div class="wrap">
     <h1>About Me</h1>
 
-    <p>
-      Hi! I’m Stephanie and when I’m not messing with data at work, my hobbies include:
-    </p>
+    <div class="about-layout">
+      <aside class="about-sidebar">
+        <img class="about-photo" src="images/self-portrait.jpg" alt="Watercolor self-portrait by Stephanie McArthur">
+        <div class="quickfacts">
+          <h2>Favorites</h2>
+          <ul>
+            <li>Favorite book: House of Leaves</li>
+            <li>Favorite movie genre: Horror or Rom-Com</li>
+            <li>Favorite meal: 番茄炒蛋 (stir-fried tomato and egg). It's a classic comfort dish!</li>
+            <li>Favorite dessert: Tiramisu</li>
+            <li>Favorite word: Sepulchral</li>
+            <li>Favorite city: Obviously NYC, where I live! But Chicago is a close second</li>
+            <li>Favorite time of day: On weekdays, the morning. I love fresh starts and potential, and my motivation is highest then! On weekends, that period of time where it gets a little dusky but sunset hasn't actually occurred. To me, that signals the evening's fun is about to start. Plus it's a little sweetly melancholic...</li>
+          </ul>
+        </div>
+      </aside>
 
-    <ul>
-      <li>making art</li>
-      <li>playing the ukulele and singing</li>
-      <li>volunteering</li>
-      <li>obsessing over my Rubik's cube time</li>
-      <li>yoga</li>
-      <li>practicing ASL</li>
-      <li>trying to keep up with my husband intellectually as he discusses things like Latin and group theory</li>
-    </ul>
+      <div class="about-main">
+        <p>
+          Hi! I’m Stephanie and when I’m not messing with data at work, my hobbies include:
+        </p>
 
-    <p>
-      Below you’ll find some quick facts about me, some photos of my life, some of my artwork, and a bit more about my volunteer experience.
-    </p>
+        <ul>
+          <li>making art</li>
+          <li>playing the ukulele and singing</li>
+          <li>volunteering</li>
+          <li>obsessing over my Rubik's cube time</li>
+          <li>yoga</li>
+          <li>practicing ASL</li>
+          <li>trying to keep up with my husband intellectually as he discusses things like Latin and group theory</li>
+        </ul>
 
-    <h2>Favorites</h2>
-    <ul>
-      <li>Favorite book: House of Leaves</li>
-      <li>Favorite movie genre: Horror or Rom-Com</li>
-      <li>Favorite meal: 番茄炒蛋 (stir-fried tomato and egg). It's a classic comfort dish!</li>
-      <li>Favorite dessert: Tiramisu</li>
-      <li>Favorite word: Sepulchral</li>
-      <li>Favorite city: Obviously NYC, where I live! But Chicago is a close second</li>
-      <li>Favorite time of day: On weekdays, the morning. I love fresh starts and potential, and my motivation is highest then! On weekends, that period of time where it gets a little dusky but sunset hasn't actually occurred. To me, that signals the evening's fun is about to start. Plus it's a little sweetly melancholic...</li>
-    </ul>
+        <p>
+          Below you’ll find some quick facts about me, some photos of my life, some of my artwork, and a bit more about my volunteer experience.
+        </p>
 
-    <h2>
-      <button class="art-btn" type="button" onclick="toggleGallery('gallery')">
-        Here is some of my art!
-      </button>
-    </h2>
+        <h2>
+          <button class="art-btn" type="button" onclick="toggleGallery('gallery')">
+            Here is some of my art!
+          </button>
+        </h2>
 
-    <div id="gallery" class="gallery">
-      <img src="images/1.jpg" alt="Watercolor 1">
-      <img src="images/2.jpg" alt="Watercolor 2">
-      <img src="images/3.png" alt="Watercolor 3">
-      <img src="images/4.jpg" alt="Watercolor 4">
+        <div id="gallery" class="gallery">
+          <img src="images/1.jpg" alt="Watercolor 1">
+          <img src="images/2.jpg" alt="Watercolor 2">
+          <img src="images/3.png" alt="Watercolor 3">
+          <img src="images/4.jpg" alt="Watercolor 4">
+        </div>
+
+        <h2>
+          <button class="art-btn" type="button" onclick="toggleGallery('gallery2')">
+            Here are some photos of me I like!
+          </button>
+        </h2>
+
+        <div id="gallery2" class="gallery">
+          <figure>
+            <img src="selfies/first_day_cbs.png" alt="First day at CBS">
+            <figcaption>My first day attending Columbia Business School!</figcaption>
+          </figure>
+          <figure>
+            <img src="selfies/final_day_cbs.png" alt="Final day at CBS">
+            <figcaption>And my final day there! I purposefully wore the same outfit :)</figcaption>
+          </figure>
+          <figure>
+            <img src="selfies/cbs_graduation.jpg" alt="CBS graduation">
+            <figcaption>At CBS graduation with my then-boyfriend-now-husband</figcaption>
+          </figure>
+          <figure>
+            <img src="selfies/vienna_museum.jpg" alt="Vienna museum">
+            <figcaption>At the Vienna Natural History Museum. So beautiful!</figcaption>
+          </figure>
+          <figure>
+            <img src="selfies/wedding_cake_cutting.jpg" alt="Wedding cake cutting">
+            <figcaption>Cake cutting at my wedding! &lt;3</figcaption>
+          </figure>
+        </div>
+
+        <h2>Volunteering</h2>
+        <ul>
+          <li>
+            Giving back to my community has always been incredibly important to me. I try my best to be of help wherever I can.
+          </li>
+          <li>
+            Two of my favorite organizations to work with are
+            <a href="https://www.nybc.org/" target="_blank" rel="noopener" class="vol-link">New York Blood Center</a>
+            (I hit my 1-gallon milestone on February 2026!) and
+            <a href="https://business.columbia.edu/socialenterprise/initiatives/reap" target="_blank" rel="noopener" class="vol-link">Columbia REAP</a>,
+            the ReEntry Acceleration Program that strives to improve employment opportunities for formerly incarcerated people.
+          </li>
+        </ul>
+
+        <p>
+          <a href="index.html" class="back-link">← Back to Home</a>
+        </p>
+      </div>
     </div>
-
-    <h2>
-      <button class="art-btn" type="button" onclick="toggleGallery('gallery2')">
-        Here are some photos of me I like!
-      </button>
-    </h2>
-
-    <div id="gallery2" class="gallery">
-      <figure>
-        <img src="selfies/first_day_cbs.png" alt="First day at CBS">
-        <figcaption>My first day attending Columbia Business School!</figcaption>
-      </figure>
-      <figure>
-        <img src="selfies/final_day_cbs.png" alt="Final day at CBS">
-        <figcaption>And my final day there! I purposefully wore the same outfit :)</figcaption>
-      </figure>
-      <figure>
-        <img src="selfies/cbs_graduation.jpg" alt="CBS graduation">
-        <figcaption>At CBS graduation with my then-boyfriend-now-husband</figcaption>
-      </figure>
-      <figure>
-        <img src="selfies/vienna_museum.jpg" alt="Vienna museum">
-        <figcaption>At the Vienna Natural History Museum. So beautiful!</figcaption>
-      </figure>
-      <figure>
-        <img src="selfies/wedding_cake_cutting.jpg" alt="Wedding cake cutting">
-        <figcaption>Cake cutting at my wedding! &lt;3</figcaption>
-      </figure>
-    </div>
-
-    <h2>Volunteering</h2>
-    <ul>
-      <li>
-        Giving back to my community has always been incredibly important to me. I try my best to be of help wherever I can.
-      </li>
-      <li>
-        Two of my favorite organizations to work with are
-        <a href="https://www.nybc.org/" target="_blank" rel="noopener" class="vol-link">New York Blood Center</a>
-        (I hit my 1-gallon milestone on February 2026!) and
-        <a href="https://business.columbia.edu/socialenterprise/initiatives/reap" target="_blank" rel="noopener" class="vol-link">Columbia REAP</a>,
-        the ReEntry Acceleration Program that strives to improve employment opportunities for formerly incarcerated people.
-      </li>
-    </ul>
-
-    <p>
-      <a href="index.html" class="back-link">← Back to Home</a>
-    </p>
   </div>
 
   <script>
