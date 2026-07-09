@@ -120,6 +120,16 @@ body{
   box-shadow:0 10px 22px rgba(224,102,143,.26);
 }
 
+.content-block{
+  margin:0 auto 8px;
+}
+
+.content-block + .content-block{
+  margin-top:18px;
+  padding-top:30px;
+  border-top:1px dashed var(--panel-border);
+}
+
 .eyebrow{
   display:inline-block;
   margin:2px auto 14px;
