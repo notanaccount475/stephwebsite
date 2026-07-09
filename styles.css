@@ -207,6 +207,29 @@ body{
   border-radius:9px;
   box-shadow:0 4px 10px rgba(140,98,57,.16);
   transition:transform .22s ease;  /* smooths the hover wobble below */
+  animation:cube-idle-bob 2.4s ease-in-out infinite;
+}
+
+/* Gentle idle loop: each tile lifts and tilts slightly, then settles back.
+   Staggered animation-delay below means only one or two tiles are moving
+   at any given moment, rather than all six bobbing in unison. */
+@keyframes cube-idle-bob{
+  0%, 100%{ transform:translateY(0) rotate(0deg); }
+  50%{ transform:translateY(-5px) rotate(-6deg); }
+}
+
+.cube-strip span:nth-child(1){ animation-delay:0s; }
+.cube-strip span:nth-child(2){ animation-delay:.25s; }
+.cube-strip span:nth-child(3){ animation-delay:.5s; }
+.cube-strip span:nth-child(4){ animation-delay:.75s; }
+.cube-strip span:nth-child(5){ animation-delay:1s; }
+.cube-strip span:nth-child(6){ animation-delay:1.25s; }
+
+/* Fully stop (not just pause) the idle animation while hovering — a paused
+   CSS animation still overrides the transform property in the cascade,
+   which would fight with the per-tile hover wobble rules below */
+.cube-strip:hover span{
+  animation:none;
 }
 
 /* Same glossy highlight trick as the buttons, applied to each cube tile */
