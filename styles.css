@@ -279,8 +279,7 @@ li strong{
    page — set in italic and a bit smaller/quieter than the surrounding
    paragraphs, so it reads as a wry aside rather than another sentence of bio */
 .cube-tagline{
-  font-style:italic;
-  font-size:.92rem;
+  font-size:.95rem;
   color:var(--text-soft);
   margin:-6px auto 20px;
 }
