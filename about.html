@@ -111,6 +111,11 @@
         </p>
       </div>
     </div>
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+      <span class="lightbox-close">&times;</span>
+      <img id="lightbox-img" src="" alt="">
+      <p id="lightbox-caption"></p>
+    </div>
   </div>
 
   <script>
@@ -118,6 +123,25 @@
       const g = document.getElementById(id);
       g.style.display = g.style.display === 'none' ? 'flex' : 'none';
     }
+
+    function openLightbox(src, caption) {
+      const lb = document.getElementById('lightbox');
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox-caption').textContent = caption || '';
+      lb.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+
+    document.querySelectorAll('.gallery img').forEach(function(img) {
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', function() {
+        const figcaption = img.closest('figure') ? img.closest('figure').querySelector('figcaption') : null;
+        openLightbox(img.src, figcaption ? figcaption.textContent : img.alt);
+      });
+    });
   </script>
 </body>
 </html>
