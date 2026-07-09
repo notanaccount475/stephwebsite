@@ -73,6 +73,20 @@ body{
   transform:rotate(14deg);
 }
 
+.eyebrow{
+  display:inline-block;
+  margin:2px auto 14px;
+  padding:7px 18px;
+  border-radius:999px;
+  background:rgba(255,255,255,.6);
+  border:1px solid var(--panel-border);
+  color:var(--title);
+  font-family:"Quicksand", sans-serif;
+  font-weight:600;
+  font-size:.85rem;
+  letter-spacing:.02em;
+}
+
 .portrait{
   width:120px;
   height:120px;
@@ -230,6 +244,26 @@ nav{
 
 .social-button.linkedin{
   background:linear-gradient(180deg, var(--blue1), var(--blue2));
+}
+
+.social-button.resume{
+  background:linear-gradient(180deg, #FFE9A8, #F2C230);
+  color:#7a5b0a;
+}
+
+.link-primary{
+  color:var(--white);
+  background:linear-gradient(180deg, #ff9fc7, var(--title));
+  box-shadow:0 12px 26px rgba(224,102,143,.28);
+  font-weight:700;
+}
+
+.link-primary:hover{
+  background:linear-gradient(180deg, #ffb0d2, #d1567f);
+}
+
+.link-secondary{
+  opacity:.9;
 }
 
 .art-btn{
