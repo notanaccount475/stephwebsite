@@ -480,14 +480,40 @@ img{
   gap:16px;
 }
 
-/* Each individual project box, with a colored left-edge accent stripe
-   (border-left) to make it read as a distinct card, not just a list item */
+/* Each individual project box. Padding moved from the card itself onto
+   .project-card-body below, since the thumbnail image now needs to sit
+   flush against the card's top edge and side edges (no gap around it) */
 .project-card{
   text-align:left;
-  padding:20px 24px;
+  overflow:hidden;  /* clips the thumbnail's corners to match the card's border-radius */
   background:rgba(255,255,255,.5);
   border:1px solid var(--panel-border);
   border-radius:22px;
+}
+
+/* Thumbnail container: fixed height so all 3 cards line up evenly even
+   though the actual dashboard screenshots are different shapes. Uses
+   object-fit:contain (not cover) so dashboard text/axis labels never get
+   cropped off — a light background fills any empty space instead. */
+.project-thumb{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:200px;
+  background:#fff;
+  border-bottom:1px solid var(--panel-border);
+}
+
+.project-thumb img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  border-radius:0;  /* overrides the site-wide default "img{border-radius:20px}" rule,
+                        since this image should sit flush inside its container */
+}
+
+.project-card-body{
+  padding:20px 24px;
 }
 
 .project-card a{
