@@ -36,12 +36,14 @@
 
       <h1>Stephanie McArthur's Website</h1>
 
-      <!-- Row of 6 little colored squares referencing a Rubik's cube.
-           Purely decorative (aria-hidden), each <span> gets its color from
-           the .cube-strip span:nth-child() rules in styles.css.
-           Hovering the row makes them wobble a bit (also defined in CSS). -->
-      <div class="cube-strip" aria-hidden="true">
-        <span></span><span></span><span></span><span></span><span></span><span></span>
+      <!-- 3x3 grid styled like one face of a Rubik's cube. Starts in a
+           "scrambled" arrangement, then periodically snaps to a solved
+           (single-color) state and back — see the cube-cell-* keyframe
+           animations in styles.css -->
+      <div class="cube-grid" aria-hidden="true">
+        <span class="c1"></span><span class="c2"></span><span class="c3"></span>
+        <span class="c4"></span><span class="c5"></span><span class="c6"></span>
+        <span class="c7"></span><span class="c8"></span><span class="c9"></span>
       </div>
 
       <!-- Compact "quick nav" row near the top of the page, so anyone in a hurry

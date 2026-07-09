@@ -190,79 +190,71 @@ body{
   position:relative;
 }
 
-/* Row of 6 small squares styled like Rubik's cube colors, sitting under
-   the h1 on the landing page as a decorative "signature" element */
-.cube-strip{
-  display:flex;
-  justify-content:center;
-  gap:9px;
-  margin:6px auto 22px;
-}
-
-.cube-strip span{
+/* 3x3 grid styled like one face of a Rubik's cube, sitting under the h1
+   on the landing page as a decorative "signature" element. The dark
+   background peeking through the grid gaps mimics the black plastic
+   body between real cube stickers. */
+.cube-grid{
   position:relative;
   overflow:hidden;
-  width:26px;
-  height:26px;
-  border-radius:9px;
-  box-shadow:0 4px 10px rgba(140,98,57,.16);
-  transition:transform .22s ease;  /* smooths the hover wobble below */
-  animation:cube-idle-bob 2.4s ease-in-out infinite;
+  display:grid;
+  grid-template-columns:repeat(3, 24px);
+  grid-template-rows:repeat(3, 24px);
+  gap:3px;
+  width:fit-content;
+  margin:6px auto 22px;
+  padding:5px;
+  background:var(--ear);
+  border-radius:10px;
+  box-shadow:0 8px 18px rgba(140,98,57,.22);
 }
 
-/* Gentle idle loop: each tile lifts and tilts slightly, then settles back.
-   Staggered animation-delay below means only one or two tiles are moving
-   at any given moment, rather than all six bobbing in unison. */
-@keyframes cube-idle-bob{
-  0%, 100%{ transform:translateY(0) rotate(0deg); }
-  50%{ transform:translateY(-5px) rotate(-6deg); }
+.cube-grid span{
+  border-radius:3px;
 }
 
-.cube-strip span:nth-child(1){ animation-delay:0s; }
-.cube-strip span:nth-child(2){ animation-delay:.25s; }
-.cube-strip span:nth-child(3){ animation-delay:.5s; }
-.cube-strip span:nth-child(4){ animation-delay:.75s; }
-.cube-strip span:nth-child(5){ animation-delay:1s; }
-.cube-strip span:nth-child(6){ animation-delay:1.25s; }
-
-/* Fully stop (not just pause) the idle animation while hovering — a paused
-   CSS animation still overrides the transform property in the cascade,
-   which would fight with the per-tile hover wobble rules below */
-.cube-strip:hover span{
-  animation:none;
-}
-
-/* Same glossy highlight trick as the buttons, applied to each cube tile */
-.cube-strip span::before{
+/* Glossy highlight sheen across the whole grid (same trick used on the
+   buttons elsewhere), sits on top of all 9 cells at once */
+.cube-grid::before{
   content:"";
   position:absolute;
-  top:-55%;
+  top:-40%;
   left:-10%;
   width:120%;
-  height:100%;
-  background:radial-gradient(ellipse at top, rgba(255,255,255,.75), transparent 62%);
+  height:80%;
+  background:radial-gradient(ellipse at top, rgba(255,255,255,.5), transparent 62%);
   pointer-events:none;
 }
 
-/* Hovering the whole strip makes each tile rotate/scale slightly, at a
-   different angle per tile, so they "wobble" playfully instead of moving
-   in perfect unison */
-.cube-strip:hover span:nth-child(1){ transform:rotate(-10deg) scale(1.15); }
-.cube-strip:hover span:nth-child(2){ transform:rotate(8deg) scale(1.15); }
-.cube-strip:hover span:nth-child(3){ transform:rotate(-6deg) scale(1.15); }
-.cube-strip:hover span:nth-child(4){ transform:rotate(9deg) scale(1.15); }
-.cube-strip:hover span:nth-child(5){ transform:rotate(-8deg) scale(1.15); }
-.cube-strip:hover span:nth-child(6){ transform:rotate(6deg) scale(1.15); }
+/* Each cell cycles through the SAME timing: it sits on its own
+   "scrambled" color most of the time, then briefly snaps to a shared
+   solved color (white) in sync with all the other cells, then snaps
+   back — so the whole grid periodically looks "solved" for a beat,
+   like watching a fast solve happen on a loop. */
+.c1{ animation:cube-cell-1 7s ease-in-out infinite; }
+.c2{ animation:cube-cell-2 7s ease-in-out infinite; }
+.c3{ animation:cube-cell-3 7s ease-in-out infinite; }
+.c4{ animation:cube-cell-4 7s ease-in-out infinite; }
+.c5{ animation:cube-cell-5 7s ease-in-out infinite; }
+.c6{ animation:cube-cell-6 7s ease-in-out infinite; }
+.c7{ animation:cube-cell-7 7s ease-in-out infinite; }
+.c8{ animation:cube-cell-8 7s ease-in-out infinite; }
+.c9{ animation:cube-cell-9 7s ease-in-out infinite; }
 
-/* Each tile's base color — pastel versions of real cube colors
-   (white, yellow, red, orange, green, blue) so they fit the site's
-   soft palette instead of looking like flat data-chart chips */
-.cube-strip span:nth-child(1){ background:#FFF6EC; }
-.cube-strip span:nth-child(2){ background:#FFE59A; }
-.cube-strip span:nth-child(3){ background:#FF9EB0; }
-.cube-strip span:nth-child(4){ background:#FFC08A; }
-.cube-strip span:nth-child(5){ background:#A9E6C4; }
-.cube-strip span:nth-child(6){ background:#A8D8F0; }
+/* Each keyframe holds its own scrambled color from 0-44%, snaps to the
+   shared solved white from 46-66%, then snaps back to the same scrambled
+   color it started on (so the loop repeats seamlessly with no jump) */
+@keyframes cube-cell-1{ 0%,44%{background:#FFE59A;} 46%,66%{background:#FFF6EC;} 70%,100%{background:#FFE59A;} }
+@keyframes cube-cell-2{ 0%,44%{background:#A8D8F0;} 46%,66%{background:#FFF6EC;} 70%,100%{background:#A8D8F0;} }
+@keyframes cube-cell-3{ 0%,44%{background:#FFF6EC;} 46%,66%{background:#FFF6EC;} 70%,100%{background:#FFF6EC;} }
+@keyframes cube-cell-4{ 0%,44%{background:#FF9EB0;} 46%,66%{background:#FFF6EC;} 70%,100%{background:#FF9EB0;} }
+@keyframes cube-cell-5{ 0%,44%{background:#FFC08A;} 46%,66%{background:#FFF6EC;} 70%,100%{background:#FFC08A;} }
+@keyframes cube-cell-6{ 0%,44%{background:#FFE59A;} 46%,66%{background:#FFF6EC;} 70%,100%{background:#FFE59A;} }
+@keyframes cube-cell-7{ 0%,44%{background:#A9E6C4;} 46%,66%{background:#FFF6EC;} 70%,100%{background:#A9E6C4;} }
+@keyframes cube-cell-8{ 0%,44%{background:#FFF6EC;} 46%,66%{background:#FFF6EC;} 70%,100%{background:#FFF6EC;} }
+@keyframes cube-cell-9{ 0%,44%{background:#FF9EB0;} 46%,66%{background:#FFF6EC;} 70%,100%{background:#FF9EB0;} }
+
+
 
 /* Headings use Baloo 2 (the rounded display font) in the pink accent color */
 h1,
@@ -380,7 +372,7 @@ nav{
 }
 
 /* Glossy highlight arc across the top of every button (same technique
-   as .quick-link::before and .cube-strip span::before above) */
+   as .quick-link::before and .cube-grid::before above) */
 .link::before,
 .social-button::before,
 .art-btn::before,
