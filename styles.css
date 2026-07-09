@@ -281,7 +281,8 @@ p{
 /* Bolded phrases inside paragraphs (via <strong>) get the pink accent
    color too, so they visually "pop" instead of just looking like plain
    black bold text */
-p strong{
+p strong,
+li strong{
   color:var(--title);
   font-weight:700;
 }
