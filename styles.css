@@ -736,6 +736,15 @@ img{
   padding:40px 42px 44px;
 }
 
+/* Centers the eyebrow/cube-grid/tagline intro block, since the rest of
+   this page is left-aligned (see ".about-page .wrap" above) but these
+   identity elements should match the centered look they have on the
+   other two pages */
+.about-intro{
+  text-align:center;
+  margin-bottom:8px;
+}
+
 .about-page h1,
 .about-page h2{
   text-align:center;

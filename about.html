@@ -12,6 +12,28 @@
      (like the two-column layout below) without affecting index.html or portfolio.html -->
 <body class="about-page">
   <div class="wrap">
+    <!-- Wraps the eyebrow/cube-grid/tagline so they can be centered via CSS,
+         independent of the rest of this page's left-aligned text -->
+    <div class="about-intro">
+      <!-- Personal-flavored eyebrow tag, same pattern as the professional one
+           on index.html/portfolio.html, just using hobbies instead of job title -->
+      <span class="eyebrow">Art · Ukulele · Rubik's Cube · NYC</span>
+
+      <div class="cube-grid" aria-hidden="true">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </div>
+
+      <!-- Page-specific cube tagline (same idea as the ones on index.html and
+           portfolio.html, but written for THIS page instead of copy-pasted).
+           Calls back to the "one face of the same piece" line used in the
+           landing page's nav links, and connects to something already in the
+           hobbies list below: her husband talking about group theory, which
+           is literally the branch of math describing how a cube's moves work. -->
+      <p class="cube-tagline">Small world: the group theory her husband won't stop bringing up is the actual math behind how the cube works. Same piece, different face, once again.</p>
+    </div>
+
     <h1>About Me</h1>
 
     <!-- Two-column layout: a sidebar (photo + quick facts) on the left,
@@ -148,6 +170,43 @@
   </div>
 
   <script>
+    // Randomizes the cube-face grid at the top of this page — same script
+    // as index.html and portfolio.html, see the comments there for the
+    // full explanation of the scramble/solve loop.
+    (function () {
+      var colors = ['#FFF6EC', '#FFE59A', '#FF9EB0', '#FFC08A', '#A9E6C4', '#A8D8F0'];
+      var cells = document.querySelectorAll('.cube-grid span');
+
+      function randomColor() {
+        return colors[Math.floor(Math.random() * colors.length)];
+      }
+
+      function scramble() {
+        cells.forEach(function (cell) {
+          cell.style.background = randomColor();
+        });
+      }
+
+      function solve() {
+        var solvedColor = randomColor();
+        cells.forEach(function (cell) {
+          cell.style.background = solvedColor;
+        });
+      }
+
+      function loop() {
+        scramble();
+        setTimeout(function () {
+          solve();
+          setTimeout(loop, 2200);
+        }, 2600);
+      }
+
+      if (cells.length) {
+        loop();
+      }
+    })();
+
     // Shows or hides a gallery <div> by id (used by the "Here is some of my art!"
     // and "Here are some photos of me I like!" buttons above)
     function toggleGallery(id) {
