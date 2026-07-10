@@ -508,36 +508,51 @@ img{
   color:var(--text);
 }
 
-/* Certified tags get a solid-color checkmark icon and a slightly bolder
-   border, so the credential reads as a badge at a glance instead of
-   needing the word "Certified" spelled out in parentheses */
+/* Certified tags get a soft pastel green fill (same green family as the
+   email button elsewhere on the site), so the credential is visible at a
+   glance through color alone — no icon font dependency needed */
 .skill-tag-certified{
-  border-color:var(--title);
+  background:#DFF6E8;
+  border-color:#8FD1AC;
+  color:#2C6B47;
   font-weight:600;
 }
 
-.skill-tag-certified i{
-  color:#57C98A;  /* same green used for the email button elsewhere on the site */
-  margin-left:2px;
+/* In-progress credential gets a soft pastel gold fill instead — a
+   different color reads as a different status than "done" */
+.skill-tag-training{
+  background:#FDF0CE;
+  border-color:#E8C468;
+  color:#8A6A1A;
+  font-weight:600;
 }
 
-/* In-progress credential (training for a certification/competition) gets
-   a muted hourglass icon instead, a different visual status than "done" */
-.skill-tag-training i{
-  color:var(--text-soft);
-  margin-left:2px;
-}
-
-/* Tiny legend under a skill-tags row, explaining what the badge icons mean */
+/* Tiny legend under a skill-tags row, explaining what the colors mean via
+   small matching color swatches instead of text alone */
 .skill-legend{
   max-width:none;
   margin:8px 0 0;
   font-size:.78rem;
   color:var(--text-soft);
+  display:flex;
+  align-items:center;
+  gap:4px;
 }
 
-.skill-legend i{
-  color:var(--text-soft);
+.legend-dot{
+  display:inline-block;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  margin-right:2px;
+}
+
+.legend-dot-certified{
+  background:#8FD1AC;
+}
+
+.legend-dot-training{
+  background:#E8C468;
 }
 
 /* Container for the 3 project cards — a plain vertical list with no
