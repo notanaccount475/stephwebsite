@@ -498,6 +498,28 @@ img{
   gap:8px;
 }
 
+/* Splits a skill-group's pills into a "Tools" row and a "Concepts" row.
+   Sits between .skill-label and .skill-tags in the hierarchy: smaller
+   and lighter than the main label, since it's a subdivision of it. */
+.skill-subgroup{
+  margin-bottom:10px;
+}
+
+.skill-subgroup:last-child{
+  margin-bottom:0;
+}
+
+.skill-sublabel{
+  display:block;
+  font-family:"Quicksand", sans-serif;
+  font-weight:600;
+  font-size:.72rem;
+  color:var(--text-soft);
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  margin-bottom:6px;
+}
+
 .skill-tag{
   display:inline-block;
   padding:6px 14px;
