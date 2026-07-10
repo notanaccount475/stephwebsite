@@ -508,6 +508,38 @@ img{
   color:var(--text);
 }
 
+/* Certified tags get a solid-color checkmark icon and a slightly bolder
+   border, so the credential reads as a badge at a glance instead of
+   needing the word "Certified" spelled out in parentheses */
+.skill-tag-certified{
+  border-color:var(--title);
+  font-weight:600;
+}
+
+.skill-tag-certified i{
+  color:#57C98A;  /* same green used for the email button elsewhere on the site */
+  margin-left:2px;
+}
+
+/* In-progress credential (training for a certification/competition) gets
+   a muted hourglass icon instead, a different visual status than "done" */
+.skill-tag-training i{
+  color:var(--text-soft);
+  margin-left:2px;
+}
+
+/* Tiny legend under a skill-tags row, explaining what the badge icons mean */
+.skill-legend{
+  max-width:none;
+  margin:8px 0 0;
+  font-size:.78rem;
+  color:var(--text-soft);
+}
+
+.skill-legend i{
+  color:var(--text-soft);
+}
+
 /* Container for the 3 project cards — a plain vertical list with no
    bullets, each item spaced out with a gap */
 .project-list{
