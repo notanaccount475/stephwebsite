@@ -518,15 +518,6 @@ img{
   font-weight:600;
 }
 
-/* In-progress credential gets a soft pastel gold fill instead — a
-   different color reads as a different status than "done" */
-.skill-tag-training{
-  background:#FDF0CE;
-  border-color:#E8C468;
-  color:#8A6A1A;
-  font-weight:600;
-}
-
 /* Tiny legend under a skill-tags row, explaining what the colors mean via
    small matching color swatches instead of text alone */
 .skill-legend{
@@ -551,8 +542,15 @@ img{
   background:#8FD1AC;
 }
 
-.legend-dot-training{
-  background:#E8C468;
+/* Small supplemental aside under the skills row — for things like the
+   Microsoft Excel World Championship training, which is a fun extra detail
+   rather than a qualifier on her actual skill level with the tool */
+.skill-note{
+  max-width:none;
+  margin:4px 0 0;
+  font-size:.78rem;
+  font-style:italic;
+  color:var(--text-soft);
 }
 
 /* Container for the 3 project cards — a plain vertical list with no
