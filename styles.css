@@ -248,13 +248,27 @@ body{
    fixed color standing for one hobby, plus a subtle hover lift so it's
    clear the cells are individually meaningful, not just decoration. */
 .hobby-cell{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   cursor:default;
   transition:transform .15s ease;
+  color:#6B4A2E;  /* shared dark ink color for every icon, so they read
+                      clearly against any of the light pastel cell colors */
 }
 
 .hobby-cell:hover,
 .hobby-cell:focus{
   transform:scale(1.12);
+}
+
+/* Every hand-drawn SVG icon shares this sizing — small enough to fit the
+   ~24px cell with breathing room, using currentColor so they all pick up
+   the ink color set on .hobby-cell above without needing per-icon rules */
+.hobby-icon{
+  width:15px;
+  height:15px;
 }
 
 .hobby-art{ background:#FF9EB0; }
