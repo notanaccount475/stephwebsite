@@ -35,15 +35,32 @@
            full-bleed hero image) — this is meant to feel personal, not like
            a billboard. Collapses to stacked/centered on mobile (see the
            @media rule in styles.css). -->
-      <div class="hero-row">
-        <div class="hero-photo">
-          <!-- Bear ears now anchor to the photo itself instead of a card edge,
-               since there's no more boxed card for them to peek above -->
-          <img class="portrait" src="images/linkedin-headshot.jpg" alt="Stephanie McArthur">
+      <!-- Site header: name/photo on the left, quick-nav pills on the right —
+           the standard "logo left, nav right" pattern real sites use, instead
+           of the pills sitting stacked in the content flow below the hero.
+           Wraps to stacked on mobile (see the @media rule in styles.css). -->
+      <div class="site-header">
+        <div class="hero-row">
+          <div class="hero-photo">
+            <!-- Bear ears now anchor to the photo itself instead of a card edge,
+                 since there's no more boxed card for them to peek above -->
+            <img class="portrait" src="images/linkedin-headshot.jpg" alt="Stephanie McArthur">
+          </div>
+          <div class="hero-heading">
+            <span class="eyebrow">Analytics · Data Science · Storytelling</span>
+            <h1>Stephanie McArthur's Website</h1>
+          </div>
         </div>
-        <div class="hero-heading">
-          <span class="eyebrow">Analytics · Data Science · Storytelling</span>
-          <h1>Stephanie McArthur's Website</h1>
+
+        <!-- Quick nav: lets anyone in a hurry (like a recruiter skimming)
+             jump straight to Portfolio/About/Resume without scrolling
+             through all the paragraph text below.
+             "Portfolio" is styled as the bolder/primary button since that's
+             the link most useful to an employer visiting the site. -->
+        <div class="quick-nav">
+          <a class="quick-link quick-link-primary" href="portfolio.html">Portfolio</a>
+          <a class="quick-link" href="about.html">About Me</a>
+          <a class="quick-link" href="Stephanie_McArthur_Resume.pdf" target="_blank" rel="noopener">Resume</a>
         </div>
       </div>
 
@@ -62,17 +79,6 @@
            used to sit in a separate paragraph below it (categorizing data,
            making art, best cube-solving time) -->
       <p class="cube-tagline"><span class="lead-in">A Rubik's cube has about 43 quintillion possible scrambles</span>. Brute force could work, but what matters is finding efficiencies: fast recognition, the right sequence, fewest wasted moves. Stephanie speedcubes (competition-style, as fast as possible) for fun, current best around a minute, along with categorizing data and making art. She brings the same instinct to her work: the world's information is messy and sometimes hidden, and the skill isn't just finding an answer eventually. It's building an efficient, repeatable path to what it actually means.</p>
-
-      <!-- Compact "quick nav" row near the top of the page, so anyone in a hurry
-           (like a recruiter skimming) can jump straight to Portfolio/About/Resume
-           without scrolling through all the paragraph text below.
-           "Portfolio" is styled as the bolder/primary button since that's the
-           link most useful to an employer visiting the site. -->
-      <div class="quick-nav">
-        <a class="quick-link quick-link-primary" href="portfolio.html">Portfolio</a>
-        <a class="quick-link" href="about.html">About Me</a>
-        <a class="quick-link" href="Stephanie_McArthur_Resume.pdf" target="_blank" rel="noopener">Resume</a>
-      </div>
 
       <!-- .content-block wraps each "About ___" section so CSS can add a divider
            and extra spacing between them (see ".content-block + .content-block" in styles.css) -->

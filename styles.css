@@ -116,6 +116,18 @@ body{
   content:none;
 }
 
+/* Site header: name/photo on the left, quick-nav pills pinned to the
+   top-right — the standard "logo left, nav right" pattern real sites use.
+   Wraps to stacked on mobile (see the @media rule near the bottom). */
+.site-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:16px;
+  margin-bottom:22px;
+}
+
 /* Asymmetric header row: photo beside the name/eyebrow instead of both
    centered and stacked. This is the main visual break from the
    "everything centered in a box" template pattern — photo stays modest
@@ -123,9 +135,8 @@ body{
 .hero-row{
   display:flex;
   align-items:center;
-  justify-content:center;
+  justify-content:flex-start;
   gap:26px;
-  margin-bottom:6px;
   text-align:left;
 }
 
@@ -172,15 +183,15 @@ body{
   margin:0;
 }
 
-/* Compact row of 3 links (Portfolio / About Me / Resume) near the top of
-   the landing page — lets a fast-scanning visitor jump straight to what
-   they want without scrolling through all the paragraph text below */
+/* Compact row of 3 links (Portfolio / About Me / Resume) — now pinned to
+   the top-right of .site-header instead of centered in the content flow,
+   so a fast-scanning visitor sees it immediately without scrolling */
 .quick-nav{
   display:flex;
-  justify-content:center;
+  justify-content:flex-end;
   gap:10px;
   flex-wrap:wrap;
-  margin:0 auto 26px;
+  margin:0;
 }
 
 .quick-link{
@@ -978,6 +989,18 @@ img{
 @media (max-width:700px){
   body{
     padding:20px 12px;
+  }
+
+  /* Landing page header: the name/photo + quick-nav space-between row
+     doesn't have room side by side on a phone, so it stacks, and the
+     quick-nav pills re-center instead of hugging the right edge */
+  .site-header{
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .quick-nav{
+    justify-content:center;
   }
 
   /* Landing page hero row: side-by-side doesn't have room on a phone
