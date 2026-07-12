@@ -22,19 +22,30 @@
          used by index.html, about.html, and portfolio.html -->
     <link rel="stylesheet" href="styles.css">
   </head>
-  <body>
-    <!-- .wrap is the big rounded card that holds the whole page's content.
-         Its background, border, and shadow are set in styles.css -->
+  <!-- "landing-page" class lets styles.css strip away the rounded-card look
+       (background/border/shadow) that about.html and portfolio.html still use,
+       so this page's content sits directly on the gradient background in
+       full-width bands instead of one boxed rectangle. See the long comment
+       on ".landing-page .wrap" in styles.css for the reasoning. -->
+  <body class="landing-page">
     <div class="wrap">
 
-      <!-- Small pill-shaped label above the photo, states the "professional identity"
-           up front for anyone skimming (e.g. recruiters) -->
-      <span class="eyebrow">Analytics · Data Science · Storytelling</span>
-
-      <!-- Profile photo (LinkedIn headshot). Styled as a circle via .portrait in styles.css -->
-      <img class="portrait" src="images/linkedin-headshot.jpg" alt="Stephanie McArthur">
-
-      <h1>Stephanie McArthur's Website</h1>
+      <!-- Asymmetric header row: photo + name/eyebrow side by side instead of
+           a centered stacked block. Photo stays modest-sized (not a giant
+           full-bleed hero image) — this is meant to feel personal, not like
+           a billboard. Collapses to stacked/centered on mobile (see the
+           @media rule in styles.css). -->
+      <div class="hero-row">
+        <div class="hero-photo">
+          <!-- Bear ears now anchor to the photo itself instead of a card edge,
+               since there's no more boxed card for them to peek above -->
+          <img class="portrait" src="images/linkedin-headshot.jpg" alt="Stephanie McArthur">
+        </div>
+        <div class="hero-heading">
+          <span class="eyebrow">Analytics · Data Science · Storytelling</span>
+          <h1>Stephanie McArthur's Website</h1>
+        </div>
+      </div>
 
       <!-- 3x3 grid styled like one face of a Rubik's cube. Starts in a
            "scrambled" arrangement, then periodically snaps to a solved
