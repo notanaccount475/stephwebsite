@@ -227,6 +227,45 @@ body{
   pointer-events:none;
 }
 
+/* Visually hides text while keeping it readable to screen readers — used
+   on the About page's static hobby cube so each color-coded cell still
+   announces what it stands for, even though sighted users get that
+   info from the "title" tooltip on hover instead */
+.sr-only{
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
+/* About page's STATIC hobby cube (see the long comment in about.html for
+   why this one doesn't animate like the other two). Each cell gets a
+   fixed color standing for one hobby, plus a subtle hover lift so it's
+   clear the cells are individually meaningful, not just decoration. */
+.hobby-cell{
+  cursor:default;
+  transition:transform .15s ease;
+}
+
+.hobby-cell:hover,
+.hobby-cell:focus{
+  transform:scale(1.12);
+}
+
+.hobby-art{ background:#FF9EB0; }
+.hobby-ukulele{ background:#FFE59A; }
+.hobby-volunteering{ background:#A9E6C4; }
+.hobby-cube{ background:#A8D8F0; }
+.hobby-yoga{ background:#FFC08A; }
+.hobby-asl{ background:#D9C4F0; }
+.hobby-husband{ background:#FFB199; }
+.hobby-blank{ background:#EFE9DE; }
+
 
 
 /* Headings use Baloo 2 (the rounded display font) in the pink accent color */

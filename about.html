@@ -19,10 +19,25 @@
            on index.html/portfolio.html, just using hobbies instead of job title -->
       <span class="eyebrow">Art · Ukulele · Rubik's Cube · NYC</span>
 
-      <div class="cube-grid" aria-hidden="true">
-        <span></span><span></span><span></span>
-        <span></span><span></span><span></span>
-        <span></span><span></span><span></span>
+      <!-- Unlike the animated scramble/solve cube on index.html and
+           portfolio.html, this one is STATIC on purpose: each of the 9
+           cells is permanently one color, standing for one specific hobby
+           from the list below. This is the "personal face" of the same
+           cube — deliberately behaving differently here than it does on
+           the other two pages, since it's showing something fixed
+           (who she is) rather than something happening (solving a problem).
+           Not aria-hidden, since these cells carry real meaning now — each
+           has a visible tooltip (title) plus hidden text for screen readers. -->
+      <div class="cube-grid cube-grid-static" role="list" aria-label="A few of Stephanie's hobbies, mapped onto a cube face">
+        <span class="hobby-cell hobby-art" title="Making art" role="listitem"><span class="sr-only">Making art</span></span>
+        <span class="hobby-cell hobby-ukulele" title="Ukulele &amp; singing" role="listitem"><span class="sr-only">Ukulele &amp; singing</span></span>
+        <span class="hobby-cell hobby-volunteering" title="Volunteering" role="listitem"><span class="sr-only">Volunteering</span></span>
+        <span class="hobby-cell hobby-cube" title="Rubik's cube" role="listitem"><span class="sr-only">Rubik's cube</span></span>
+        <span class="hobby-cell hobby-yoga" title="Yoga" role="listitem"><span class="sr-only">Yoga</span></span>
+        <span class="hobby-cell hobby-asl" title="ASL" role="listitem"><span class="sr-only">ASL</span></span>
+        <span class="hobby-cell hobby-husband" title="Keeping up with her husband on Latin &amp; group theory" role="listitem"><span class="sr-only">Keeping up with her husband on Latin &amp; group theory</span></span>
+        <span class="hobby-cell hobby-blank" title="More to discover" role="listitem" aria-hidden="true"></span>
+        <span class="hobby-cell hobby-blank" title="More to discover" role="listitem" aria-hidden="true"></span>
       </div>
     </div>
 
@@ -162,43 +177,6 @@
   </div>
 
   <script>
-    // Randomizes the cube-face grid at the top of this page — same script
-    // as index.html and portfolio.html, see the comments there for the
-    // full explanation of the scramble/solve loop.
-    (function () {
-      var colors = ['#FFF6EC', '#FFE59A', '#FF9EB0', '#FFC08A', '#A9E6C4', '#A8D8F0'];
-      var cells = document.querySelectorAll('.cube-grid span');
-
-      function randomColor() {
-        return colors[Math.floor(Math.random() * colors.length)];
-      }
-
-      function scramble() {
-        cells.forEach(function (cell) {
-          cell.style.background = randomColor();
-        });
-      }
-
-      function solve() {
-        var solvedColor = randomColor();
-        cells.forEach(function (cell) {
-          cell.style.background = solvedColor;
-        });
-      }
-
-      function loop() {
-        scramble();
-        setTimeout(function () {
-          solve();
-          setTimeout(loop, 2200);
-        }, 2600);
-      }
-
-      if (cells.length) {
-        loop();
-      }
-    })();
-
     // Shows or hides a gallery <div> by id (used by the "Here is some of my art!"
     // and "Here are some photos of me I like!" buttons above)
     function toggleGallery(id) {
