@@ -183,59 +183,53 @@ body{
   margin:0;
 }
 
-/* Compact row of 3 links (Portfolio / About Me / Resume) — now pinned to
-   the top-right of .site-header instead of centered in the content flow,
-   so a fast-scanning visitor sees it immediately without scrolling */
+/* Compact row of 3 links (Portfolio / About Me / Resume) — pinned to
+   the top-right of .site-header. Plain text links now, not pill buttons,
+   separated by a small dot, closer to a normal site's header nav */
 .quick-nav{
   display:flex;
+  align-items:center;
   justify-content:flex-end;
-  gap:10px;
   flex-wrap:wrap;
   margin:0;
 }
 
+/* A small separator dot between each nav link, added via CSS rather than
+   in the HTML so it's not read aloud by screen readers as content */
+.quick-nav a + a{
+  margin-left:18px;
+}
+
+.quick-nav a + a::before{
+  content:"·";
+  margin-right:10px;
+  color:var(--panel-border);
+}
+
 .quick-link{
-  position:relative;
-  overflow:hidden;
-  display:inline-flex;
-  align-items:center;
-  padding:9px 18px;
-  border-radius:999px;
   text-decoration:none;
   font-family:"Quicksand", sans-serif;
   font-weight:600;
   font-size:.9rem;
-  color:var(--title);
-  background:linear-gradient(180deg, var(--white), var(--btn));
-  box-shadow:0 8px 18px rgba(224,102,143,.14);
-  transition:transform .16s ease, box-shadow .16s ease;
-}
-
-/* Glossy "glass" highlight across the top of each quick-link pill —
-   a soft white glow that fades out, mimicking a shiny button surface */
-.quick-link::before{
-  content:"";
-  position:absolute;
-  top:-60%;
-  left:-10%;
-  width:120%;
-  height:100%;
-  background:radial-gradient(ellipse at top, rgba(255,255,255,.65), transparent 62%);
-  pointer-events:none;
+  color:var(--text-soft);
+  transition:color .16s ease;
 }
 
 .quick-link:hover{
-  transform:translateY(-2px);
-  box-shadow:0 12px 22px rgba(224,102,143,.2);
+  color:var(--title);
+  text-decoration:underline;
 }
 
-/* The "Portfolio" quick-link gets this extra class to make it the visually
-   strongest of the three — solid pink fill instead of white, since that's
-   the link most useful to an employer visiting the page */
+/* "Portfolio" stays visually the strongest of the three, since that's the
+   link most useful to an employer visiting the page — just done here with
+   color/weight instead of a solid pill fill */
 .quick-link-primary{
-  color:var(--white);
-  background:linear-gradient(180deg, #ff9fc7, var(--title));
-  box-shadow:0 10px 22px rgba(224,102,143,.26);
+  color:var(--title);
+  font-weight:700;
+}
+
+.quick-link-primary:hover{
+  color:#c94b7a;
 }
 
 /* Wraps each "About ___" section on the landing page so the CSS rule
