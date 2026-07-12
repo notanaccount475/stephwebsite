@@ -71,20 +71,15 @@ body{
    no background, border, shadow, or blur — so the content sits directly
    on the page's gradient background in full-width bands instead of one
    boxed rectangle. This was the fix for the "rounded box floating on a
-   gradient" look that reads as a generic AI-template layout.
-
-   IMPORTANT: this block is NOT centered on the page (no "margin:0 auto").
-   Centering the box and then left-aligning the text inside it (an earlier,
-   too-subtle attempt at this fix) still leaves two big equal empty gutters
-   on either side, since the box itself is still dead-center. Anchoring the
-   box near the left edge instead means the leftover space only
-   accumulates on the right — genuine asymmetry, not just re-aligned text
-   inside a still-symmetric container. About and Portfolio pages keep the
-   original centered, boxed look for now. */
+   gradient" look that reads as a generic AI-template layout. Text inside
+   left-aligns instead of centering (see the "p" override below), while
+   the box itself stays centered on the page — an earlier attempt at also
+   left-anchoring the box itself left a large, unstructured empty area on
+   the right with nothing in it, which read as broken rather than
+   intentional. About and Portfolio pages keep the original boxed,
+   centered look for now. */
 .landing-page .wrap{
-  max-width:1000px;
-  margin-left:max(5vw, 24px);
-  margin-right:auto;
+  max-width:860px;
   padding:20px 12px 40px;
   background:none;
   border:none;
@@ -98,9 +93,7 @@ body{
    to left — text-align only affects the text INSIDE the box, not the
    box's own position. This override left-anchors the paragraph boxes
    themselves too, so they don't just have left-ragged text sitting in an
-   otherwise still-centered column. Paragraphs keep their own narrower
-   max-width (660px, set elsewhere) for readable line length even though
-   the outer .wrap above is much wider now. */
+   otherwise still-centered column. */
 .landing-page .wrap p{
   margin-left:0;
   margin-right:auto;
