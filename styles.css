@@ -104,6 +104,17 @@ body{
    so they still act as visual counterweights against the left-aligned
    text around them, rather than everything sliding to one edge uniformly */
 
+/* The bottom nav buttons (About/Portfolio links + resume/email/LinkedIn)
+   were still using their old "justify-content:center" from the .nav-row
+   rule elsewhere in this file, so they sat centered in the middle of the
+   column even after everything above them switched to left-aligned —
+   this override brings them in line with that same left edge. About and
+   Portfolio pages don't get this override, so their buttons stay centered
+   to match those pages' still-centered, boxed layout. */
+.landing-page .nav-row{
+  justify-content:flex-start;
+}
+
 /* The two "bear ears" peeking above the card. Each is a circle with a
    radial-gradient that fakes a lighter inner-ear patch, then rotated
    slightly outward so they read as a pair of ears rather than two plain dots.
