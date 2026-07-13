@@ -165,32 +165,13 @@ body{
   margin:0;
 }
 
-/* The bottom nav buttons (About/Portfolio links + resume/email/LinkedIn)
-   were still using their old "justify-content:center" from the .nav-row
-   rule elsewhere in this file, so they sat centered in the middle of the
-   column even after everything above them switched to left-aligned —
-   this override brings them in line with that same left edge. About and
-   Portfolio pages don't get this override, so their buttons stay centered
-   to match those pages' still-centered, boxed layout. */
-.landing-page .nav-row{
-  justify-content:flex-start;
-}
-
-/* The base nav rule's "align-items:center" combined with .nav-row's
-   "width:auto" (shrink-to-fit) produced two DIFFERENT layouts from the
-   same CSS: the page-links row is wider than the column, so it filled
-   the width and left-justified, while the contact row's three buttons
-   fit in ~680px, so that row shrank and got centered as a block by the
-   parent — leaving one row on the left rail and one floating mid-column,
-   with its dashed divider only spanning the shrunken width. "stretch"
-   forces every row to span the full column, so the flex-start rule above
-   actually decides button position in both rows, and the contact row's
-   divider runs the full column width, matching the dashed section
-   dividers above it. Scoped to the landing page; the other pages don't
-   use a <nav>, but scoping keeps the intent explicit. */
-.landing-page nav{
-  align-items:stretch;
-}
+/* Bottom nav buttons used to sit centered while everything above them was
+   left-aligned, which read as accidental. Since then the content-block
+   panels above now bound the column visually on their own, so the mismatch
+   argument no longer applies — centered here reads as a deliberate closing
+   flourish under the panels rather than a stray leftover axis. Left the
+   base .nav-row / nav rules (both centered) in charge again; no landing-
+   page override needed. */
 
 /* The two "bear ears" peeking above the card. Each is a circle with a
    radial-gradient that fakes a lighter inner-ear patch, then rotated
@@ -655,13 +636,17 @@ nav{
   border-top:1px dashed var(--panel-border);
 }
 
-/* Inside a .nav-row specifically, buttons shrink to fit their text
-   instead of using the much wider default size set below */
+/* Inside a .nav-row specifically, buttons still shrink to fit their text
+   (rather than the much wider min(100%,520px) default below), but sized
+   up from an earlier, smaller pass (padding 10px 18px, font .85rem) that
+   read as flat text links rather than buttons. Matching the base link
+   padding/font size here makes them look and feel like the same button
+   family as the rest of the site instead of a scaled-down variant. */
 .nav-row .link,
 .nav-row .social-button{
   width:auto;
-  padding:10px 18px;
-  font-size:.85rem;
+  padding:15px 26px;
+  font-size:1rem;
 }
 
 /* Base look shared by every pill-shaped button/link across the whole site:
