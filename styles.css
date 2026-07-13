@@ -1,5 +1,5 @@
 /* filename: styles.css
-   Shared stylesheet used by index.html, about.html, and projects.html.
+   Shared stylesheet used by index.html, about.html, and portfolio.html.
    Overall look: "kawaii + fruitiger aero" — soft sky gradient background,
    glossy pill-shaped buttons with a glass highlight, rounded cream card,
    bear-ear silhouettes peeking above the card (a nod to Rilakkuma),
@@ -99,10 +99,23 @@ body{
   margin-right:auto;
 }
 
-/* The cube grid and quick-nav keep their own independent centering/
-   right-alignment (margin:auto and flex justify-content respectively),
-   so they still act as visual counterweights against the left-aligned
-   text around them, rather than everything sliding to one edge uniformly */
+/* The quick-nav keeps its right-pinned alignment (justify-content plus
+   margin-left:auto), so the header still frames the page's right edge.
+   The cube grid, though, previously kept its centered margin:auto from
+   the base .cube-grid rule — which put it on a second axis (centered in
+   the 860px column, roughly 90px right of the 660px text column's own
+   center) while every other element below the header hugged the left
+   edge. Two competing axes read as ACCIDENTAL asymmetry. This override
+   drops the cube onto the same left rail as the eyebrow, headings, and
+   paragraphs: one consistent axis, with the leftover right-side space
+   reading as deliberate (the quick-nav already owns that edge).
+   Only margin-left changes — top/bottom spacing still comes from the
+   base rule's shorthand. About and Portfolio pages have no
+   .landing-page class, so their cubes stay centered to match those
+   pages' centered layouts. */
+.landing-page .cube-grid{
+  margin-left:0;
+}
 
 /* The bottom nav buttons (About/Portfolio links + resume/email/LinkedIn)
    were still using their old "justify-content:center" from the .nav-row
@@ -645,7 +658,7 @@ img{
 
 /* ============================= Projects page ============================= */
 
-/* The "Professional History & Skillset" box at the top of projects.html */
+/* The "Professional History & Skillset" box at the top of portfolio.html */
 .history-card{
   text-align:left;
   padding:24px 28px;
@@ -1040,6 +1053,15 @@ img{
                         desktop right-pinned layout — in this stacked mobile
                         layout that same rule would push the nav to hug the
                         right edge instead of centering it */
+  }
+
+  /* On mobile the landing header stacks and re-centers (photo, name,
+     quick-nav all centered — see the rules above), so the left rail the
+     cube aligns to on desktop no longer visually exists up top. Cancel
+     the desktop "margin-left:0" override and let the cube re-center to
+     match, same pattern as the quick-nav's margin-left reset above */
+  .landing-page .cube-grid{
+    margin-left:auto;
   }
 
   /* Landing page hero row: side-by-side doesn't have room on a phone
