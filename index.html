@@ -35,11 +35,16 @@
            full-bleed hero image) — this is meant to feel personal, not like
            a billboard. Nav pills pinned top-right. Collapses to stacked/
            centered on mobile (see the @media rule in styles.css). -->
+      <!-- Wraps the header + cube/paragraph lockup together so the script
+           at the bottom of this file can scale this whole intro area down
+           as you scroll, oversized/eye-grabbing on load, settling to
+           normal size within the first ~320px of scroll (see "#hero-intro"
+           in the script, and ".hero-intro" in styles.css) -->
+      <div class="hero-intro" id="hero-intro">
+
       <div class="site-header reveal">
         <div class="hero-row">
           <div class="hero-photo">
-            <!-- Bear ears now anchor to the photo itself instead of a card edge,
-                 since there's no more boxed card for them to peek above -->
             <img class="portrait" src="images/linkedin-headshot.jpg" alt="Stephanie McArthur">
           </div>
           <div class="hero-heading">
@@ -50,11 +55,12 @@
 
         <!-- Quick nav: lets anyone in a hurry (like a recruiter skimming)
              jump straight to Portfolio/About/Resume without scrolling
-             through all the paragraph text below.
-             "Portfolio" is styled as the bolder/primary button since that's
-             the link most useful to an employer visiting the site. -->
+             through all the paragraph text below. All three links share
+             the same plain style now — Portfolio no longer gets a bolder/
+             pink treatment, since that read as a current-page indicator
+             on the one page that isn't Portfolio. -->
         <div class="quick-nav">
-          <a class="quick-link quick-link-primary" href="portfolio.html">Portfolio</a>
+          <a class="quick-link" href="portfolio.html">Portfolio</a>
           <a class="quick-link" href="about.html">About Me</a>
           <a class="quick-link" href="Stephanie_McArthur_Resume.pdf" target="_blank" rel="noopener">Resume</a>
         </div>
@@ -85,6 +91,8 @@
              used to sit in a separate paragraph below it (categorizing data,
              making art, best cube-solving time) -->
         <p class="cube-tagline"><span class="lead-in">A Rubik's cube has about 43 quintillion possible scrambles</span>. Brute force could work, but what matters is finding efficiencies: fast recognition, the right sequence, fewest wasted moves. Stephanie speedcubes (competition-style, as fast as possible) for fun, current best around a minute, along with categorizing data and making art. She brings the same instinct to her work: the world's information is messy and sometimes hidden, and the skill isn't just finding an answer eventually. It's building an efficient, repeatable path to what it actually means.</p>
+
+      </div>
 
       </div>
 
@@ -222,6 +230,48 @@
         sections.forEach(function (section) {
           observer.observe(section);
         });
+      })();
+    </script>
+
+    <script>
+      // Big-on-load hero: #hero-intro (header + cube/paragraph lockup)
+      // starts oversized, then scales down to its real size over the
+      // first HERO_SHRINK_DISTANCE px of scroll — and back up again if
+      // you scroll back to the top, since the scale is recalculated from
+      // the current scroll position on every tick rather than being a
+      // one-way "play once" animation.
+      (function () {
+        var hero = document.getElementById('hero-intro');
+        if (!hero) return;
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          // Leave it at normal size permanently — a large pulsing/scaling
+          // hero is exactly the kind of motion this preference exists to
+          // avoid, so skip the scroll listener entirely rather than just
+          // slowing it down
+          return;
+        }
+
+        var HERO_START_SCALE = 1.16; // how oversized it is at scrollY 0
+        var HERO_SHRINK_DISTANCE = 320; // px of scroll until fully settled
+        var ticking = false;
+
+        function update() {
+          var progress = Math.min(window.scrollY / HERO_SHRINK_DISTANCE, 1);
+          var scale = HERO_START_SCALE - (HERO_START_SCALE - 1) * progress;
+          hero.style.transform = 'scale(' + scale.toFixed(3) + ')';
+          ticking = false;
+        }
+
+        function onScroll() {
+          if (!ticking) {
+            window.requestAnimationFrame(update);
+            ticking = true;
+          }
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        update(); // set the correct oversized/normal state immediately on load
       })();
     </script>
   </body>

@@ -235,30 +235,9 @@ body{
   flex-shrink:0;
 }
 
-/* Bear ears, re-anchored to the photo instead of the (now missing) card
-   edge — arguably a nicer spot for them anyway, peeking above her actual
-   picture rather than an abstract box */
-.hero-photo::before,
-.hero-photo::after{
-  content:"";
-  position:absolute;
-  top:-14px;
-  width:34px;
-  height:34px;
-  border-radius:50%;
-  background:radial-gradient(circle at 35% 65%, var(--panel) 34%, var(--ear) 35%);
-  box-shadow:0 4px 10px rgba(140,98,57,.18);
-}
-
-.hero-photo::before{
-  left:14%;
-  transform:rotate(-14deg);
-}
-
-.hero-photo::after{
-  left:56%;
-  transform:rotate(14deg);
-}
+/* Bear ears removed per request — .hero-photo itself is untouched, this
+   just drops the ::before/::after pair that used to draw the two ear
+   circles above it. */
 
 .hero-heading{
   text-align:left;
@@ -390,11 +369,26 @@ body{
 /* Each panel's first heading doesn't need the base h2's 28px top margin —
    the panel's own padding already provides the headroom, and the double
    spacing pushed the heading visibly off-balance toward the bottom */
-/* Each panel's first heading doesn't need the base h2's 28px top margin —
-   the panel's own padding already provides the headroom, and the double
-   spacing pushed the heading visibly off-balance toward the bottom */
 .landing-page .content-block h2{
   margin-top:0;
+}
+
+/* Big-on-load intro: JS (see the script near the bottom of index.html)
+   sets this element's "transform: scale(...)" directly on every scroll
+   tick, shrinking it from oversized down to its normal 1:1 size over the
+   first ~320px of scroll, and back up again if you scroll back to the
+   top. transform-origin is TOP center specifically, so the growth/shrink
+   happens downward from the header rather than centered — center-origin
+   would make the header appear to grow upward off-screen too, which
+   looks like it's escaping the viewport rather than settling into place.
+   No CSS transition here: continuous per-frame updates from the scroll
+   listener already produce smooth motion, and adding a transition on top
+   of that would fight the next frame's value and read as laggy instead
+   of buttery. prefers-reduced-motion is handled in the script itself
+   (skips the scroll listener and leaves this at scale 1 permanently). */
+.landing-page .hero-intro{
+  transform-origin:top center;
+  will-change:transform;
 }
 
 /* Scroll-reveal: sections start faded, dropped down, and slightly shrunk,
