@@ -322,16 +322,19 @@ body{
   text-decoration:underline;
 }
 
-/* "Portfolio" stays visually the strongest of the three, since that's the
-   link most useful to an employer visiting the page — just done here with
-   color/weight instead of a solid pill fill */
+/* Previously styled bolder/pink to flag "Portfolio" as the link most
+   useful to a recruiter skimming the page — dropped, because that same
+   pink+bold treatment is also how a current-page indicator would look,
+   and this link sits on the one page that ISN'T Portfolio. All three
+   quick-nav links now share the plain .quick-link look, so nothing
+   implies you're already on the page it points to. */
 .quick-link-primary{
-  color:var(--title);
-  font-weight:700;
+  color:var(--text-soft);
+  font-weight:600;
 }
 
 .quick-link-primary:hover{
-  color:#c94b7a;
+  color:var(--title);
 }
 
 /* Wraps each "About ___" section on the landing page so the CSS rule
