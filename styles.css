@@ -406,8 +406,21 @@ body{
 /* Each panel's first heading doesn't need the base h2's 28px top margin —
    the panel's own padding already provides the headroom, and the double
    spacing pushed the heading visibly off-balance toward the bottom */
+/* Each panel's first heading doesn't need the base h2's 28px top margin —
+   the panel's own padding already provides the headroom, and the double
+   spacing pushed the heading visibly off-balance toward the bottom */
 .landing-page .content-block h2{
   margin-top:0;
+}
+
+/* Paragraphs inside the content panels need to fill the panel, not stop
+   at the 720px measure from ".landing-page .wrap p" above — the panels
+   themselves are already the full column width, so a 720px cap inside
+   them left a permanent empty stripe on the right, the exact whitespace
+   problem the panels were built to solve, just relocated inside the box.
+   Extra ".landing-page" prefix keeps specificity above that base rule. */
+.landing-page .content-block p{
+  max-width:none;
 }
 
 /* Small pill-shaped label above the photo on the landing page, e.g.
