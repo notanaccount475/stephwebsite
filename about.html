@@ -12,9 +12,10 @@
      (like the two-column layout below) without affecting index.html or portfolio.html -->
 <body class="about-page">
   <div class="wrap">
-    <!-- Wraps the eyebrow/cube-grid/tagline so they can be centered via CSS,
+    <!-- Wraps the eyebrow/cube-grid/tagline so they can be centered via CSS
+         (.page-intro, shared with portfolio.html's matching intro block),
          independent of the rest of this page's left-aligned text -->
-    <div class="about-intro">
+    <div class="page-intro">
       <!-- Personal-flavored eyebrow tag, same pattern as the professional one
            on index.html/portfolio.html, just using hobbies instead of job title -->
       <span class="eyebrow">Art · Ukulele · Rubik's Cube · NYC</span>
@@ -91,8 +92,15 @@
         </div>
       </aside>
 
-      <!-- RIGHT COLUMN: main content -->
-      <div class="about-main">
+      <!-- RIGHT COLUMN: main content. Also a ".content-block" now, so it
+           gets the same soft-panel treatment (background/border/blur) as
+           the landing page's "About ___" sections and Portfolio's two
+           sections — visual containment for this column now that the
+           page's outer boxed card is gone (see ".about-page .wrap" in
+           styles.css). The sidebar keeps its own separate look
+           (.quickfacts card + sticky photo) rather than getting wrapped
+           in a second nested panel here. -->
+      <div class="about-main content-block">
         <p>
           Hi! I’m Stephanie and when I’m not messing with data at work, my hobbies include:
         </p>

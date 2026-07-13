@@ -7,43 +7,45 @@
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
-  <body>
+  <body class="portfolio-page">
     <div class="wrap">
 
       <!-- Same identity elements as the landing page (eyebrow tag + cube grid)
            so this page doesn't feel disconnected from the rest of the site.
-           Also has its own short cube-tagline below (see comment there) tying
-           the metaphor specifically to this page's skills/projects content,
-           rather than just reusing the landing page's decoration wholesale.
-           The cube grid uses the identical randomizing script at the bottom
-           of this file as index.html does. -->
-      <span class="eyebrow">Analytics · Data Science · Storytelling</span>
+           Wrapped in ".page-intro" (shared with about.html) to keep this
+           identity block centered even though the rest of the page below
+           is left-aligned (see ".portfolio-page .wrap" in styles.css). -->
+      <div class="page-intro">
+        <span class="eyebrow">Analytics · Data Science · Storytelling</span>
 
-      <div class="cube-grid" aria-hidden="true">
-        <span></span><span></span><span></span>
-        <span></span><span></span><span></span>
-        <span></span><span></span><span></span>
-      </div>
+        <div class="cube-grid" aria-hidden="true">
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+        </div>
 
-      <!-- Unlike the landing page's elaborate cube-permutation metaphor, this
-           is a short, page-specific line: the skillset below are the
-           individual "moves," the projects section is a few actual solves -->
-      <p class="cube-tagline">No single algorithm solves every scramble. You need to know which one to reach for at each stage, and in what order. Below is Stephanie's algorithm library. The projects further down are that library put into practice.</p>
+        <!-- Unlike the landing page's elaborate cube-permutation metaphor, this
+             is a short, page-specific line: the skillset below are the
+             individual "moves," the projects section is a few actual solves -->
+        <p class="cube-tagline">No single algorithm solves every scramble. You need to know which one to reach for at each stage, and in what order. Below is Stephanie's algorithm library. The projects further down are that library put into practice.</p>
 
-      <!-- Quick link to the resume for anyone who lands directly on this page
-           (via a shared link or search result) without passing through the
-           homepage first, where the resume link normally lives -->
-      <div class="quick-nav">
-        <a class="quick-link" href="Stephanie_McArthur_Resume.pdf" target="_blank" rel="noopener">View Resume</a>
+        <!-- Quick link to the resume for anyone who lands directly on this page
+             (via a shared link or search result) without passing through the
+             homepage first, where the resume link normally lives -->
+        <div class="quick-nav">
+          <a class="quick-link" href="Stephanie_McArthur_Resume.pdf" target="_blank" rel="noopener">View Resume</a>
+        </div>
       </div>
 
       <!-- Skills/education card. This is the page's one true <h1> (was
            previously a second, competing <h1> alongside "Projects" below —
            demoted that one to <h2> so there's a clear single top-level
            heading for the page). Styled as its own rounded box via
-           ".history-card" in styles.css. -->
-      <div class="content-block">
-        <div class="history-card">
+           ".history-card" in styles.css — NOT wrapped in ".content-block"
+           here, since that class now also draws a bordered panel (see
+           styles.css), and history-card already is one; nesting the two
+           would double-box the same section. -->
+      <div class="history-card">
           <h1>Professional History &amp; Skillset</h1>
 
           <!-- Each skill category is a labeled row of individual tag chips
@@ -104,7 +106,6 @@
             </div>
           </div>
         </div>
-      </div>
 
       <!-- Note: the resume download link used to live here too, but it was moved to
            the landing page (index.html) so visitors don't have to click through
