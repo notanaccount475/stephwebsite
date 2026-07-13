@@ -388,6 +388,7 @@ body{
    the heading visibly off-balance toward the bottom */
 .content-block h2{
   margin-top:0;
+  text-align:center;
 }
 
 /* Big-on-load intro: JS (see the script near the bottom of index.html)
@@ -882,6 +883,13 @@ img{
   border-radius:22px;
 }
 
+/* The card itself stays left-aligned (skill tags, notes read better
+   that way), but its one heading centers like every other header on
+   the site */
+.history-card h1{
+  text-align:center;
+}
+
 /* Each "Education" / "Industry Experience" / "Technical" row inside the
    skills card — a label above a wrapped row of individual tag chips,
    instead of one long comma-separated sentence */
@@ -1170,7 +1178,7 @@ img{
 
 .about-page h1,
 .about-page h2{
-  text-align:left;
+  text-align:center;
 }
 
 .about-page p{
