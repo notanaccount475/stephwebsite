@@ -637,7 +637,10 @@ h2{
   font-size:clamp(1.4rem,3vw,1.9rem);
 }
 
-/* Small row of heart symbols under every h2, a recurring kawaii motif */
+/* Small row of heart symbols under every h2, a recurring kawaii motif.
+   text-align:center here is deliberate and independent of the heading's
+   own alignment: h2 itself is left-aligned on most pages now, but as a
+   "divider" these read better centered under the heading regardless. */
 h2::after{
   content:"♡ ♡ ♡";
   display:block;
@@ -645,6 +648,7 @@ h2::after{
   color:#ff9fc7;
   font-size:.8rem;
   letter-spacing:4px;
+  text-align:center;
 }
 
 p{
