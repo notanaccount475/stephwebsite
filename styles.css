@@ -717,6 +717,22 @@ nav{
   font-size:1rem;
 }
 
+/* The two page-link buttons (About / Portfolio) have long full-sentence
+   labels, so "width:auto" above sized each one to fit its whole sentence
+   on one line — together that's wider than the column, so they wrapped
+   onto separate lines instead of sitting side by side. flex:1 makes them
+   share the row's width evenly instead, wrapping each button's own text
+   across 2-3 lines as needed. min-width:0 is required for flex-basis:0
+   items with text content — without it a flex item won't shrink below
+   its content's natural (unwrapped) width, which would defeat the whole
+   point here. Scoped to ".link" only, not ".social-button" — the resume/
+   email/LinkedIn buttons have short one-line labels that already fit
+   fine and look better at their natural content width. */
+.nav-row .link{
+  flex:1 1 0;
+  min-width:0;
+}
+
 /* Base look shared by every pill-shaped button/link across the whole site:
    the "About"/"Portfolio" links, email/LinkedIn/resume buttons, the art
    gallery toggle buttons, and the "back to home" links */
@@ -1228,6 +1244,14 @@ img{
                         desktop right-pinned layout — in this stacked mobile
                         layout that same rule would push the nav to hug the
                         right edge instead of centering it */
+  }
+
+  /* The side-by-side page-link buttons (flex:1, see the desktop rule)
+     would squeeze these long sentences into a cramped ~160px-wide column
+     on a phone screen — stack them back to one-per-line, full width,
+     like every other button on the site at this breakpoint */
+  .nav-row .link{
+    flex:1 1 100%;
   }
 
   /* On mobile the landing header stacks and re-centers (photo, name,
