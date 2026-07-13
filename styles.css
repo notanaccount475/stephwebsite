@@ -79,7 +79,7 @@ body{
    intentional. About and Portfolio pages keep the original boxed,
    centered look for now. */
 .landing-page .wrap{
-  max-width:1140px;
+  max-width:860px;
   padding:20px 12px 40px;
   background:none;
   border:none;
@@ -97,8 +97,6 @@ body{
 .landing-page .wrap p{
   margin-left:0;
   margin-right:auto;
-  max-width:760px;  /* a bit wider than the site-wide 660px default, so text
-                        doesn't look oddly narrow inside this page's wider box */
 }
 
 /* The cube grid and quick-nav keep their own independent centering/
