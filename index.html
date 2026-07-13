@@ -234,21 +234,25 @@
     </script>
 
     <script>
-      // Big-on-load hero: #hero-intro (header + cube/paragraph lockup)
-      // starts oversized, then scales down to its real size over the
-      // first HERO_SHRINK_DISTANCE px of scroll — and back up again if
-      // you scroll back to the top, since the scale is recalculated from
-      // the current scroll position on every tick rather than being a
-      // one-way "play once" animation.
+      // Full-screen-on-load hero: #hero-intro (header + cube/paragraph
+      // lockup) starts at the full viewport height AND oversized scale,
+      // so nothing else on the page is visible until you scroll — then
+      // both settle down to normal (natural height, scale 1) over the
+      // first HERO_SHRINK_DISTANCE px of scroll. Both values are driven
+      // off the same "progress" number so they stay in sync, and both
+      // reverse back to the big/full-screen state if you scroll back up
+      // to the top, since progress is recalculated from the live scroll
+      // position every frame rather than a one-way "play once" animation.
       (function () {
         var hero = document.getElementById('hero-intro');
         if (!hero) return;
 
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          // Leave it at normal size permanently — a large pulsing/scaling
-          // hero is exactly the kind of motion this preference exists to
-          // avoid, so skip the scroll listener entirely rather than just
-          // slowing it down
+          // Leave it at natural height/scale 1 permanently — a full-
+          // viewport block that never settles, or a large scaling/
+          // pulsing hero, is exactly the kind of motion this preference
+          // exists to avoid, so skip the scroll listener entirely rather
+          // than just slowing it down
           return;
         }
 
@@ -260,6 +264,10 @@
           var progress = Math.min(window.scrollY / HERO_SHRINK_DISTANCE, 1);
           var scale = HERO_START_SCALE - (HERO_START_SCALE - 1) * progress;
           hero.style.transform = 'scale(' + scale.toFixed(3) + ')';
+          // min-height goes from a full viewport (progress 0) down to 0
+          // (progress 1, i.e. no min-height override — the box just
+          // takes its natural content height and flows normally) */
+          hero.style.minHeight = (window.innerHeight * (1 - progress)) + 'px';
           ticking = false;
         }
 
@@ -270,8 +278,13 @@
           }
         }
 
+        // Recompute on resize too — window.innerHeight is read fresh
+        // inside update() each time, so a resized window is already
+        // correct on the next scroll tick, but this repaints it
+        // immediately rather than waiting for the next scroll event
         window.addEventListener('scroll', onScroll, { passive: true });
-        update(); // set the correct oversized/normal state immediately on load
+        window.addEventListener('resize', onScroll);
+        update(); // set the correct full-screen/normal state immediately on load
       })();
     </script>
   </body>

@@ -374,21 +374,35 @@ body{
 }
 
 /* Big-on-load intro: JS (see the script near the bottom of index.html)
-   sets this element's "transform: scale(...)" directly on every scroll
-   tick, shrinking it from oversized down to its normal 1:1 size over the
-   first ~320px of scroll, and back up again if you scroll back to the
-   top. transform-origin is TOP center specifically, so the growth/shrink
-   happens downward from the header rather than centered — center-origin
-   would make the header appear to grow upward off-screen too, which
-   looks like it's escaping the viewport rather than settling into place.
-   No CSS transition here: continuous per-frame updates from the scroll
-   listener already produce smooth motion, and adding a transition on top
-   of that would fight the next frame's value and read as laggy instead
-   of buttery. prefers-reduced-motion is handled in the script itself
-   (skips the scroll listener and leaves this at scale 1 permanently). */
+   does two things on every scroll tick, both driven off the same
+   progress value so they settle in sync:
+   1) sets min-height, shrinking this box from a full viewport-height
+      (at scrollY 0, so the "About Stephanie" panel and everything below
+      it start below the fold — nothing else is visible until you
+      scroll) down to its natural content height by ~320px of scroll.
+      min-height is a real layout property, so this actually reserves/
+      releases vertical space, unlike transform below.
+   2) sets "transform: scale(...)", shrinking the VISUAL size from
+      oversized (1.16x) down to 1x over the same distance.
+   transform-origin is center/center: since min-height above already
+   reserves the correct box size independently, growth doesn't need to
+   be anchored to the top edge the way an unreserved-space version
+   would — center growth reads more like an intentional "hero" pop.
+   flex + justify-content:center vertically centers the header/cube/
+   paragraph content within whatever height min-height currently is.
+   No CSS transition on either property: continuous per-frame updates
+   from the scroll listener already produce smooth motion, and adding a
+   transition on top would fight the next frame's value and read as
+   laggy instead of buttery. prefers-reduced-motion is handled in the
+   script itself (skips the scroll listener, leaves this at natural
+   height/scale 1 permanently — a full-viewport-height block that never
+   settles would be actively disorienting for that preference). */
 .landing-page .hero-intro{
-  transform-origin:top center;
-  will-change:transform;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  transform-origin:center center;
+  will-change:transform, min-height;
 }
 
 /* Scroll-reveal: sections start faded, dropped down, and slightly shrunk,
