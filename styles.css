@@ -78,16 +78,22 @@ body{
    the right with nothing in it, which read as broken rather than
    intentional. About and Portfolio pages keep the original boxed,
    centered look for now.
-   WIDTH HISTORY, because this number has been fought over: 860px was the
-   stable width while the cube and paragraph were separate stacked blocks
-   (a 1140px attempt got reverted — it stretched the mismatch between the
-   centered cube and the left-hugging text). Now that the cube and hero
-   paragraph share one flex row (.hero-lockup below) that mismatch can't
-   recur, and 1000px buys the header enough room for photo + name + nav
-   to fit on a single line at common desktop widths, which 860px did not
-   (the nav was wrapping onto its own orphan line under the title). */
+   WIDTH HISTORY, because this number has been fought over: 860px (stable
+   but the header nav wrapped and the cube floated on its own axis),
+   1140px (reverted, stretched the cube/text mismatch), 1000px (fixed the
+   header line and the cube via the hero lockup, but left a ~250px+
+   one-sided void right of the 720px-measure paragraphs on wide screens).
+   The lesson from all of that: readable text tops out around 720px, so
+   any column meaningfully wider than that piles ALL the leftover space
+   on one side, and one-sided whitespace reads as accidental emptiness.
+   780px lets the text nearly fill the column, pushing the leftover space
+   OUTSIDE the centered wrap where it splits evenly left and right —
+   symmetric whitespace reads as intentional margins (the standard
+   article-column pattern). The header fits because the quick-nav moved
+   to its own bar above the photo+name row (see .site-header), removing
+   the one-line width constraint that previously forced the column wide. */
 .landing-page .wrap{
-  max-width:1000px;
+  max-width:780px;
   padding:20px 12px 40px;
   background:none;
   border:none;
@@ -103,11 +109,9 @@ body{
    themselves too, so they don't just have left-ragged text sitting in an
    otherwise still-centered column. Measure bumped from the base 660px to
    720px: ~75 characters per line, the top of the comfortable reading
-   range, so the sections below the hero fill more of the wider 1000px
-   column without becoming exhausting to read. Going wider than this
-   trades readability for whitespace-filling, which isn't worth it — the
-   full-width hero lockup and dashed section dividers already define the
-   column's right edge above and between these paragraphs. */
+   range. Inside the 780px column this leaves only ~36px of slack, so the
+   text visually fills the column and the real margins sit symmetrically
+   OUTSIDE the centered wrap — see the width-history comment above. */
 .landing-page .wrap p{
   max-width:720px;
   margin-left:0;
@@ -223,15 +227,18 @@ body{
   content:none;
 }
 
-/* Site header: name/photo on the left, quick-nav pills pinned to the
-   top-right — the standard "logo left, nav right" pattern real sites use.
-   Wraps to stacked on mobile (see the @media rule near the bottom). */
+/* Site header: two stacked bars — quick-nav pinned top-right, then the
+   photo + name row on the left below it. Column direction (not the old
+   single space-between row): with the landing column narrowed to ~780px
+   there's no longer room for photo + name + nav side by side, and a
+   deliberate top utility bar reads as designed where a wrapped nav read
+   as broken. The quick-nav's margin-left:auto (see its rule below) is
+   what pins it right inside this column layout. */
 .site-header{
   display:flex;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:16px;
+  flex-direction:column;
+  align-items:stretch;
+  gap:8px;
   margin-bottom:22px;
 }
 
@@ -288,23 +295,22 @@ body{
 
 .hero-heading h1{
   margin:0;
-  font-size:clamp(1.4rem, 2.2vw, 1.9rem); /* smaller than the base h1 rule —
-    the header needs room for the quick-nav to sit alongside it on one line.
-    Max lowered from 2.1rem to 1.9rem: at 2.1rem the photo + name + nav
-    added up to slightly MORE than the 1000px column's content width, so
-    the nav wrapped onto its own orphan line under the title (and looked
-    broken). 1.9rem leaves ~40px of slack. If the name or nav labels ever
-    get longer, re-check this math before anything else. */
+  font-size:clamp(1.5rem, 2.6vw, 2.1rem); /* smaller than the base h1 rule
+    so the name reads as a header, not a billboard. The max was temporarily
+    squeezed to 1.9rem back when the quick-nav shared this row and every
+    pixel of title width risked wrapping the nav onto an orphan line —
+    the nav now lives on its own bar above (see .site-header), so the
+    title got its 2.1rem back. At 2.1rem the photo + name need ~600px,
+    comfortably inside the 780px column. */
 }
 
-/* Compact row of 3 links (Portfolio / About Me / Resume) — pinned to
-   the top-right of .site-header. Plain text links now, not pill buttons,
-   separated by a small dot, closer to a normal site's header nav.
-   "margin-left:auto" is the important part here: if .site-header ever
-   runs out of room and wraps this onto its own line below the hero-row,
-   a lone wrapped flex item under "justify-content:space-between" collapses
-   to the LEFT edge by default (there's nothing to be "between" anymore) —
-   margin-left:auto overrides that and keeps it pinned right regardless. */
+/* Compact row of 3 links (Portfolio / About Me / Resume) — the top bar
+   of .site-header. Plain text links, not pill buttons, separated by a
+   small dot, closer to a normal site's utility nav. "margin-left:auto"
+   is what pins it to the RIGHT edge: .site-header is a column flex
+   container with align-items:stretch, so without the auto margin this
+   bar would span (and its links sit at) the left edge like everything
+   else. Cancelled on mobile, where the nav re-centers instead. */
 .quick-nav{
   display:flex;
   align-items:center;
@@ -364,6 +370,42 @@ body{
   margin-top:18px;
   padding-top:30px;
   border-top:1px dashed var(--panel-border);
+}
+
+/* On the landing page, the content blocks become soft panels — same card
+   language as the portfolio's .history-card and the About page's
+   .quickfacts, so it's the site's own established vocabulary, not a new
+   pattern. Reason: below the hero, the 720px reading column left a wide
+   band of raw gradient on its right with nothing bounding it, which read
+   as missing content ("too much whitespace"). The same space INSIDE a
+   panel reads as padding. Widening the text instead was rejected — past
+   ~75 characters a line, readability drops, and it would only trade a
+   visible problem for an invisible one. The header and hero lockup stay
+   directly on the gradient, so this doesn't recreate the old
+   "one centered card holding everything" template look. */
+.landing-page .content-block{
+  background:rgba(255,255,255,.42);
+  border:1px solid var(--panel-border);
+  border-radius:22px;
+  padding:24px 28px 26px;
+}
+
+/* Panels are visually separate boxes now, so the dashed divider between
+   flat sections (from the base rule above) is redundant — a divider
+   between two bordered panels reads as clutter. Gap does the separating.
+   padding-top matches the panel's own top padding instead of the old
+   divider spacing. */
+.landing-page .content-block + .content-block{
+  border-top:none;
+  padding-top:24px;
+  margin-top:20px;
+}
+
+/* Each panel's first heading doesn't need the base h2's 28px top margin —
+   the panel's own padding already provides the headroom, and the double
+   spacing pushed the heading visibly off-balance toward the bottom */
+.landing-page .content-block h2{
+  margin-top:0;
 }
 
 /* Small pill-shaped label above the photo on the landing page, e.g.
@@ -1104,9 +1146,9 @@ img{
     padding:20px 12px;
   }
 
-  /* Landing page header: the name/photo + quick-nav space-between row
-     doesn't have room side by side on a phone, so it stacks, and the
-     quick-nav pills re-center instead of hugging the right edge */
+  /* Landing page header: already column-direction on desktop (nav bar
+     over photo+name), but on mobile the bars re-center instead of the
+     nav pinning right and the hero hugging left */
   .site-header{
     flex-direction:column;
     align-items:center;
@@ -1134,6 +1176,16 @@ img{
 
   .landing-page .cube-grid{
     margin:0 auto 4px;
+  }
+
+  /* Content panels get tighter padding on phones — the desktop 28px side
+     padding would eat too much of an already narrow column */
+  .landing-page .content-block{
+    padding:18px 16px 20px;
+  }
+
+  .landing-page .content-block + .content-block{
+    padding-top:18px;
   }
 
   /* Landing page hero row: side-by-side doesn't have room on a phone
