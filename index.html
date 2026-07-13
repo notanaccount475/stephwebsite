@@ -64,21 +64,33 @@
         </div>
       </div>
 
-      <!-- 3x3 grid styled like one face of a Rubik's cube. Starts in a
-           "scrambled" arrangement, then periodically snaps to a solved
-           (single-color) state and back — see the cube-cell-* keyframe
-           animations in styles.css -->
-      <div class="cube-grid" aria-hidden="true">
-        <span></span><span></span><span></span>
-        <span></span><span></span><span></span>
-        <span></span><span></span><span></span>
-      </div>
+      <!-- Hero lockup: the cube grid and the hero paragraph sit side by side
+           in one flex row (cube left, text right), instead of stacked as two
+           separate centered/left-aligned blocks. This solves two problems at
+           once: the cube is no longer a small object stranded alone on a wide
+           line, and the paragraph can stretch across the rest of the column,
+           which removes the dead band that used to sit on the page's right
+           side. Stacks back to vertical (cube above text) on mobile — see
+           the @media rule in styles.css. -->
+      <div class="hero-lockup">
 
-      <!-- This is now the landing page's one hero paragraph — combines the
-           cube-permutation-group metaphor with the personal details that
-           used to sit in a separate paragraph below it (categorizing data,
-           making art, best cube-solving time) -->
-      <p class="cube-tagline"><span class="lead-in">A Rubik's cube has about 43 quintillion possible scrambles</span>. Brute force could work, but what matters is finding efficiencies: fast recognition, the right sequence, fewest wasted moves. Stephanie speedcubes (competition-style, as fast as possible) for fun, current best around a minute, along with categorizing data and making art. She brings the same instinct to her work: the world's information is messy and sometimes hidden, and the skill isn't just finding an answer eventually. It's building an efficient, repeatable path to what it actually means.</p>
+        <!-- 3x3 grid styled like one face of a Rubik's cube. Starts in a
+             "scrambled" arrangement, then periodically snaps to a solved
+             (single-color) state and back — driven by the script at the
+             bottom of this file -->
+        <div class="cube-grid" aria-hidden="true">
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+        </div>
+
+        <!-- This is the landing page's one hero paragraph — combines the
+             cube-permutation-group metaphor with the personal details that
+             used to sit in a separate paragraph below it (categorizing data,
+             making art, best cube-solving time) -->
+        <p class="cube-tagline"><span class="lead-in">A Rubik's cube has about 43 quintillion possible scrambles</span>. Brute force could work, but what matters is finding efficiencies: fast recognition, the right sequence, fewest wasted moves. Stephanie speedcubes (competition-style, as fast as possible) for fun, current best around a minute, along with categorizing data and making art. She brings the same instinct to her work: the world's information is messy and sometimes hidden, and the skill isn't just finding an answer eventually. It's building an efficient, repeatable path to what it actually means.</p>
+
+      </div>
 
       <!-- .content-block wraps each "About ___" section so CSS can add a divider
            and extra spacing between them (see ".content-block + .content-block" in styles.css) -->

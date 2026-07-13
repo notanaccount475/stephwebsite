@@ -77,9 +77,17 @@ body{
    left-anchoring the box itself left a large, unstructured empty area on
    the right with nothing in it, which read as broken rather than
    intentional. About and Portfolio pages keep the original boxed,
-   centered look for now. */
+   centered look for now.
+   WIDTH HISTORY, because this number has been fought over: 860px was the
+   stable width while the cube and paragraph were separate stacked blocks
+   (a 1140px attempt got reverted — it stretched the mismatch between the
+   centered cube and the left-hugging text). Now that the cube and hero
+   paragraph share one flex row (.hero-lockup below) that mismatch can't
+   recur, and 1000px buys the header enough room for photo + name + nav
+   to fit on a single line at common desktop widths, which 860px did not
+   (the nav was wrapping onto its own orphan line under the title). */
 .landing-page .wrap{
-  max-width:860px;
+  max-width:1000px;
   padding:20px 12px 40px;
   background:none;
   border:none;
@@ -93,28 +101,66 @@ body{
    to left — text-align only affects the text INSIDE the box, not the
    box's own position. This override left-anchors the paragraph boxes
    themselves too, so they don't just have left-ragged text sitting in an
-   otherwise still-centered column. */
+   otherwise still-centered column. Measure bumped from the base 660px to
+   720px: ~75 characters per line, the top of the comfortable reading
+   range, so the sections below the hero fill more of the wider 1000px
+   column without becoming exhausting to read. Going wider than this
+   trades readability for whitespace-filling, which isn't worth it — the
+   full-width hero lockup and dashed section dividers already define the
+   column's right edge above and between these paragraphs. */
 .landing-page .wrap p{
+  max-width:720px;
   margin-left:0;
   margin-right:auto;
 }
 
 /* The quick-nav keeps its right-pinned alignment (justify-content plus
-   margin-left:auto), so the header still frames the page's right edge.
-   The cube grid, though, previously kept its centered margin:auto from
-   the base .cube-grid rule — which put it on a second axis (centered in
-   the 860px column, roughly 90px right of the 660px text column's own
-   center) while every other element below the header hugged the left
-   edge. Two competing axes read as ACCIDENTAL asymmetry. This override
-   drops the cube onto the same left rail as the eyebrow, headings, and
-   paragraphs: one consistent axis, with the leftover right-side space
-   reading as deliberate (the quick-nav already owns that edge).
-   Only margin-left changes — top/bottom spacing still comes from the
-   base rule's shorthand. About and Portfolio pages have no
-   .landing-page class, so their cubes stay centered to match those
-   pages' centered layouts. */
+   margin-left:auto), so the header still frames the page's right edge. */
+
+/* Hero lockup: cube on the left, hero paragraph filling the rest of the
+   row. Replaces the old stacked arrangement, which had two failure modes
+   we hit in sequence: a centered cube floating on its own axis against
+   left-aligned text (read as accidental asymmetry), then a left-aligned
+   cube sitting alone on a wide empty line (read as stranded). Putting
+   the paragraph beside it gives the cube a reason to be where it is. */
+.hero-lockup{
+  display:flex;
+  align-items:flex-start;  /* top-align, NOT stretch/center — the paragraph
+                              is much taller than the cube, and centering
+                              would float the cube weirdly in the middle
+                              of the text block's height */
+  gap:30px;
+  margin-bottom:26px;
+}
+
+/* Landing-page cube sizing/spacing inside the lockup. Cells bumped from
+   the base 24px to 34px: next to a full-width paragraph the 88px-wide
+   base cube read as an icon rather than a co-equal hero element, and the
+   bigger face also carries the scramble/solve animation better. Scoped
+   to .landing-page so the About and Portfolio cubes keep the base size
+   that suits their centered layouts.
+   margin:4px 0 0 — the 4px nudges the cube's top edge down to optically
+   align with the cap height of the paragraph's first (lead-in) line,
+   and the explicit 0 right margin matters: the base rule's shorthand
+   sets margin-right:auto, and inside a flex row an auto margin eats the
+   free space, which would shove the paragraph to the far right. */
 .landing-page .cube-grid{
-  margin-left:0;
+  grid-template-columns:repeat(3, 34px);
+  grid-template-rows:repeat(3, 34px);
+  gap:4px;
+  padding:6px;
+  margin:4px 0 0;
+}
+
+/* The hero paragraph fills the row beside the cube. flex:1 takes all
+   remaining width, so the base p / .landing-page .wrap p max-width caps
+   must be lifted here (max-width:none) or the paragraph would stop at
+   720px and strand the leftover space again. Extra .landing-page prefix
+   keeps this rule's specificity above ".landing-page .wrap p". */
+.landing-page .hero-lockup .cube-tagline{
+  flex:1;
+  max-width:none;
+  margin:0;
 }
 
 /* The bottom nav buttons (About/Portfolio links + resume/email/LinkedIn)
@@ -226,10 +272,13 @@ body{
 
 .hero-heading h1{
   margin:0;
-  font-size:clamp(1.4rem, 2.4vw, 2.1rem); /* smaller than the base h1 rule —
-    the header needs room for the quick-nav to sit alongside it on one line,
-    and a huge headline here was eating all that space, forcing the nav to
-    wrap onto its own line below (and collapse to the left when it did) */
+  font-size:clamp(1.4rem, 2.2vw, 1.9rem); /* smaller than the base h1 rule —
+    the header needs room for the quick-nav to sit alongside it on one line.
+    Max lowered from 2.1rem to 1.9rem: at 2.1rem the photo + name + nav
+    added up to slightly MORE than the 1000px column's content width, so
+    the nav wrapped onto its own orphan line under the title (and looked
+    broken). 1.9rem leaves ~40px of slack. If the name or nav labels ever
+    get longer, re-check this math before anything else. */
 }
 
 /* Compact row of 3 links (Portfolio / About Me / Resume) — pinned to
@@ -1056,12 +1105,19 @@ img{
   }
 
   /* On mobile the landing header stacks and re-centers (photo, name,
-     quick-nav all centered — see the rules above), so the left rail the
-     cube aligns to on desktop no longer visually exists up top. Cancel
-     the desktop "margin-left:0" override and let the cube re-center to
-     match, same pattern as the quick-nav's margin-left reset above */
+     quick-nav all centered — see the rules above), so side-by-side has
+     no room and the desktop left rail no longer visually exists. The
+     hero lockup stacks back to vertical (cube above paragraph, both
+     centered), matching the centered header directly above it. The
+     margin override also cancels the desktop rule's "margin:4px 0 0",
+     restoring bottom spacing between the cube and the paragraph. */
+  .landing-page .hero-lockup{
+    flex-direction:column;
+    align-items:center;
+  }
+
   .landing-page .cube-grid{
-    margin-left:auto;
+    margin:0 auto 4px;
   }
 
   /* Landing page hero row: side-by-side doesn't have room on a phone
