@@ -129,7 +129,9 @@ body{
                               is much taller than the cube, and centering
                               would float the cube weirdly in the middle
                               of the text block's height */
-  gap:30px;
+  gap:44px; /* was 30px — with the cube's own border sitting right at that
+    edge, 30px read as the text touching the cube rather than two paired
+    elements with breathing room between them */
   margin-bottom:26px;
 }
 
