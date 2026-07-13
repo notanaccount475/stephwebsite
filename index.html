@@ -33,13 +33,9 @@
       <!-- Asymmetric header row: photo + name/eyebrow side by side instead of
            a centered stacked block. Photo stays modest-sized (not a giant
            full-bleed hero image) — this is meant to feel personal, not like
-           a billboard. Collapses to stacked/centered on mobile (see the
-           @media rule in styles.css). -->
-      <!-- Site header: name/photo on the left, quick-nav pills on the right —
-           the standard "logo left, nav right" pattern real sites use, instead
-           of the pills sitting stacked in the content flow below the hero.
-           Wraps to stacked on mobile (see the @media rule in styles.css). -->
-      <div class="site-header">
+           a billboard. Nav pills pinned top-right. Collapses to stacked/
+           centered on mobile (see the @media rule in styles.css). -->
+      <div class="site-header reveal">
         <div class="hero-row">
           <div class="hero-photo">
             <!-- Bear ears now anchor to the photo itself instead of a card edge,
@@ -72,7 +68,7 @@
            which removes the dead band that used to sit on the page's right
            side. Stacks back to vertical (cube above text) on mobile — see
            the @media rule in styles.css. -->
-      <div class="hero-lockup">
+      <div class="hero-lockup reveal reveal-2">
 
         <!-- 3x3 grid styled like one face of a Rubik's cube. Starts in a
              "scrambled" arrangement, then periodically snaps to a solved
@@ -94,7 +90,7 @@
 
       <!-- .content-block wraps each "About ___" section so CSS can add a divider
            and extra spacing between them (see ".content-block + .content-block" in styles.css) -->
-      <div class="content-block">
+      <div class="content-block reveal reveal-3">
         <h2>About Stephanie</h2>
         <p class="cube-bridge">Speedcubers don't get fast by guessing; they learn algorithms, frameworks for knowing exactly which move to deploy in which situation. Stephanie thinks about data the same way: when to reach for logistic versus linear regression, how to guard against overfitting or p-hacking, how to read a confusion matrix. She meticulously researches and develops repeatable processes for capturing information accurately instead of leaving it to chance.</p>
         <p>With over a <strong>decade of experience in data analytics and visualization</strong>, Stephanie uses her left-brain skills to optimize business performance as a consultant. And she uses her right-brain skills to paint watercolors, play the ukulele, and read up on feminist theory.</p>
@@ -102,7 +98,7 @@
         <p>Born and raised in Texas, Stephanie has a Bachelor of Science in Statistics and Finance from New York University, as well as an <strong>MBA from Columbia Business School</strong>. As a data consultant, she’s worked in healthcare, banking, and finance at various companies.</p>
       </div>
 
-      <div class="content-block">
+      <div class="content-block reveal reveal-4">
         <h2>About This Site</h2>
         <p class="cube-bridge">A cube piece almost never belongs to just one face. The same corner completing the white side is also part of the blue one and the red one. The sections below work the same way: professional and personal aren't really separate piles, just different faces meeting at the same pieces.</p>
         <p>On this site, you’ll find a mix of Stephanie’s professional accomplishments and a little bit more about her life as a New Yorker too.</p>
@@ -113,7 +109,7 @@
            Split into two .nav-row groups so related buttons sit together:
            1) the two page links (About / Portfolio)
            2) resume + contact methods (email / LinkedIn), separated by a dashed divider -->
-      <nav>
+      <nav class="reveal reveal-5">
         <div class="nav-row">
           <a class="link link-secondary" href="about.html">To learn more about Stephanie as a person (one face of the same piece), click here</a>
           <a class="link link-primary" href="portfolio.html">To learn more about Stephanie’s professional portfolio (another face, same piece), click here</a>
@@ -188,6 +184,44 @@
         if (cells.length) {
           loop();
         }
+      })();
+    </script>
+
+    <script>
+      // Scroll reveal: each ".reveal" section (header, hero lockup, the two
+      // About panels, bottom nav) starts faded/dropped via CSS, then gets an
+      // "is-visible" class added when it scrolls into view, which is what
+      // actually triggers the bounce transition (see ".reveal" in styles.css).
+      // Unlike a typical "animate once" reveal, this REMOVES the class again
+      // when a section scrolls back out of view, so scrolling up and back
+      // down re-plays the animation every time — that repeat was requested
+      // specifically, not an oversight.
+      (function () {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          // Respect the OS-level motion preference: skip the observer
+          // entirely and just show everything, no animation at all
+          document.querySelectorAll('.reveal').forEach(function (el) {
+            el.classList.add('is-visible');
+          });
+          return;
+        }
+
+        var sections = document.querySelectorAll('.reveal');
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            entry.target.classList.toggle('is-visible', entry.isIntersecting);
+          });
+        }, {
+          threshold: 0.15,       // fires once ~15% of the section is on screen
+          rootMargin: '0px 0px -8% 0px' // trigger slightly before the very
+                                          // bottom edge, so it doesn't wait
+                                          // until content is fully in view
+        });
+
+        sections.forEach(function (section) {
+          observer.observe(section);
+        });
       })();
     </script>
   </body>

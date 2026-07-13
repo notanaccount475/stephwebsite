@@ -397,6 +397,63 @@ body{
   margin-top:0;
 }
 
+/* Scroll-reveal: sections start faded, dropped down, and slightly shrunk,
+   then animate to their resting state when ".is-visible" gets toggled on
+   by the IntersectionObserver at the bottom of index.html. The class gets
+   REMOVED when a section scrolls back out of view too, so this replays
+   every time you scroll past a section, not just once on first load —
+   that repeat behavior was a deliberate choice, not a bug to fix later.
+   cubic-bezier(.34,1.56,.64,1) is a "back-out" curve: it overshoots past
+   1 before settling, which is what actually reads as a bounce rather than
+   a plain ease — a linear or ease-out curve here would just look like an
+   ordinary fade, not "playful." Scoped to the landing page only. */
+.landing-page .reveal{
+  opacity:0;
+  transform:translateY(28px) scale(.94);
+  transition:opacity .55s cubic-bezier(.34,1.56,.64,1),
+             transform .65s cubic-bezier(.34,1.56,.64,1);
+}
+
+.landing-page .reveal.is-visible{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+
+/* Staggered per-section delay, via explicit "reveal-N" classes rather than
+   ":nth-of-type" — nth-of-type counts position among ALL sibling <div>s,
+   not just ".reveal" ones, and site-header/hero-lockup are divs too, so
+   an nth-of-type-based selector here would silently never match the
+   content-block panels at all. Explicit classes avoid that trap entirely
+   and stay correct even if the section order in index.html ever changes. */
+.landing-page .reveal-2{
+  transition-delay:.06s;
+}
+
+.landing-page .reveal-3{
+  transition-delay:.1s;
+}
+
+.landing-page .reveal-4{
+  transition-delay:.14s;
+}
+
+.landing-page .reveal-5{
+  transition-delay:.16s;
+}
+
+/* Users who've asked their OS to minimize motion get the end state
+   immediately with no animation at all — the "prefers-reduced-motion"
+   check in the script below adds "is-visible" straight away without ever
+   registering the observer, but this transition:none is a second layer
+   of safety in case JS is slow to run or blocked entirely */
+@media (prefers-reduced-motion: reduce){
+  .landing-page .reveal{
+    opacity:1;
+    transform:none;
+    transition:none;
+  }
+}
+
 /* Paragraphs inside the content panels need to fill the panel, not stop
    at the 720px measure from ".landing-page .wrap p" above — the panels
    themselves are already the full column width, so a 720px cap inside
