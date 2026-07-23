@@ -703,6 +703,31 @@ li strong{
   font-weight:700;
 }
 
+/* Contextual link inside body copy, as opposed to the site's pill
+   buttons (.link, .social-button) and header nav (.quick-link). There is
+   no global "a" rule in this file, so without this a bare inline link
+   renders in the browser default blue with a default underline, which
+   fights the pastel palette badly.
+   Underlined rather than bold-and-pink alone: this sits inside the hero's
+   soft-gray supporting text, where a bold pink run would pull the eye
+   away from the <h1> hook directly above it. The offset and thin
+   underline keep it legible without the heavy default underline sitting
+   right on the descenders. */
+.inline-link{
+  color:var(--title);
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:3px;
+  text-decoration-color:rgba(214,89,138,.45);
+  transition:text-decoration-color .2s ease, color .2s ease;
+}
+
+.inline-link:hover{
+  color:#c94b7a;
+  text-decoration-color:currentColor;  /* underline darkens with the text
+                                           rather than staying faint */
+}
+
 /* Landing page's hero supporting paragraph, sitting under the <h1> hook
    line. The cube metaphor itself now lives in that headline; this
    paragraph carries the personal details and the work parallel. Sizing
