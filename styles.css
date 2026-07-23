@@ -515,15 +515,22 @@ body{
   }
 }
 
-/* Paragraphs inside a content-block panel need to fill the panel, not
-   stop at the base "p" rule's 660px measure — the panel itself is
-   already the full column width, so a 660px cap inside it left a
-   permanent empty stripe on the right (or, on the landing page
-   specifically, inside the 720px-measure override), the exact
-   whitespace problem panels exist to solve, just relocated inside the
-   box. Generalized from a landing-only rule so About and Portfolio's
-   content-block paragraphs get the same fix. */
-.content-block p{
+/* Paragraphs inside a content-block panel fill the panel, rather than
+   stopping at the reading-measure caps set elsewhere (the base "p" rule's
+   660px, or the 720px ".landing-page .wrap p" / ".portfolio-page .wrap p"
+   / ".about-page p" overrides). The panel is already the full column
+   width, so any cap inside it leaves a permanent empty stripe down its
+   right side: the exact whitespace problem the panels exist to solve,
+   just relocated inside the box.
+   SPECIFICITY, and this has bitten once already: a bare ".content-block
+   p" scores (0,1,1), which LOSES to ".landing-page .wrap p" at (0,2,1),
+   so the 720px cap silently won and the text stopped short of the panel
+   edge. Each selector below is page-scoped to reach (0,3,1) and beat
+   those page-level caps outright. Don't collapse these back into one
+   bare ".content-block p" — it looks tidier and quietly breaks. */
+.landing-page .content-block p,
+.about-page .content-block p,
+.portfolio-page .content-block p{
   max-width:none;
 }
 
@@ -1319,16 +1326,12 @@ img{
   text-align:left;
 }
 
-/* ".about-page p" above and ".content-block p" earlier in this file have
-   equal specificity, so source order alone would let this later rule
-   win and re-impose the 720px cap inside a content-block panel — which
-   would recreate the exact "empty stripe inside the panel" bug the
-   landing page already hit once. This explicit override (extra
-   ".about-page" prefix bumps specificity) keeps panel paragraphs full-
-   width regardless of file order. */
-.about-page .content-block p{
-  max-width:none;
-}
+/* NOTE: ".about-page .content-block p" used to sit here to stop the
+   ".about-page p" rule above from re-imposing its 720px cap inside a
+   panel. That override now lives with its landing-page and
+   portfolio-page siblings in the single consolidated rule earlier in
+   this file (search "SPECIFICITY"), so all three pages fix the same
+   trap in one place instead of three. */
 
 /* Generic boxed-card look applied to every <ul> on the About page
    (hobbies list, volunteering list) — the Favorites list inside .quickfacts
