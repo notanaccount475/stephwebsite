@@ -973,7 +973,23 @@ img{
   color:var(--text-soft);
 }
 
-/* Container for the 3 project cards — a plain vertical list with no
+/* The Projects section, unwrapped from ".content-block" so its cards sit
+   directly on the page gradient at full column width instead of inset
+   inside a second panel. Only needs the spacing and heading treatment
+   the panel used to supply. */
+.projects-section{
+  margin-top:34px;
+}
+
+/* Matches the centered headings everywhere else on the site. Without
+   this the h2 would inherit "text-align:left" from ".portfolio-page
+   .wrap", since the ".content-block h2" rule that used to center it no
+   longer applies here. */
+.projects-section h2{
+  text-align:center;
+}
+
+/* Container for the project cards — a plain vertical list with no
    bullets, each item spaced out with a gap */
 .project-list{
   list-style:none;

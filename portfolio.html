@@ -114,10 +114,14 @@
            now sits near the top of this page instead, for anyone who lands
            here directly. -->
 
-      <!-- .content-block here gets the same dashed-divider treatment used on
-           the landing page (see ".content-block + .content-block" in
-           styles.css), since it directly follows the skills content-block above -->
-      <div class="content-block">
+      <!-- Not wrapped in ".content-block" (which draws its own bordered,
+           blurred panel), because every ".project-card" below already is
+           one. Nesting them cost 28px of padding on each side plus a
+           second border, so the cards sat inset from the column and read
+           as a box inside a box. Same reason ".history-card" above isn't
+           wrapped either. The heading and intro line now sit directly on
+           the page gradient, with the cards as the only panels. -->
+      <div class="projects-section">
         <h2>Projects</h2>
         <p>Below, you’ll find some examples of Stephanie's favorite projects:</p>
 
