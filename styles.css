@@ -191,15 +191,42 @@ body{
   margin:4px 0 0;
 }
 
-/* The hero paragraph fills the row beside the cube. flex:1 takes all
-   remaining width, so the base p / .landing-page .wrap p max-width caps
-   must be lifted here (max-width:none) or the paragraph would stop at
-   720px and strand the leftover space again. Extra .landing-page prefix
-   keeps this rule's specificity above ".landing-page .wrap p". */
-.landing-page .hero-lockup .cube-tagline{
+/* The hero copy column fills the row beside the cube. flex:1 takes all
+   remaining width; min-width:0 lets a flex child holding text shrink
+   below its longest unbroken content instead of forcing the row wider.
+   Was applied to the paragraph directly, before the hook was split out
+   into its own <h1> and both were wrapped in this container. */
+.landing-page .hero-lockup .hero-copy{
   flex:1;
+  min-width:0;
+}
+
+/* The opening hook, now the page's <h1> and typeset as a real headline.
+   It was previously an inline span at 1.15rem against 1.02rem body
+   text, a 13% difference, which gave the eye no entry point: 85 words
+   read as one undifferentiated block. At this size the hook lands in a
+   glance and the rest becomes supporting text people opt into.
+   Sized in its own clamp rather than inheriting the base h1's
+   clamp(2rem,4vw,2.9rem), which would overpower the hero at wide
+   widths. */
+.landing-page .hero-copy .lead-in{
+  display:block;
+  margin:0 0 12px;
+  font-size:clamp(1.5rem, 2.9vw, 2.15rem);
+  line-height:1.25;
   max-width:none;
+}
+
+/* Supporting text under the headline: a step down in size and a softer
+   color, so the hierarchy is carried by more than the headline's size
+   alone. Without this the paragraph competes with the hook and the
+   block reads flat again. max-width:none lifts the base p / ".landing-
+   page .wrap p" caps so it fills the column beside the cube. */
+.landing-page .hero-copy .cube-tagline{
   margin:0;
+  max-width:none;
+  font-size:.95rem;
+  color:var(--text-soft);
 }
 
 /* Bottom nav buttons used to sit centered while everything above them was
@@ -285,16 +312,14 @@ body{
   margin-right:0;
 }
 
-.hero-heading h1{
-  margin:0;
-  font-size:clamp(1.4rem, 2.2vw, 1.9rem); /* smaller than the base h1 rule —
-    the header needs room for the quick-nav to sit alongside it on one line.
-    Max lowered from 2.1rem to 1.9rem: at 2.1rem the photo + name + nav
-    added up to slightly MORE than the 1000px column's content width, so
-    the nav wrapped onto its own orphan line under the title (and looked
-    broken). 1.9rem leaves ~40px of slack. If the name or nav labels ever
-    get longer, re-check this math before anything else. */
-}
+/* NOTE: there used to be a ".hero-heading h1" rule here sizing the site
+   name, with its max clamp tuned down to 1.9rem so that photo + name +
+   quick-nav would still fit on one header line inside the 1000px column.
+   The site name heading is gone (see index.html), so the rule targeted
+   nothing and the wrap constraint it worked around no longer exists:
+   the header now holds only the photo and the eyebrow pill, leaving
+   plenty of room for the nav. If a heading ever returns to this row,
+   that width math is the first thing to re-check. */
 
 /* Compact row of 3 links (Portfolio / About Me / Resume) — pinned to
    the top-right of .site-header. Plain text links now, not pill buttons,
@@ -465,6 +490,16 @@ body{
 
 .landing-page .reveal-5{
   transition-delay:.16s;
+}
+
+/* Deliberately longer than the reveal-N steps above. Those stagger whole
+   sections by a fraction of a beat so a tall viewport doesn't flash
+   everything at once. This one is a read-order cue: the hook headline
+   lands first, then the supporting paragraph arrives clearly after it,
+   so the eye is pointed at the hook before the 70 words underneath it
+   appear. */
+.landing-page .reveal-hero-body{
+  transition-delay:.42s;
 }
 
 /* Users who've asked their OS to minimize motion get the end state

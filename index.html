@@ -47,9 +47,14 @@
           <div class="hero-photo">
             <img class="portrait" src="images/linkedin-headshot.jpg" alt="Stephanie McArthur">
           </div>
+          <!-- The site name ("Stephanie McArthur's Website") used to sit
+               here as the page <h1>. Removed for a cleaner header: her
+               name still appears in the page <title>, the photo's alt
+               text, and throughout the body copy and buttons below. The
+               page's <h1> is now the hero hook line in the lockup below,
+               which is the actual message rather than a label. -->
           <div class="hero-heading">
             <span class="eyebrow">Analytics · Data Science · Storytelling</span>
-            <h1>Stephanie McArthur's Website</h1>
           </div>
         </div>
 
@@ -86,11 +91,31 @@
           <span></span><span></span><span></span>
         </div>
 
-        <!-- This is the landing page's one hero paragraph — combines the
-             cube-permutation-group metaphor with the personal details that
-             used to sit in a separate paragraph below it (categorizing data,
-             making art, best cube-solving time) -->
-        <p class="cube-tagline"><span class="lead-in">A Rubik's cube has about 43 quintillion possible scrambles</span>. Brute force could work, but what matters is finding efficiencies: fast recognition, the right sequence, fewest wasted moves. Stephanie speedcubes (competition-style, as fast as possible) for fun, current best around a minute, along with categorizing data and making art. She brings the same instinct to her work: the world's information is messy and sometimes hidden, and the skill isn't just finding an answer eventually. It's building an efficient, repeatable path to what it actually means.</p>
+        <!-- Hero copy, split into two elements so the opening hook can be
+             typeset as a headline and the rest as supporting text. NOTE:
+             not a rewrite — the rendered sentence is character-for-
+             character what it was as one paragraph. The period that used
+             to sit outside the old <span class="lead-in"> moved inside
+             the <h1>; leaving it in the paragraph would have stranded a
+             lone "." at the start of the body text once the hook became
+             its own block.
+             This is also the page's <h1> now that the site-name heading
+             is gone: it's the page's actual message, and every page still
+             needs exactly one top-level heading for screen readers and
+             search engines.
+             The wrapper exists because .hero-lockup is a two-column flex
+             row (cube | copy). Without it the h1 and p would become two
+             separate flex items sitting side by side.
+             Only the paragraph carries a ".reveal" class: the headline
+             rides the parent .hero-lockup's own reveal, so it arrives
+             with the cube, and the paragraph follows a beat later (see
+             ".reveal-hero-body" in styles.css). Giving the h1 its own
+             reveal would compound its transform with the parent's and
+             make it travel twice as far. -->
+        <div class="hero-copy">
+          <h1 class="lead-in">A Rubik's cube has about 43 quintillion possible scrambles.</h1>
+          <p class="cube-tagline reveal reveal-hero-body">Brute force could work, but what matters is finding efficiencies: fast recognition, the right sequence, fewest wasted moves. Stephanie speedcubes (competition-style, as fast as possible) for fun, current best around a minute, along with categorizing data and making art. She brings the same instinct to her work: the world's information is messy and sometimes hidden, and the skill isn't just finding an answer eventually. It's building an efficient, repeatable path to what it actually means.</p>
+        </div>
 
       </div>
 
