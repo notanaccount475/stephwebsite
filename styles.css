@@ -5,6 +5,25 @@
    bear-ear silhouettes peeking above the card (a nod to Rilakkuma),
    Baloo 2 for headings and Quicksand for body text. */
 
+/* ---- Root type size ----
+   Every font-size in this file is written in rem, which resolves against
+   this value. Nothing set it before, so the whole site ran at the browser
+   default of 16px, which left body copy around 16px: small for a 1000px
+   column, and smaller still in practice because Quicksand has a low
+   x-height and the warm-brown-on-pale-gradient contrast is soft.
+   106.25% of 16px is 17px, so body copy lands near 17.3px and every other
+   size scales with it, preserving the hierarchy. Use a percentage rather
+   than a px value: a px root would override the font size a visitor set
+   in their own browser preferences, which matters for anyone who enlarges
+   text to read comfortably.
+   Layout widths are in px, so the column doesn't grow with this. That's
+   deliberate, since larger text in the same column also shortens each
+   line in characters. To dial the whole site's text up or down, change
+   this one number. */
+html{
+  font-size:106.25%;
+}
+
 /* ---- Color/shadow variables, reused everywhere below via var(--name) ----
    Changing a value here updates it site-wide, instead of hunting down
    every place a color was used. */
