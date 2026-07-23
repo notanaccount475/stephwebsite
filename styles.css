@@ -703,9 +703,11 @@ li strong{
   font-weight:700;
 }
 
-/* Landing page's main hero paragraph: the cube-permutation-group metaphor
-   combined with personal details (see the comment further down in this
-   file, above .cube-tagline in index.html, for the full context) */
+/* Landing page's hero supporting paragraph, sitting under the <h1> hook
+   line. The cube metaphor itself now lives in that headline; this
+   paragraph carries the personal details and the work parallel. Sizing
+   and color for it come from ".landing-page .hero-copy .cube-tagline"
+   earlier in this file. */
 .cube-tagline{
   margin:-6px auto 22px;
 }
