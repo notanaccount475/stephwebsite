@@ -984,10 +984,22 @@ img{
   gap:16px;
 }
 
-/* Each individual project box. Padding moved from the card itself onto
-   .project-card-body below, since the thumbnail image now needs to sit
-   flush against the card's top edge and side edges (no gap around it) */
+/* Each individual project box, laid out as a horizontal row: thumbnail
+   on the left, title and description filling the rest. Was a stacked
+   card (full-width thumbnail above the text), which cost ~400px of
+   height each and, because the dashboard screenshots are wide (HCAHPS
+   is 2.5:1), rendered the image at only ~508px inside a 920px-wide box
+   under object-fit:contain. That left ~200px of blank white on each
+   side of every thumbnail: full vertical cost for an image using half
+   the width. A narrow fixed-width thumbnail column matches the images'
+   shape and cuts the height, which matters most because the thumbnails
+   are meant as a quick glance, not something to actually read. */
 .project-card{
+  display:flex;
+  align-items:stretch;  /* thumbnail column matches the text column's
+                            height, so the row reads as one solid block
+                            rather than a short image floating beside
+                            taller text */
   text-align:left;
   overflow:hidden;  /* clips the thumbnail's corners to match the card's border-radius */
   background:rgba(255,255,255,.5);
@@ -995,17 +1007,32 @@ img{
   border-radius:22px;
 }
 
-/* Thumbnail container: fixed height so all 3 cards line up evenly even
-   though the actual dashboard screenshots are different shapes. Uses
-   object-fit:contain (not cover) so dashboard text/axis labels never get
-   cropped off — a light background fills any empty space instead. */
+/* The thumbnail's wrapping link becomes the fixed-width left column.
+   flex:0 0 300px means "don't grow, don't shrink, stay 300px" — without
+   the 0 shrink value the long descriptions beside it would squeeze this
+   column narrower on smaller screens. */
+.project-card > a{
+  display:block;
+  flex:0 0 300px;
+}
+
+/* Thumbnail container, now the full-height left column of the row.
+   height:100% fills whatever height the description column sets, so
+   short and long descriptions both produce a clean rectangular card.
+   min-height keeps a sensible floor if a description is ever short
+   enough to collapse the row. The divider moved from border-bottom to
+   border-right, since the text now sits beside this instead of under it.
+   Uses object-fit:contain (not cover) so dashboard text/axis labels
+   never get cropped off, with a light background filling any leftover
+   space. */
 .project-thumb{
   display:flex;
   align-items:center;
   justify-content:center;
-  height:200px;
+  height:100%;
+  min-height:150px;
   background:#fff;
-  border-bottom:1px solid var(--panel-border);
+  border-right:1px solid var(--panel-border);
 }
 
 /* Temporary stand-in for a project-thumb that doesn't have a real
@@ -1033,7 +1060,18 @@ img{
                         since this image should sit flush inside its container */
 }
 
+/* Text column: takes all remaining row width. min-width:0 is required
+   on a flex child holding text, otherwise it refuses to shrink below
+   its longest unbroken content and can push the row wider than the
+   card. justify-content:center vertically centers short descriptions
+   against the taller thumbnail column instead of stranding them at the
+   top. */
 .project-card-body{
+  flex:1;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
   padding:20px 24px;
 }
 
@@ -1345,6 +1383,26 @@ img{
      from a landing-only rule so About/Portfolio panels match too. */
   .content-block{
     padding:18px 16px 20px;
+  }
+
+  /* Project cards stack back to vertical on phones. The desktop row
+     layout reserves 300px for the thumbnail, which would leave under
+     100px for the description on a narrow screen. Stacked, the
+     thumbnail spans the full card width again, so it goes back to a
+     fixed height with the divider on its bottom edge rather than
+     stretching to match a text column that no longer sits beside it. */
+  .project-card{
+    flex-direction:column;
+  }
+
+  .project-card > a{
+    flex:1 1 auto;
+  }
+
+  .project-thumb{
+    height:180px;
+    border-right:none;
+    border-bottom:1px solid var(--panel-border);
   }
 
   /* Landing page hero row: side-by-side doesn't have room on a phone
