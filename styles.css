@@ -829,7 +829,7 @@ nav{
   color:var(--title);
   background:linear-gradient(180deg, var(--white), var(--btn));
   box-shadow:var(--shadow-soft);
-  transition:transform .18s ease, background .18s ease, box-shadow .18s ease;
+  transition:transform .18s ease, background .18s ease, box-shadow .18s ease, color .18s ease;
   cursor:pointer;
 }
 
@@ -858,24 +858,66 @@ nav{
   box-shadow:0 14px 28px rgba(224,102,143,.18);
 }
 
-/* Social buttons use white text since their backgrounds are solid colors
-   (set individually below) rather than the pale white/pink gradient
-   used by plain .link buttons */
+/* Social buttons: the resume button always used dark text on its pale
+   gold (readable), but email/linkedin previously used white text on pale
+   pastels — which is fundamentally low-contrast (white on any true
+   pastel fails WCAG AA no matter the exact shade). So instead of white
+   at rest, email/linkedin now use a DARK brand-tinted text (deep green /
+   deep navy) on the pastel background, which is both readable (contrast
+   ~5-9:1) and reinforces the brand color. On hover the background
+   saturates to the real brand color; the text then flips to white where
+   that stays readable (LinkedIn) or stays dark where it wouldn't (email,
+   on Gmail's mid-tone green). See the per-button rules below. */
 .social-button{
   color:var(--white);
 }
 
 .social-button.email{
   background:linear-gradient(180deg, var(--green1), var(--green2));
+  color:#0B4A26;   /* deep green, readable on the pale mint at rest */
 }
 
 .social-button.linkedin{
   background:linear-gradient(180deg, var(--blue1), var(--blue2));
+  color:#06345F;   /* deep navy, readable on the pale blue at rest */
 }
 
 .social-button.resume{
   background:linear-gradient(180deg, #FFE9A8, #F2C230);
   color:#7a5b0a;
+}
+
+/* Brand-color hover states: at rest each button wears the soft pastel
+   gradient above (kawaii palette) with dark text; on hover it shifts to
+   the actual saturated brand color, giving recognizability right when
+   someone's about to click. These need TWO classes (.social-button.email)
+   so they out-specify the generic ".social-button:hover" rule above,
+   which sets the pink gradient — a single-class hover there would
+   otherwise win by source order. The shift animates via the
+   "background"/"color" transitions on the base .social-button, so it
+   fades alongside the lift. Hexes are the real brand marks: Gmail green
+   #34A853 (the green segment of the current multicolor "M"), LinkedIn
+   blue #0A66C2. Text handling differs by brand: LinkedIn's blue is dark
+   enough for white text, so it flips to white on hover; Gmail's green is
+   a mid-tone where white would be below AA, so email keeps its dark green
+   text throughout. The resume button has no brand to match, so it just
+   deepens its own gold and keeps its dark text. */
+.social-button.email:hover{
+  background:linear-gradient(180deg, #4CB56A, #34A853);
+  /* Text stays dark green (does NOT flip to white like LinkedIn below):
+     white on Gmail's mid-tone green is only ~2.6-3:1, below AA. Gmail's
+     own UI uses dark marks on green for the same reason. Dark green text
+     on the saturated green stays high-contrast in the hover state. */
+}
+
+.social-button.linkedin:hover{
+  background:linear-gradient(180deg, #2A7CD4, #0A66C2);
+  color:var(--white);   /* LinkedIn's blue is dark enough that white text
+                            clears AA (~4.3-5.7:1) */
+}
+
+.social-button.resume:hover{
+  background:linear-gradient(180deg, #FCDC7A, #E8B01E);
 }
 
 /* Stronger/bolder version of .link, used for the "Portfolio" link at the
