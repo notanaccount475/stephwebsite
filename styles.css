@@ -624,10 +624,10 @@ body{
   pointer-events:none;
 }
 
-/* Visually hides text while keeping it readable to screen readers — used
-   on the About page's static hobby cube so each color-coded cell still
-   announces what it stands for, even though sighted users get that
-   info from the "title" tooltip on hover instead */
+/* Visually hides text while keeping it readable to screen readers. A
+   generic accessibility utility (kept available for future use even
+   though the About page's static hobby cube that originally used it has
+   been removed). */
 .sr-only{
   position:absolute;
   width:1px;
@@ -639,45 +639,6 @@ body{
   white-space:nowrap;
   border:0;
 }
-
-/* About page's STATIC hobby cube (see the long comment in about.html for
-   why this one doesn't animate like the other two). Each cell gets a
-   fixed color standing for one hobby, plus a subtle hover lift so it's
-   clear the cells are individually meaningful, not just decoration. */
-.hobby-cell{
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:default;
-  transition:transform .15s ease;
-  color:#6B4A2E;  /* shared dark ink color for every icon, so they read
-                      clearly against any of the light pastel cell colors */
-}
-
-.hobby-cell:hover,
-.hobby-cell:focus{
-  transform:scale(1.12);
-}
-
-/* Every hand-drawn SVG icon shares this sizing — small enough to fit the
-   ~24px cell with breathing room, using currentColor so they all pick up
-   the ink color set on .hobby-cell above without needing per-icon rules */
-.hobby-icon{
-  width:15px;
-  height:15px;
-}
-
-.hobby-art{ background:#FF9EB0; }
-.hobby-ukulele{ background:#FFE59A; }
-.hobby-volunteering{ background:#A9E6C4; }
-.hobby-cube{ background:#A8D8F0; }
-.hobby-yoga{ background:#FFC08A; }
-.hobby-asl{ background:#D9C4F0; }
-.hobby-husband{ background:#FFB199; }
-.hobby-blank{ background:#EFE9DE; }
-
-
 
 /* Headings use Baloo 2 (the rounded display font) in the pink accent color */
 h1,
