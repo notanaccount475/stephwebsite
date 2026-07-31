@@ -28,9 +28,9 @@ html{
    Changing a value here updates it site-wide, instead of hunting down
    every place a color was used. */
 :root{
-  --sky-top:#EAF7FB;      /* background gradient: top of the sky */
-  --sky-mid:#CFEFFB;      /* background gradient: middle of the sky */
-  --sky-bottom:#FBD9EA;   /* background gradient: bottom, fades into pink */
+  --sky-top:#FBD9EA;      /* background gradient: top of the sky, now pink */
+  --sky-mid:#CFEFFB;      /* background gradient: middle of the sky, blue */
+  --sky-bottom:#EAF7FB;   /* background gradient: bottom, palest blue */
   --panel:rgba(255,249,241,.92);      /* the cream card background (.wrap) */
   --panel-border:rgba(243,198,220,.7); /* soft pink border used on cards/dividers */
   --title:#E0668F;        /* main pink accent color, used for headings + primary buttons */
