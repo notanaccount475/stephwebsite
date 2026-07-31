@@ -1243,6 +1243,22 @@ img{
   transform:scale(1.06);   /* subtle zoom on hover signals interactivity */
 }
 
+/* Wrapper for the resume button in the portfolio intro. The base
+   .social-button rule sets width:min(100%,520px), which would stretch
+   the button to a wide 520px bar under the tagline. Centering the
+   wrapper as a flex row and letting the button be width:auto here keeps
+   it a normal content-sized pill, centered like the eyebrow and cube
+   above it. margin-top gives it breathing room below the tagline. */
+.intro-resume{
+  display:flex;
+  justify-content:center;
+  margin-top:20px;
+}
+
+.intro-resume .social-button{
+  width:auto;
+}
+
 /* ============================= Lightbox popup ============================= */
 /* Used on about.html: clicking any gallery thumbnail opens this full-screen
    dark overlay with a bigger version of that image. Hidden by default

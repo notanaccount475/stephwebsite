@@ -29,11 +29,21 @@
              individual "moves," the projects section is a few actual solves -->
         <p class="cube-tagline">No single algorithm solves every scramble. You need to know which one to reach for at each stage, and in what order. Below is Stephanie's algorithm library. The projects further down are that library put into practice.</p>
 
-        <!-- Quick link to the resume for anyone who lands directly on this page
-             (via a shared link or search result) without passing through the
-             homepage first, where the resume link normally lives -->
-        <div class="quick-nav">
-          <a class="quick-link" href="Stephanie_McArthur_Resume.pdf" target="_blank" rel="noopener">View Resume</a>
+        <!-- Resume button for anyone landing directly on this page (via a
+             shared link or search result) without passing through the
+             homepage. Styled to match the landing page's gold resume
+             button (.social-button.resume), but wrapped in .intro-resume
+             so it sizes to its content and centers under the tagline
+             rather than stretching to the button's 520px max width.
+             Uses an inline SVG file icon instead of the landing page's
+             Font Awesome <i>, because Font Awesome is only loaded on
+             index.html — adding the whole dependency here for one glyph
+             isn't worth it, and inline SVG can't fail to load. -->
+        <div class="intro-resume">
+          <a class="social-button resume" href="Stephanie_McArthur_Resume.pdf" target="_blank" rel="noopener" title="View Stephanie's Resume!">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5"/></svg>
+            View Stephanie's Resume!
+          </a>
         </div>
       </div>
 
