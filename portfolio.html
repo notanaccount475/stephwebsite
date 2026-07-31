@@ -129,6 +129,48 @@
              thumbnail on top (linking out to the live dashboard) and the
              title/description text below it in ".project-card-body" -->
         <ul class="project-list">
+          <!-- TBM suite: unlike the other cards, this one links to no live
+               public URL (it's internal client work), so the thumbnail and
+               the small screenshot row below the text open the lightbox
+               instead of navigating out. The four images share one lightbox
+               that can be paged through (see the gallery-nav arrows and the
+               JS at the bottom of this file). data-caption supplies each
+               image's lightbox caption; data-index sets paging order. -->
+          <li class="project-card project-card-tbm">
+            <button type="button" class="project-thumb tbm-shot" data-index="0"
+                    data-src="images/projects/tbm-executive-summary.png"
+                    data-caption="Executive Summary: budget, obligation rate, and projected year-end balance at a glance.">
+              <img src="images/projects/tbm-executive-summary.png" alt="TBM dashboard executive summary view">
+            </button>
+            <div class="project-card-body">
+              <span class="project-title-static">TBM Financial Reporting Suite</span>
+              <p>
+                For a federal public health agency, Stephanie built a Power BI suite implementing the TBM (Technology Business Management) Taxonomy, the industry-standard framework for mapping technology spend. It classifies IT costs across cost pools, resource towers, and solutions, then drills from an executive budget summary down to individual line items, turning raw financial exports into a navigable view of where money is committed and how it tracks against budget.
+              </p>
+
+              <!-- The three remaining screenshots as a small clickable row.
+                   The lead image above is index 0; these are 1 to 3, so the
+                   lightbox pages through all four in a sensible order. -->
+              <div class="tbm-thumb-row">
+                <button type="button" class="tbm-shot tbm-mini" data-index="1"
+                        data-src="images/projects/tbm-summary.png"
+                        data-caption="TBM Summary: obligations broken down by cost pool, tower and sub-tower, and solution.">
+                  <img src="images/projects/tbm-summary.png" alt="TBM summary view: obligations by cost pool, tower, and solution">
+                </button>
+                <button type="button" class="tbm-shot tbm-mini" data-index="2"
+                        data-src="images/projects/tbm-towers.png"
+                        data-caption="Towers: ESC vs RMS projection comparison, percentage breakouts, and line items by tower.">
+                  <img src="images/projects/tbm-towers.png" alt="TBM towers view: projection comparisons and breakouts by tower">
+                </button>
+                <button type="button" class="tbm-shot tbm-mini" data-index="3"
+                        data-src="images/projects/tbm-decomposition-tree.png"
+                        data-caption="Decomposition Tree: drill from a single obligations total down through office, tower, and sub-tower.">
+                  <img src="images/projects/tbm-decomposition-tree.png" alt="TBM decomposition tree: interactive drill-down from total to sub-tower">
+                </button>
+              </div>
+            </div>
+          </li>
+
           <li class="project-card">
             <a href="https://public.tableau.com/app/profile/stephanie8553/viz/Consumer_Complaints_16934391724510/Presentation" target="_blank">
               <div class="project-thumb">
@@ -197,6 +239,21 @@
       </p>
     </div>
 
+    <!-- Lightbox for the TBM screenshots. Placed OUTSIDE .wrap on purpose:
+         .wrap uses backdrop-filter, and any element with backdrop-filter/
+         transform/filter becomes the containing block for position:fixed
+         descendants — so a fixed lightbox inside .wrap would anchor to the
+         scrolling card instead of the browser window. Same pattern as
+         about.html's lightbox. The prev/next arrows page through the four
+         shots; clicking the dark backdrop or the × closes it. -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+      <span class="lightbox-close" role="button" aria-label="Close">&times;</span>
+      <button type="button" class="lightbox-nav lightbox-prev" aria-label="Previous">&#8249;</button>
+      <img id="lightbox-img" src="" alt="">
+      <p id="lightbox-caption"></p>
+      <button type="button" class="lightbox-nav lightbox-next" aria-label="Next">&#8250;</button>
+    </div>
+
     <script>
       // Same cube-grid randomizer as index.html — see the comments there
       // for the full explanation of how the scramble/solve loop works.
@@ -232,6 +289,78 @@
         if (cells.length) {
           loop();
         }
+      })();
+    </script>
+
+    <script>
+      // TBM screenshot lightbox with paging. Builds an ordered list of the
+      // four shots from the .tbm-shot buttons (sorted by their data-index),
+      // so prev/next walk through them in a defined order regardless of DOM
+      // position. Kept separate from the cube script above so each stays
+      // independently readable.
+      (function () {
+        var shots = Array.prototype.slice.call(document.querySelectorAll('.tbm-shot'));
+        if (!shots.length) return;
+
+        // [{src, caption}] ordered by data-index
+        var slides = shots
+          .map(function (btn) {
+            return {
+              index: parseInt(btn.getAttribute('data-index'), 10) || 0,
+              src: btn.getAttribute('data-src'),
+              caption: btn.getAttribute('data-caption') || ''
+            };
+          })
+          .sort(function (a, b) { return a.index - b.index; });
+
+        var lb = document.getElementById('lightbox');
+        var lbImg = document.getElementById('lightbox-img');
+        var lbCap = document.getElementById('lightbox-caption');
+        var current = 0;
+
+        function show(i) {
+          // wrap around at both ends so paging never dead-ends
+          current = (i + slides.length) % slides.length;
+          lbImg.src = slides[current].src;
+          lbImg.alt = slides[current].caption;
+          lbCap.textContent = slides[current].caption;
+        }
+
+        function openAt(i) {
+          show(i);
+          lb.style.display = 'flex';
+        }
+
+        // Exposed globally because the backdrop's onclick attribute calls it.
+        // The event check means clicks on the image or arrows (which bubble
+        // up to the backdrop) don't close the lightbox — only a click on the
+        // dark backdrop itself, or on the × , does.
+        window.closeLightbox = function (event) {
+          if (!event || event.target === lb || event.target.classList.contains('lightbox-close')) {
+            lb.style.display = 'none';
+          }
+        };
+
+        shots.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            openAt(parseInt(btn.getAttribute('data-index'), 10) || 0);
+          });
+        });
+
+        document.querySelector('.lightbox-prev').addEventListener('click', function () {
+          show(current - 1);
+        });
+        document.querySelector('.lightbox-next').addEventListener('click', function () {
+          show(current + 1);
+        });
+
+        // Keyboard support while the lightbox is open: arrows page, Esc closes
+        document.addEventListener('keydown', function (e) {
+          if (lb.style.display !== 'flex') return;
+          if (e.key === 'ArrowLeft') show(current - 1);
+          else if (e.key === 'ArrowRight') show(current + 1);
+          else if (e.key === 'Escape') lb.style.display = 'none';
+        });
       })();
     </script>
   </body>

@@ -1197,6 +1197,75 @@ img{
   font-size:.95rem;
 }
 
+/* ---- TBM card specifics ----
+   This card differs from the others: its thumbnails are <button>s that
+   open a lightbox rather than <a>s that navigate to a live URL (the work
+   is internal, so there's no public link), and its title isn't a link
+   for the same reason. */
+
+/* The title on this one card is a plain span, not a link, but should look
+   identical to the .project-card a title on the others */
+.project-title-static{
+  font-family:"Baloo 2", sans-serif;
+  font-weight:700;
+  font-size:1.1rem;
+  color:var(--title);
+}
+
+/* Reset default <button> chrome so a button-wrapped thumbnail looks exactly
+   like the <a>-wrapped thumbnails on the other cards. Without this the
+   browser draws its native grey button background, border, and padding
+   around the image. */
+.tbm-shot{
+  padding:0;
+  border:none;
+  background:none;
+  font:inherit;
+  cursor:zoom-in;   /* hints the image enlarges on click */
+  display:block;
+}
+
+/* The lead thumbnail button reuses .project-thumb (the fixed-width left
+   column), so it only needs the button reset above plus a full-height
+   fill to match the sibling text column */
+.project-card-tbm .project-thumb{
+  width:100%;
+  height:100%;
+}
+
+/* Row of the three secondary screenshots under the description. A simple
+   flex row; each mini-thumb shares the width evenly and keeps a fixed
+   aspect box so the row stays tidy regardless of each shot's dimensions. */
+.tbm-thumb-row{
+  display:flex;
+  gap:10px;
+  margin-top:14px;
+}
+
+.tbm-mini{
+  flex:1 1 0;
+  min-width:0;
+  border-radius:10px;
+  overflow:hidden;
+  border:1px solid var(--panel-border);
+  line-height:0;   /* removes the descender gap under the inline image */
+}
+
+.tbm-mini img{
+  width:100%;
+  height:64px;
+  object-fit:cover;         /* crop to fill the small tile; the full image
+                               is one click away in the lightbox */
+  object-position:top left; /* dashboards lead with a title/header, so the
+                               top-left corner is the most recognisable crop */
+  display:block;
+  transition:transform .25s ease;
+}
+
+.tbm-mini:hover img{
+  transform:scale(1.06);   /* subtle zoom on hover signals interactivity */
+}
+
 /* ============================= Lightbox popup ============================= */
 /* Used on about.html: clicking any gallery thumbnail opens this full-screen
    dark overlay with a bigger version of that image. Hidden by default
@@ -1241,6 +1310,48 @@ img{
   font-size:2.2rem;
   line-height:1;
   cursor:pointer;
+}
+
+/* Prev/next paging arrows for the multi-image lightbox (only the TBM card
+   uses paging; on about.html there are no .lightbox-nav elements, so these
+   rules simply match nothing there). Positioned against the viewport
+   edges, vertically centred. */
+.lightbox-nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(255,255,255,.14);
+  border:none;
+  color:var(--white);
+  font-size:2.4rem;
+  line-height:1;
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:background .2s ease;
+}
+
+.lightbox-nav:hover{
+  background:rgba(255,255,255,.28);
+}
+
+.lightbox-prev{ left:22px; }
+.lightbox-next{ right:22px; }
+
+/* On narrow screens tuck the arrows in tighter and shrink them so they
+   don't overlap the image */
+@media (max-width:700px){
+  .lightbox-nav{
+    width:42px;
+    height:42px;
+    font-size:1.9rem;
+  }
+  .lightbox-prev{ left:8px; }
+  .lightbox-next{ right:8px; }
 }
 
 /* ============================= About page ============================= */
